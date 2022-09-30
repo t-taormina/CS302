@@ -4,7 +4,7 @@
 - think... base class: vehicle 
   - and derived classes: car, bike, train, boat, etc. 
 - classes can contain three levels of restriction for the data that they contain 
-  - public = accessbile for everyone (client accessible; public derivation gives access to public funtions of the base class)
+  - public = accessbile for everyone (client accessible; public derivation gives access to public funtions of a parent class)
   - protected = accessible for derived classes
   - private = only accessible by the particular class
 - every class needs to have a purpose or job to do 
@@ -25,6 +25,20 @@
     - or create an object the initial value of another object of that same class 
     - only use the latter of these, the others uses memory and decreases program efficiency
   - only implement copy constructors when using dynamic memeory, otherwise the C++ provided copy constructor will be sufficient
-  - double free errors result from passing by value (use &!) 
-  - 
+  - double free errors result from passing by value (use &) pass by reference 
+
+### Program 1 info
+- a game
+- Use at least 5 classes with at least one inheritance hierarchy
+- no public data
+- no structs
+- move on to using the STL for one data structure per assignment
+- recursive solutions for repetitive algorithms
+
+### Future
+- Generic programming is a case where will return a class by value 
+
+
+
+- REMINDER ==> don't use cout statements, use GDB
 
