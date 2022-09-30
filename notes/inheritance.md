@@ -3,4 +3,10 @@
 - the base class contains the similarities and the derived class contains the differences 
 - think... base class: vehicle 
   - and derived classes: car, bike, train, boat, etc. 
+- classes can contain three levels of restriction for the data that they contain 
+  - public = accessbile for everyone (client accessible; public derivation gives access to public funtions of the base class)
+  - protected = accessible for derived classes
+  - private = only accessible by the particular class
+- every class needs to have a purpose or job to do 
+- AVOID GETTERS!
 - 
