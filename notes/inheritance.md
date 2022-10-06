@@ -26,6 +26,28 @@
     - only use the latter of these, the others uses memory and decreases program efficiency
   - only implement copy constructors when using dynamic memeory, otherwise the C++ provided copy constructor will be sufficient
   - double free errors result from passing by value (use &) pass by reference 
+- if you are using dynamic memory be sure to implement a copy constructor, a deconstructor, and a assignment operator
+
+### Assignment operator
+- ClassName& operator=(const ClassName& arg); 
+- Things to consider
+  - How to chek for self assignment:
+  - Delete the current dynamic memory
+  - Perform a deep copy
+CODE
+```
+Class& operator=(const Class& arg)
+{
+  security::operator=(arg);
+  if (this == &arg)
+    return *this; //or return arg since they are the same thing 
+  if(name)
+    delete [] name;
+  name = new char [strlen(source.name) + 1];
+  strcpy(name, source.name);
+  return *this;
+}
+```
 
 ### Program 1 info
 - a game
