@@ -46,6 +46,8 @@ array_name.fill(initial_value);
 array_name[index] = 10; // does not range check (risks out of bounds)
 array_name.at(index); // does range check 
 ```
+-see below link for array methods 
+  - https://en.cppreference.com/w/cpp/container/array
 
 #### Vector container
 - size can be changed
@@ -57,5 +59,8 @@ std::vector<data_type> names;
 ```
 -see below link for vector methods 
   - https://cplusplus.com/reference/vector/vector/ 
+
+-see below link for string methods 
+  - https://cplusplus.com/reference/string/string/
 
 
