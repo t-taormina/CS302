@@ -3,14 +3,14 @@
 - new for-loops
   - for ([initialization;] range_declaration:range_expression
 ```
-int arraay[] {1,2,3,4,5};
+int array[] {1,2,3,4,5};
 for (int element:array_name)
   total += element;
 ```
 - also can create references for each element
 ```
 for (int& element:array_name)
-  ++element; modifies each element. 
+  ++element; // modifies each element. 
 ```
 
 ### Auto keyword
@@ -22,6 +22,7 @@ for (int& element:array_name)
 steps through ann array based on the array type
 ```
 for (auto element:array)
+{}
 ```
 
 ### Containers from STL
@@ -45,3 +46,17 @@ array_name.fill(initial_value);
 array_name[index] = 10; // does not range check (risks out of bounds)
 array_name.at(index); // does range check 
 ```
+
+#### Vector container
+- size can be changed
+- occupies more memory than an Array
+- arrays are more efficient
+- initializes by default
+```
+std::vector<data_type> names;
+```
+
+see below link for vector methods 
+https://cplusplus.com/reference/vector/vector/ 
+
+
