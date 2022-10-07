@@ -55,8 +55,7 @@ array_name.at(index); // does range check
 ```
 std::vector<data_type> names;
 ```
-
-see below link for vector methods 
-https://cplusplus.com/reference/vector/vector/ 
+-see below link for vector methods 
+  - https://cplusplus.com/reference/vector/vector/ 
 
 
