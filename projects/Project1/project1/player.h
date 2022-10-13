@@ -13,7 +13,6 @@ class Player: public Person
         void display_points();
         bool is_winner();
         void reset_points();
-        int roll();
  
     protected:
         int points;

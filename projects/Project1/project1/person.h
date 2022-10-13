@@ -11,13 +11,15 @@ class Person
 {
     public:
         Person();
+        Person(char* f_name, char* l_name);
+        Person(const Person& to_copy);
         ~Person();
         void display() const;
-        int roll();
+        void edit_name(string);
  
     protected:
-        string name;
-        string age;
+        char* first_name;
+        char* last_name;
         int wins;
         int losses;
 };
