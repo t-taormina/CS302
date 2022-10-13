@@ -7,15 +7,18 @@
 using std::string;
 
 
-class Name 
+class Person 
 {
     public:
-        Name();
-        ~Name();
+        Person();
+        ~Person();
         void display() const;
         int roll();
  
     protected:
         string name;
+        string age;
+        int wins;
+        int losses;
 };
 

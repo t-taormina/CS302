@@ -4,7 +4,7 @@
 // Program 1
 
 
-class Pawn 
+class Pawn: public Piece 
 {
     public:
         Pawn();

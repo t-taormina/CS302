@@ -5,7 +5,7 @@
 
 enum class dice_value { 1, 2, 3, 4, 5, 6};
 
-class Dice 
+class Dice: public Piece 
 {
     public:
         Dice();
