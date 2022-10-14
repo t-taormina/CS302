@@ -5,7 +5,7 @@
 
 
 enum class card_suit {hearts, diamonds, clubs, spades};
-enum class card_value {1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace};
+enum class card_value {2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace};
 
 class Card: public Piece
 {
