@@ -2,7 +2,8 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
-
+#ifndef PERSON_H
+#define PERSON_H
 #include <string>
 using std::string;
 
@@ -24,4 +25,6 @@ class Person
         int wins;
         int losses;
 };
+
+#endif
 

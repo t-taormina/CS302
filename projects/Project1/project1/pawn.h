@@ -2,6 +2,8 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+#ifndef PAWN_H
+#define PAWN_H
 
 
 class Pawn: public Piece 
@@ -16,4 +18,6 @@ class Pawn: public Piece
     protected:
         int position;
 };
+
+#endif
 

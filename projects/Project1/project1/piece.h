@@ -2,6 +2,8 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+#ifndef PIECE_H
+#define PIECE_H
 
 class Piece 
 {
@@ -10,6 +12,8 @@ class Piece
         ~Piece();
         Piece(bool ind, bool comm);
         void display() const;
+        bool is_individual();
+        bool is_community();
 
     protected:
         bool individual; // marked true if the piece is used only by one player, false otherwise
@@ -18,4 +22,6 @@ class Piece
         // inheritance. If you have any other suggestions for what this class could be
         // responsible for, please let me know!
 };
+
+#endif
 

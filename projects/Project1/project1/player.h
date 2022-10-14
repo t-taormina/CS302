@@ -2,6 +2,9 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+#ifndef PLAYER_H
+#define PLAYER_H
+
 
 class Player: public Person 
 {
@@ -18,4 +21,6 @@ class Player: public Person
     protected:
         int points;
 };
+
+#endif
 
