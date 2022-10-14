@@ -15,7 +15,8 @@ class Person
         Person(const Person& to_copy);
         ~Person();
         void display() const;
-        void edit_name(string);
+        void edit_first_name(char* edit);
+        void edit_last_name(char* edit);
  
     protected:
         char* first_name;

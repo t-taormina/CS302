@@ -3,7 +3,6 @@
 // October 2022
 // Program 1
 
-enum class dice_value { 1, 2, 3, 4, 5, 6};
 
 class Dice: public Piece 
 {
@@ -14,6 +13,6 @@ class Dice: public Piece
         int roll();
  
     protected:
-        dice_value value;
+        int value;
 };
 
