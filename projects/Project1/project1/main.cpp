@@ -5,6 +5,11 @@
 #include <iostream>
 #include "piece.h"
 #include "card.h"
+#include "dice.h"
+#include "pawn.h"
+#include "player.h"
+#include "person.h"
+
 using namespace std;
 
 int main()
@@ -15,6 +20,12 @@ int main()
 
   Pawn pawn1 = Pawn();
   pawn1.display();
+
+  Dice dice1 = Dice();
+  dice1.display();
+
+  Player play1 = Player();
+  play1.display();
 
 
   Piece p1 = Piece();

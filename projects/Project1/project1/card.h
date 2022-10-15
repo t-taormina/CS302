@@ -14,7 +14,7 @@ class Card: public Piece
 {
     public:
         Card();
-        Card(int arg_value, int arg_suit);
+        Card(card_value arg_value, card_suit arg_suit);
         ~Card();
         void display() const;
         int point_conversion();
@@ -22,8 +22,8 @@ class Card: public Piece
         
  
     protected:
-        card_suit suit;
         card_value value;
+        card_suit suit;
         int position;
 };
 

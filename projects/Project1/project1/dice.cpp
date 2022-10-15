@@ -3,10 +3,12 @@
 // October 2022
 // Program 1
 #include "dice.h"
+#include <iostream>
+using namespace std;
 
 Dice::Dice(): value(0) {}
 
-Dice~Dice(){}
+Dice::~Dice(){}
 
 void Dice::display() const
 {

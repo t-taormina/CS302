@@ -2,8 +2,8 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
-#include <iostream>
 #include "piece.h"
+#include <iostream>
 using namespace std;
 
 Piece::Piece(): individual(false), community(false){}

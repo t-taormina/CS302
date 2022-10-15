@@ -3,8 +3,11 @@
 // October 2022
 // Program 1
 #include "player.h"
+#include <iostream>
+using namespace std;
 
-Player::Player(): points(0){}
+
+Player::Player(): Person(), points(0){}
 
 Player::~Player(){}
 

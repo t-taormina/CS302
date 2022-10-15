@@ -9,7 +9,7 @@ using namespace std;
 
 Card::Card(): value(card_value::two), suit(card_suit::hearts), position(0) {}
 
-Card::Card(int arg_value, int arg_suit): value(arg_val), suit(arg_suit), position(0){}
+Card::Card(card_value arg_val, card_suit arg_suit): value(arg_val), suit(arg_suit), position(0){}
 
 Card::~Card(){}
 

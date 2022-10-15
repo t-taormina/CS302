@@ -2,8 +2,13 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+#include "person.h"
+#include <iostream>
+#include <cstring>
+using namespace std;
 
-Perosn::Person(): first_name(nullptr), last_name(nullptr), wins(0), losses(0){}
+
+Person::Person(): first_name(nullptr), last_name(nullptr), wins(0), losses(0){}
 
 Person::Person(char* f_name, char* l_name): first_name(f_name), last_name(l_name), wins(0), losses(0) {}
 
@@ -28,8 +33,10 @@ Person::~Person()
 
 void Person::display() const
 {
-  cout << "First name: " << first_name << endl;
-  cout << "Last name: " << last_name << endl;
+  if (first_name)
+    cout << "First name: " << first_name << endl;
+  if (last_name)
+    cout << "Last name: " << last_name << endl;
   cout << "Wins: " << wins << endl;
   cout << "Losses: " << losses << endl;
 }
