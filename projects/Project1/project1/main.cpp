@@ -11,12 +11,12 @@ int main()
 {
 
   Card c1 = Card();
-  Card c2 = Card(0,0);
   c1.display();
-  c2.display();
+
+  Pawn pawn1 = Pawn();
+  pawn1.display();
 
 
-  /*
   Piece p1 = Piece();
   Piece p2 = Piece(false, true);
   p1.display();
@@ -27,7 +27,6 @@ int main()
 
   if (p2.is_community())
     cout << "community" << endl;
-    */
 
   return 0;
 }

@@ -10,6 +10,7 @@ class Pawn: public Piece
 {
     public:
         Pawn();
+        Pawn(int arg_position);
         ~Pawn();
         void display_position();
         void change_position(int);
