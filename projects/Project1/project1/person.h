@@ -32,6 +32,7 @@ class Player: public Person
 {
     public:
         Player();
+        Player(char* usrname);
         ~Player();
         Player(const Player& to_copy);
         void display() const;
@@ -42,6 +43,7 @@ class Player: public Person
  
     protected:
         int points;
+        char* username;
 };
 
 #endif

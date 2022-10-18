@@ -7,9 +7,20 @@
 using namespace std;
 
 
+// Default constructor
 Player::Player(): Person(), points(0){}
 
-Player::~Player(){}
+// Parameterized constructor
+Player::Player(char* usrname, char* f_name, char* l_name): Person(f_name, l_name), username(usrname), points(0){}
+
+Player::~Player(): ~Person()
+{
+  if (username)
+  {
+    delete [] username;
+    username = nullptr;
+  }
+}
 
 Player::Player(const Player& to_copy)
 {
