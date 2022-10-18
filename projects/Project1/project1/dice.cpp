@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-Dice::Dice(): value(0) {}
+Dice::Dice():  Piece(false, true), value(0) {}
 
 Dice::~Dice(){}
 

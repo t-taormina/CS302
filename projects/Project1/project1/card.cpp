@@ -2,16 +2,16 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
-#include "card.h"
+#include "pawn.h"
 #include <iostream>
 using namespace std;
 
 
 // Default constructor
-Card::Card(): value(card_value::two), suit(card_suit::hearts), position(0) {}
+Card::Card(): Piece(), value(card_value::two), suit(card_suit::hearts), position(0) {}
 
 // Paramterized constructor
-Card::Card(card_value arg_val, card_suit arg_suit): value(arg_val), suit(arg_suit), position(0){}
+Card::Card(card_value arg_val, card_suit arg_suit): Piece(false, true), value(arg_val), suit(arg_suit), position(0){}
 
 // Deconstructor
 Card::~Card(){}

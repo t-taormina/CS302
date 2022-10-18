@@ -4,10 +4,7 @@
 // Program 1
 #include <iostream>
 #include "piece.h"
-#include "card.h"
-#include "dice.h"
 #include "pawn.h"
-#include "player.h"
 #include "person.h"
 
 using namespace std;

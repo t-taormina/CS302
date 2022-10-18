@@ -7,6 +7,7 @@
 #include <string>
 using std::string;
 
+// Contains both person and player headers.
 
 class Person 
 {

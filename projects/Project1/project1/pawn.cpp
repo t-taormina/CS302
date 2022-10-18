@@ -7,7 +7,7 @@
 using namespace std;
 
 
-Pawn::Pawn(): position(0){}
+Pawn::Pawn(): Piece(), position(0){}
 
 Pawn::Pawn(int arg_position): position(arg_position){}
 
