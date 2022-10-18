@@ -2,6 +2,7 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+
 #ifndef PAWN_H
 #define PAWN_H
 #include "piece.h"
@@ -23,9 +24,9 @@ class Pawn: public Piece
 };
 
 
+// Card suits and values 
 enum card_suit {hearts, diamonds, clubs, spades};
 enum card_value {two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace};
-
 
 class Card: public Piece
 {

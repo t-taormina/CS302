@@ -2,6 +2,7 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+
 #include "piece.h"
 #include <iostream>
 using namespace std;

@@ -2,6 +2,7 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+
 #ifndef PIECE_H
 #define PIECE_H
 

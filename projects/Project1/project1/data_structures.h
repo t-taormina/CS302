@@ -1,35 +1,24 @@
-// Tyler Taormina CS163
-// June, 2022
-// Program 2- Stack and queues at the Fair
+// Tyler Taormina 
+// taormina@pdx.edu
+// October 2022
+// Program 1
+
+#ifndef CLL_H
+#define CLL_H
+
+#include "pawn.h" // contains card headers
 
 
-// QUEUE CLASS 
-// ========================
-// An Queue instance has 1 member. 
-// - Q_node -> struct that holds an event object as well as a pointer to another q_node.
-//           rear -> pointer to the rear node in a circular linear linked list
-// 
-// - This class uses a circular linear linked list as its data structure. The rear represents 
-// the back of the queue. The rear node holds a pointer that points to the "top" or front of 
-// the queue. Nodes are enqueued at the rear and dequeued at the top.
-
-
-#ifndef QUEUE_H
-#define QUEUE_H
-
-#include "event.h"
-
-
-class cll_node
+class Node: public Card
 {
   public:
-    cll_node();
-    ~cll_node();
-
+    Node();
+    ~Node();
+    Node*& get_next();
+    void set_next(Node* new_next);
 
   protected:
-    Card card;
-    cll_node * next;
+    Node* next;
 };
 
 
@@ -50,19 +39,41 @@ class CLL
     int display(void);
 
   private:
-    int display(q_node * current, q_node * end);
-    q_node * rear;
+    int display(cll_node * current, cll_node * end);
+    Node * rear;
 };
 
 
-class ALL
+class ALL: public Card
 {
-  public:
+   public:
 
+    // Parameterized constructor that takes an integer argument and creates the table
+    // array with a length of the argument passed.
+    ALL(int size);
 
+    // Deconstructor
+    ~ALL(void);
 
-  protected: 
+    int insert(Card& to_add);
 
+    // Takes a character array of a name to match and an array where matches will be stored.
+    int retrieve();
+
+    // Displays all items stored in the hash table.
+    int display_all(void);
+
+    // Displays all items that have a TYPE matching the argument supplied character array.
+    int display_current_hand();
+
+    // Removes all cards.
+    int remove_all();
+    
+  // ===============================================================================================
+
+  private:
+    Node ** ALL;
+    int  table_size;
 };
 
 #endif

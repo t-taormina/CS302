@@ -2,6 +2,7 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+
 #include "pawn.h"
 #include <iostream>
 using namespace std;
