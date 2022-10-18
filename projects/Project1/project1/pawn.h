@@ -21,5 +21,18 @@ class Pawn: public Piece
         int position;
 };
 
+
+class Dice: public Piece 
+{
+    public:
+        Dice();
+        ~Dice();
+        void display() const;
+        int roll();
+ 
+    protected:
+        int value;
+};
+
 #endif
 

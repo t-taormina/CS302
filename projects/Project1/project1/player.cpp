@@ -2,7 +2,7 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
-#include "player.h"
+#include "person.h"
 #include <iostream>
 using namespace std;
 
