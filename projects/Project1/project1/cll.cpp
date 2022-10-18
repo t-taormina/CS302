@@ -7,10 +7,30 @@
 
 // Node Class
 // ==============================================
-Node::Node(){}
+Node::Node(): next(nullptr){}
+
+Node::Node(card_value arg_value, card_suit arg_suit): Card(arg_value, arg_suit), next(nullptr) {}
+
 Node::~Node(){}
-Node::Node*& get_next(){}
-void Node::set_next(Node* new_next){}
+
+Node::Node*& get_next()
+{
+  return next;
+}
+
+void Node::set_next(Node* new_next)
+{
+  next = new_next;
+}
+
+bool Node::has_next() const
+{
+  bool check = false;
+  if(next)
+    check = true;
+  return check;
+}
+
 
 
 // CLL Class

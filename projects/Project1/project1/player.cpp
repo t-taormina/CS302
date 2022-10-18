@@ -54,8 +54,12 @@ bool Player::is_winner(int& opponent_points)
     return false;
 }
 
-void Player::reset_points()
+int Player::reset_points()
 {
   points = 0;
+  if (points == 0)
+    return 1;
+  else 
+    return 0;
 }
 

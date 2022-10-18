@@ -6,7 +6,7 @@
 #ifndef CLL_H
 #define CLL_H
 
-#include "pawn.h" // contains card headers
+#include "pawn.h" // pawn.h contains card headers
 
 
 class Node: public Card
@@ -16,6 +16,7 @@ class Node: public Card
     ~Node();
     Node*& get_next();
     void set_next(Node* new_next);
+    bool has_next() const;
 
   protected:
     Node* next;
