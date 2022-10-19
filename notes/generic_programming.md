@@ -1,4 +1,5 @@
-# Generic Programming
+# Generic Programming 
+- let the compiler do the work
 
 ### Namespaces
 - namespace is a grouping of identifiers
@@ -41,3 +42,6 @@ template<class TYPE>
   - this says that the following function will use the identifier TYPE instead of the explicit data type
   - operator overloading becomes essential when using templates
   - 
+
+
+ 
