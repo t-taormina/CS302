@@ -41,7 +41,24 @@ template<class TYPE>
 ```
   - this says that the following function will use the identifier TYPE instead of the explicit data type
   - operator overloading becomes essential when using templates
-  - 
+  -
+
+### Typedefs
+- a way to create a new mnemonic name for an existing type
+- creates a synonym for something in existence
+- typically used in C
+``` 
+typedef struct node Node
+```
+- with templates this can shorten some of our code...
+```
+typedef Node<TYPE> node_type; 
+```
+- naming is really important when using typedefs
+
+
+### Smart Pointers
+- 
 
 
  
