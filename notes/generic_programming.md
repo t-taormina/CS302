@@ -67,6 +67,13 @@ typedef Node<TYPE> node_type;
   - unique_ptr = if the object goes out of scope, memory released
   - shard_ptr = allows two or more pointers to share the same memory
   - weak_ptr = multiple shared pointers but no reference counting
+- can still use -> and * Operators
+- cannot just use the assignment operator when assigning smart pointers to other smart pointers
+  - must use "move"
+```
+head = move(temp);
+```
+
 ```
 std::unique_ptr<data_type> smrt_ptr;
 // don't use new or malloc
@@ -76,8 +83,16 @@ auto ptr = make_unique<Movie>("initial values");
 // moves pointer to new owner
 auto new_owner = std::move(ptr);
 ```
-- can still use -> and * Operators
+- Random syntax for node class
 
+```
+template <typename TYPE>
+class Node
+{
+  protected:
+    TYPE data;
+    unique_ptr<Node<TYPE>> next;
+};
 
-
+```
  
