@@ -58,7 +58,26 @@ typedef Node<TYPE> node_type;
 
 
 ### Smart Pointers
-- 
+- pointer class with safeguards to help with management dynamic memory
+- implemented as templates
+- no longer need to explicitly use delete to free memory
+- to create smart pointers
+  - #inlcude <memory> header file
+- three types 
+  - unique_ptr = if the object goes out of scope, memory released
+  - shard_ptr = allows two or more pointers to share the same memory
+  - weak_ptr = multiple shared pointers but no reference counting
+```
+std::unique_ptr<data_type> smrt_ptr;
+// don't use new or malloc
+std::unique_ptr<int> int_ptr (new int);
+// different ways to initialize
+auto ptr = make_unique<Movie>("initial values");
+// moves pointer to new owner
+auto new_owner = std::move(ptr);
+```
+- can still use -> and * Operators
+
 
 
  
