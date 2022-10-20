@@ -2,6 +2,7 @@
 // taormina@pdx.edu
 // October 2022
 // Program 1
+// almost there
 
 #ifndef PAWN_H
 #define PAWN_H

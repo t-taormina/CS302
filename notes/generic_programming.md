@@ -4,6 +4,7 @@
 ### Namespaces
 - namespace is a grouping of identifiers
 - have to use the "using namespace (name of namespace)"
+  - std is a namespace
 - there is "file scope" which only allows the namespace to be used in a specific file (can be exteneded to global)
 - there is no "public" or "private"
 - namespaces can be built from multiple locations
