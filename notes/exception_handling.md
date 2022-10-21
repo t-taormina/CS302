@@ -4,6 +4,8 @@
 - "throw" keyword is used to change the flow  
   - how much code should be skipped? 
   - unwind the stack until we get back to where the code makes sense 
-- there will also be a "try" and "catch" keywords used 
+- "try" keyword is used before the "if"
+- "catch" is used to respond to the throw
+- catch(...) will catch everything
 - 
   
