@@ -10,6 +10,9 @@
   - L value: return by reference
 - does the current object change?
   - if not, make it a const member function
-- 
+- distinction to be made when using operators with members and non-members 
+ 
+### Syntax for Operator Overloading
+
 
 
