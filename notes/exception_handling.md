@@ -7,5 +7,8 @@
 - "try" keyword is used before the "if"
 - "catch" is used to respond to the throw
 - catch(...) will catch everything
+- exception handling is important when using operator overloading 
+- instead of throwing a success/failure flag for a function, throw an exception 
 - 
+ 
   
