@@ -9,6 +9,7 @@
 - catch(...) will catch everything
 - exception handling is important when using operator overloading 
 - instead of throwing a success/failure flag for a function, throw an exception 
-- 
  
+# Operator overloading
+- 
   
