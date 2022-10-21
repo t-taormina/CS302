@@ -12,7 +12,16 @@ using namespace std;
 
 int main()
 {
+  /*
+  Person p1 = Person();
+  p1.display();
+  Person p2 = Person(p1);
+  p2.display();
+  */
 
+  Card card = Card(0, 0);
+  card.display();
+  /*
   Card c1 = Card();
   c1.display();
 
@@ -36,12 +45,16 @@ int main()
 
   if (p2.is_community())
     cout << "community" << endl;
+    */
 
   return 0;
 }
 /*
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
               for (int j = 0; j < 13; j++)
-                Card card = Card(i, j)
                 deck.add(card)
 */
+
+
+
+

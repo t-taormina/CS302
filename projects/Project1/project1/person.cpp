@@ -1,21 +1,33 @@
 // Tyler Taormina 
 // taormina@pdx.edu
 // October 2022
-// Program 1
+// Program 1    
 
 #include "person.h"
 #include <iostream>
 #include <cstring>
 using namespace std;
+const int SIZE = 100;
 
 
-Person::Person(): first_name(nullptr), last_name(nullptr), wins(0), losses(0){}
+Person::Person(): wins(0), losses(0){
+  first_name = new char[SIZE];
+  last_name = new char[SIZE];
+  cout << "Please provide your first name: ";
+  std::cin.get(first_name, SIZE, '\n');
+  std::cin.ignore(SIZE, '\n');
+  cout << "Please provide your last name: ";
+  std::cin.get(last_name, SIZE, '\n');
+  std::cin.ignore(SIZE, '\n');
+}
 
-Person::Person(char* f_name, char* l_name): first_name(f_name), last_name(l_name), wins(0), losses(0) {}
-
-Person::Person(const Person& to_copy)
+Person::Person(const Person& to_copy): wins(to_copy.wins), losses(to_copy.losses) 
 {
-  // implement later, its been a busy week 
+  first_name = new char[strlen(to_copy.first_name) + 1];
+  strcpy(first_name, to_copy.first_name);
+
+  last_name = new char[strlen(to_copy.last_name) + 1];
+  strcpy(last_name, to_copy.last_name);
 }
 
 Person::~Person()

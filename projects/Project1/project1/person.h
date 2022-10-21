@@ -14,7 +14,6 @@ class Person
 {
     public:
         Person();
-        Person(char* f_name, char* l_name);
         Person(const Person& to_copy);
         ~Person();
         void display() const;
@@ -33,7 +32,6 @@ class Player: public Person
 {
     public:
         Player();
-        Player(char* usrname);
         ~Player();
         Player(const Player& to_copy);
         void display() const;

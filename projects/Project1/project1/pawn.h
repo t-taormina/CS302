@@ -33,7 +33,7 @@ class Card: public Piece
 {
     public:
         Card();
-        Card(card_value arg_value, card_suit arg_suit);
+        Card(int arg_value, int arg_suit);
         ~Card();
         void display() const;
         int point_conversion();

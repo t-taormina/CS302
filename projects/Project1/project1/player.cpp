@@ -11,9 +11,6 @@ using namespace std;
 // Default constructor
 Player::Player(): Person(), points(0){}
 
-// Parameterized constructor
-Player::Player(char* usrname, char* f_name, char* l_name): Person(f_name, l_name), username(usrname), points(0){}
-
 Player::~Player(): ~Person()
 {
   if (username)
@@ -23,9 +20,10 @@ Player::~Player(): ~Person()
   }
 }
 
-Player::Player(const Player& to_copy)
+Player::Player(const Player& to_copy): Person(to_copy), points(to_copy.points)
 {
-  // implement later, have questions
+  username = new char[strlen(to_copy.username) + 1];
+  strcpy(username, to_copy.username);
 }
 
 void Player::display() const
