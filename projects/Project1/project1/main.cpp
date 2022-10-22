@@ -7,21 +7,48 @@
 #include "piece.h"
 #include "pawn.h"
 #include "person.h"
+#include "data_structures.h"
+
 
 using namespace std;
 
 int main()
 {
+  CLL cll = CLL();
+  Node card = Node();
+  cll.draw_card(card);
+  if (card.has_next())
+    cout << "Valid" << endl;
+  else
+    cout << "Invalid" << endl;
+
+  cll.build_deck();
+  int check = cll.display();
+  cout << "Card count: " << check << endl;
+  cll.draw_card(card);
+  cout << endl;
+  card.display();
+  cout << endl;
+  check = cll.display();
+  cout << "Card count: " << check << endl;
+
   /*
   Person p1 = Person();
   p1.display();
   Person p2 = Person(p1);
   p2.display();
-  */
+
+  Dice d1 = Dice();
+  int roll = d1.roll();
+  d1.display();
+  roll = d1.roll();
+  d1.display();
+  roll = d1.roll();
+  roll = d1.roll();
+  d1.display();
 
   Card card = Card(0, 0);
   card.display();
-  /*
   Card c1 = Card();
   c1.display();
 
@@ -49,12 +76,6 @@ int main()
 
   return 0;
 }
-/*
-            for (int i = 0; i < 3; i++)
-              for (int j = 0; j < 13; j++)
-                deck.add(card)
-*/
-
 
 
 

@@ -34,8 +34,10 @@ class Card: public Piece
     public:
         Card();
         Card(int arg_value, int arg_suit);
+        //Card(Card& source);
         ~Card();
         void display() const;
+        int copy_card(Card& source);
         int point_conversion();
         bool is_position(int arg);
         

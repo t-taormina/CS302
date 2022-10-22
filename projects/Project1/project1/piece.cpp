@@ -11,11 +11,15 @@ Piece::Piece(): individual(false), community(false){}
 
 Piece::Piece(bool ind, bool comm): individual(ind), community(comm){}
 
-Piece::~Piece() 
+/*
+Piece::Piece(Piece& source)
 {
-  individual = false;
-  community = false;
+  individual = source.individual;
+  community = source.community;
 }
+*/
+
+Piece::~Piece(){}
 
 void Piece::display() const
 {
@@ -37,3 +41,9 @@ bool Piece::is_community()
   return community;
 }
 
+int Piece::copy_piece(Piece& source)
+{
+  individual = source.individual;
+  community = source.community;
+  return 0;
+}

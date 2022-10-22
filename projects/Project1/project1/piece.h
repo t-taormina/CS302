@@ -11,8 +11,10 @@ class Piece
     public:
         Piece();
         ~Piece();
+        //Piece(Piece& source);
         Piece(bool ind, bool comm);
         void display() const;
+        int copy_piece(Piece& source);
         bool is_individual();
         bool is_community();
 

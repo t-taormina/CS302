@@ -5,9 +5,15 @@
 
 #include "pawn.h"
 #include <iostream>
+#include <cstdlib>
+#include <time.h>
 using namespace std;
 
-Dice::Dice():  Piece(false, true), value(0) {}
+Dice::Dice():  Piece(false, true), value(0) 
+{
+  srand(time(NULL));
+  // seeds random num gen with current time
+}
 
 Dice::~Dice(){}
 
@@ -18,9 +24,10 @@ void Dice::display() const
 
 int Dice::roll()
 {
-  // return random number from 1-6
-  // need some guidance on how to implement
-  return 1;
+  int result = rand() % 6;
+  result += 1;
+  value = result;
+  return result;
 }
 
 

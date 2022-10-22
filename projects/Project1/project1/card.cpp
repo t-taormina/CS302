@@ -19,6 +19,15 @@ Card::Card(int arg_value, int arg_suit): Piece(false, true)
   suit = (card_suit) arg_suit;
 }
 
+/*
+Card::Card(const Card& source): Piece(source)
+{
+  value = source.value;
+  suit = source.suit;
+  position = source.position;
+}
+*/
+
 // Deconstructor
 Card::~Card(){}
 
@@ -30,6 +39,14 @@ bool Card::is_position(int arg)
   if (arg == position)
     return true;
   return false;
+}
+
+int Card::copy_card(Card& source)
+{
+  value = source.value;
+  suit = source.suit;
+  position = source.position;
+  return 1;
 }
 
 int Card::point_conversion()

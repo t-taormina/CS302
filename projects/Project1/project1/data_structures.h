@@ -5,17 +5,19 @@
 
 #ifndef CLL_H
 #define CLL_H
-
-#include "pawn.h" // pawn.h contains card headers
+#include "pawn.h"
 
 
 class Node: public Card
 {
   public:
     Node();
+    Node(int arg_value, int arg_suit);
+    //Node(Node& source);
     ~Node();
     Node*& get_next();
     void set_next(Node* new_next);
+    int copy_node(Node& source);
     bool has_next() const;
 
   protected:
@@ -28,23 +30,25 @@ class CLL
   public:
     CLL(void);
     ~CLL(void);
-    
-    int add_card(Card& card_to_add);
-    
-    // remove next card (more like stack than a CLL)
-    Card draw_card();
 
-    // not useful for this game
-    Card retireve_card(Card& to_remove);
     int remove_all();
+    int build_deck();
+    
+    int add_card(Node*& card_to_add);
+
+    // remove next card (more like stack than a CLL)
+    // replacing my retrieve method as per project requirements
+    int draw_card(Node& to_remove);
+
     int display(void);
 
   private:
-    int display(cll_node * current, cll_node * end);
-    Node * rear;
+    int display(Node*& current);
+    int remove_all(Node*& curr);
+    Node* rear;
 };
 
-
+/*
 class ALL: public Card
 {
    public:
@@ -76,6 +80,7 @@ class ALL: public Card
     Node ** ALL;
     int  table_size;
 };
+*/
 
 #endif
 
