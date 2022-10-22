@@ -153,8 +153,8 @@ int CLL::remove_all()
   return remove_all(rear->get_next());
 }
 
-// @Dev - Removes all nodes from the circular linked list.
-// Args -> None.
+// @Dev - (PRIVATE) Removes all nodes from the circular linked list.
+// Args -> Node pointer by reference.
 // Returns -> Integer amount of cards removed.
 int CLL::remove_all(Node*& curr)
 {
@@ -170,11 +170,17 @@ int CLL::remove_all(Node*& curr)
   return 1 + remove_all(temp);
 }
 
+// @Dev - Displays all nodes from the circular linked list.
+// Args -> None.
+// Returns -> Integer amount of cards displayed.
 int CLL::display(void)
 {
   return display(rear->get_next());
 }
 
+// @Dev - (PRIVATE) Displays all nodes from the circular linked list.
+// Args -> Node pointer by reference.
+// Returns -> Integer amount of cards displayed.
 int CLL::display(Node*& current)
 {
   if (current == this->rear)
