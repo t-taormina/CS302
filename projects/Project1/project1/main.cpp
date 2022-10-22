@@ -31,6 +31,10 @@ int main()
   cout << endl;
   check = cll.display();
   cout << "Card count: " << check << endl;
+  cout << endl;
+  cll.add_node(card);
+  check = cll.display();
+  cout << "Card count: " << check << endl;
 
   /*
   Person p1 = Person();

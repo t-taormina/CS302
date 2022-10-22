@@ -33,11 +33,10 @@ class CLL
 
     int remove_all();
     int build_deck();
-    
-    int add_card(Node*& card_to_add);
+    int add_node(Node& card_to_add);
 
-    // remove next card (more like stack than a CLL)
     // replacing my retrieve method as per project requirements
+    // copies node and removes from linked list
     int draw_card(Node& to_remove);
 
     int display(void);

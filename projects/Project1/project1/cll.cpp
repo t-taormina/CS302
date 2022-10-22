@@ -84,8 +84,23 @@ int CLL::build_deck()
   return success;
 }
 
-int CLL::add_card(Node*& card_to_add)
+// think of as adding a card to the deck
+int CLL::add_node(Node& to_add)
 {
+  if (!rear)
+  {
+    rear = new Node();
+    rear->copy_node(to_add);
+    rear->set_next(rear);
+  }
+  else
+  {
+    Node* temp = rear->get_next();
+    Node* add = new Node();
+    add->copy_node(to_add);
+    rear->set_next(add);
+    add->set_next(temp);
+  }
   return 1;
 }
     
