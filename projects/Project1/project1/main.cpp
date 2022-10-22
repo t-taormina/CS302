@@ -20,7 +20,7 @@ int main()
   if (card.has_next())
     cout << "Valid" << endl;
   else
-    cout << "Invalid" << endl;
+    cout << "Empty list" << endl;
 
   cll.build_deck();
   int check = cll.display();
