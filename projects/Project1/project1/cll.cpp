@@ -7,29 +7,34 @@
 
 // Node Class
 // ==============================================
+
+// Default Constructor
 Node::Node(): Card(), next(nullptr){}
 
+// Parameterized Constructor
 Node::Node(int arg_value, int arg_suit): Card(arg_value, arg_suit), next(nullptr) {}
 
-/*
-Node::Node(const Node& source): Card(source)
-{
-  next = source.get_next();
-}
-*/
-
+// Deconstructor
 Node::~Node(){}
 
+// Returns the "next" member.
 Node*& Node::get_next()
 {
   return next;
 }
 
+// @Dev - Sets the next data members with argument.
+// Args -> Takes a node pointer.
+// Returns -> None.
 void Node::set_next(Node* new_next)
 {
   next = new_next;
 }
 
+// @Dev - Determines if a node has a next pointer.
+// Args -> None.
+// Returns -> True if there is a pointer.
+//            False if there is not a pointer.
 bool Node::has_next() const
 {
   bool check = false;
@@ -38,6 +43,9 @@ bool Node::has_next() const
   return check;
 }
 
+// @Dev - Takes a node object and copies its data members.
+// Args -> Node object by reference.
+// Returns -> Integer for success.
 int Node::copy_node(Node& source)
 {
   next = source.next;
@@ -51,13 +59,20 @@ int Node::copy_node(Node& source)
 
 // CLL Class
 // ==============================================
+
+// Default Constructor
 CLL::CLL(void): rear(nullptr) {}
 
+// Deconstructor
+// Calls the remove_all() function.
 CLL::~CLL(void)
 {
   remove_all();
 }
     
+// @Dev - Builds the circular linked list.
+// Args -> None.
+// Returns -> Integer count for the number of cards added to the deck.
 int CLL::build_deck()
 {
   int success = 0;
@@ -84,7 +99,9 @@ int CLL::build_deck()
   return success;
 }
 
-// think of as adding a card to the deck
+// @Dev - Adds a node to the circular linked list.
+// Args -> Node by reference.
+// Returns -> Integer success.
 int CLL::add_node(Node& to_add)
 {
   if (!rear)
@@ -103,10 +120,11 @@ int CLL::add_node(Node& to_add)
   }
   return 1;
 }
-    
-// remove next card (more like stack than a CLL)
-// if a card has a rear pointer then the deck was not empty
-// use this as a determinant for the empty list case
+ 
+// @Dev - Removes a node from the circular linked list.
+// Args -> Node by reference.
+// Returns -> 0 Failure - Empty list(Invalid Node)
+//            1 Success - Valid Node
 int CLL::draw_card(Node& to_remove)
 {
   if (!rear)
@@ -125,6 +143,9 @@ int CLL::draw_card(Node& to_remove)
   return 1;
 }
 
+// @Dev - Removes all nodes from the circular linked list.
+// Args -> None.
+// Returns -> Integer amount of cards removed.
 int CLL::remove_all()
 {
   if (!rear)
@@ -132,6 +153,9 @@ int CLL::remove_all()
   return remove_all(rear->get_next());
 }
 
+// @Dev - Removes all nodes from the circular linked list.
+// Args -> None.
+// Returns -> Integer amount of cards removed.
 int CLL::remove_all(Node*& curr)
 {
   if (curr == this->rear)
