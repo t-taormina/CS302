@@ -7,20 +7,18 @@
 #include <iostream>
 using namespace std;
 
+// Default Constructor.
 Piece::Piece(): individual(false), community(false){}
 
+// Parameterized Constructor.
 Piece::Piece(bool ind, bool comm): individual(ind), community(comm){}
 
-/*
-Piece::Piece(Piece& source)
-{
-  individual = source.individual;
-  community = source.community;
-}
-*/
-
+// Deconstructor.
 Piece::~Piece(){}
 
+// @Dev - Edit member data.
+// Args -> Character array.
+// Returns -> Integer success.
 void Piece::display() const
 {
   if (individual)

@@ -47,7 +47,7 @@ Person::~Person()
   }
 }
 
-// @Dev - Displays member data for "position".
+// @Dev - Displays member data for object.
 // Args -> None.
 // Returns -> None.
 void Person::display() const
@@ -60,10 +60,13 @@ void Person::display() const
   cout << "Losses: " << losses << endl;
 }
 
-void Person::edit_first_name(char* edit)
+// @Dev - Edit member data.
+// Args -> Character array.
+// Returns -> Integer success.
+int Person::edit_first_name(char* edit)
 {
   if (!edit)
-    return;
+    return 0;
 
   if (first_name)
   {
@@ -73,12 +76,16 @@ void Person::edit_first_name(char* edit)
 
   first_name = new char[strlen(edit)+1];
   strcpy(first_name,edit);
+  return 1;
 }
 
-void Person::edit_last_name(char* edit)
+// @Dev - Edit member data.
+// Args -> Character array.
+// Returns -> Integer success.
+int Person::edit_last_name(char* edit)
 {
   if (!edit)
-    return;
+    return 0;
 
   if (last_name)
   {
@@ -88,5 +95,6 @@ void Person::edit_last_name(char* edit)
 
   last_name = new char[strlen(edit)+1];
   strcpy(last_name,edit);
+  return 1;
 }
 

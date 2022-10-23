@@ -17,7 +17,7 @@ class Pawn: public Piece
         Pawn(int arg_position);
         ~Pawn();
         void display_position();
-        void change_position(int);
+        int change_position(int);
         bool is_position(int);
  
     protected:

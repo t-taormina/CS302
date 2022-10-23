@@ -29,7 +29,7 @@ void Pawn::display_position()
 // @Dev - Sets member value "position" to provided argument.
 // Args -> Integer.
 // Returns -> Integer success.
-void Pawn::change_position(int arg)
+int Pawn::change_position(int arg)
 {
   if (arg < 7 && arg > 0)
   {
