@@ -16,9 +16,9 @@ Piece::Piece(bool ind, bool comm): individual(ind), community(comm){}
 // Deconstructor.
 Piece::~Piece(){}
 
-// @Dev - Edit member data.
-// Args -> Character array.
-// Returns -> Integer success.
+// @Dev - Displays member data.
+// Args -> None.
+// Returns -> None.
 void Piece::display() const
 {
   if (individual)
@@ -29,6 +29,9 @@ void Piece::display() const
     cout << "Piece is not in use" << endl;
 }
 
+// @Dev - .
+// Args -> .
+// Returns -> .
 bool Piece::is_individual()
 {
   return individual;
