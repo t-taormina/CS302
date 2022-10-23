@@ -10,6 +10,7 @@ using namespace std;
 const int SIZE = 100;
 
 
+// Default Constructor.
 Person::Person(): wins(0), losses(0){
   first_name = new char[SIZE];
   last_name = new char[SIZE];
@@ -21,6 +22,7 @@ Person::Person(): wins(0), losses(0){
   std::cin.ignore(SIZE, '\n');
 }
 
+// Parameterized Constructor.
 Person::Person(const Person& to_copy): wins(to_copy.wins), losses(to_copy.losses) 
 {
   first_name = new char[strlen(to_copy.first_name) + 1];
@@ -30,6 +32,7 @@ Person::Person(const Person& to_copy): wins(to_copy.wins), losses(to_copy.losses
   strcpy(last_name, to_copy.last_name);
 }
 
+// Deconstructor.
 Person::~Person()
 {
   if (first_name)
@@ -44,6 +47,9 @@ Person::~Person()
   }
 }
 
+// @Dev - Displays member data for "position".
+// Args -> None.
+// Returns -> None.
 void Person::display() const
 {
   if (first_name)
