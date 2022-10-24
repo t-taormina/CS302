@@ -9,7 +9,7 @@ using namespace std;
 
 
 // Default constructor
-Card::Card(): Piece(), value(card_value::two), suit(card_suit::hearts), position(0) {}
+Card::Card(): Piece(), value(card_value::invalid_value), suit(card_suit::invalid_suit), position(0) {}
 
 // Paramterized constructor
 Card::Card(int arg_value, int arg_suit): Piece(false, true)
@@ -20,6 +20,17 @@ Card::Card(int arg_value, int arg_suit): Piece(false, true)
   
 // Deconstructor
 Card::~Card(){}
+
+// @Dev - Sets member data value for "position" to argument provided integer.
+// Args -> Integer representing position to set.
+// Returns -> Integer for success or failure.
+int Card::set_position(int arg)
+{
+  if (position > 5 || position < 0)
+    position = 0;
+  else 
+    position = arg;
+}
 
 // @Dev - Checks to determine if the argument matches the position member value.
 // Args -> Integer representing position to check.
@@ -55,6 +66,17 @@ int Card::point_conversion()
     return 2;
   else
     return 1;
+}
+
+// @Dev - Determines if a card has a valid suit and value assigned.
+// Args -> None.
+// Returns -> Boolean.
+bool Card::is_valid()
+{
+  bool success = true;
+  if (value == card_value::invalid_value || suit == card_suit::invalid_suit)
+    success = false;
+  return success;
 }
 
 // @Dev - Displays data members for object.
@@ -137,5 +159,6 @@ void Card::display() const
       cout << "spades" << endl;
       break;
   }
+  cout << endl;
 }
 

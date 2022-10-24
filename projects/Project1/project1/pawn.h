@@ -26,8 +26,8 @@ class Pawn: public Piece
 
 
 // Card suits and values 
-enum card_suit {hearts, diamonds, clubs, spades};
-enum card_value {two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace};
+enum card_suit {hearts, diamonds, clubs, spades, invalid_suit};
+enum card_value {two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace, invalid_value};
 
 class Card: public Piece
 {
@@ -39,7 +39,9 @@ class Card: public Piece
         void display() const;
         int copy_card(Card& source);
         int point_conversion();
+        int set_position(int arg);
         bool is_position(int arg);
+        bool is_valid();
         
  
     protected:

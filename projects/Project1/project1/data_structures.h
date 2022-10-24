@@ -34,11 +34,7 @@ class CLL
     int remove_all();
     int build_deck();
     int add_node(Node& card_to_add);
-
-    // replacing my retrieve method as per project requirements
-    // copies node and removes from linked list
     int draw_card(Node& to_remove);
-
     int display(void);
 
   private:
@@ -47,39 +43,28 @@ class CLL
     Node* rear;
 };
 
-/*
-class ALL: public Card
+
+// Table Size
+
+class ALL
 {
    public:
-
-    // Parameterized constructor that takes an integer argument and creates the table
-    // array with a length of the argument passed.
     ALL(int size);
-
-    // Deconstructor
     ~ALL(void);
 
-    int insert(Card& to_add);
-
-    // Takes a character array of a name to match and an array where matches will be stored.
+    int insert(Node& to_add);
     int retrieve();
-
-    // Displays all items stored in the hash table.
     int display_all(void);
-
-    // Displays all items that have a TYPE matching the argument supplied character array.
     int display_current_hand();
-
-    // Removes all cards.
     int remove_all();
-    
-  // ===============================================================================================
 
   private:
-    Node ** ALL;
-    int  table_size;
+    Node ** table;
+    int current_index;
+    int display_all(Node*& current);
+    int table_size;
+    int remove_all(Node*& current);
 };
-*/
 
 #endif
 

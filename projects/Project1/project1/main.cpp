@@ -11,11 +11,16 @@
 
 
 using namespace std;
+const int SIZE = 5;
 
 int main()
 {
   CLL cll = CLL();
+  ALL all = ALL(SIZE);
   Node card = Node();
+  Node c1 = Node();
+  Node c2 = Node();
+  // empty draw should display empty list to konsole
   cll.draw_card(card);
   if (card.has_next())
     cout << "Valid" << endl;
@@ -23,18 +28,22 @@ int main()
     cout << "Empty list" << endl;
 
   cll.build_deck();
-  int check = cll.display();
-  cout << "Card count: " << check << endl;
+  //int check = cll.display();
+  //cout << "Card count: " << check << endl;
   cll.draw_card(card);
+  cll.draw_card(c1);
+  cll.draw_card(c2);
+  all.insert(card);
+  all.insert(c1);
+  all.insert(c2);
+  all.display_all();
+  all.display_current_hand();
   cout << endl;
-  card.display();
+  //card.display();
   cout << endl;
-  check = cll.display();
-  cout << "Card count: " << check << endl;
+  //int check = cll.display();
+  //cout << "Card count: " << check << endl;
   cout << endl;
-  cll.add_node(card);
-  check = cll.display();
-  cout << "Card count: " << check << endl;
 
   /*
   Person p1 = Person();

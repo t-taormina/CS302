@@ -37,7 +37,7 @@ class Player: public Person
         void display() const;
         void add_points(int points);
         void display_points();
-        bool is_winner(int& opponent_points);
+        bool is_winner(Player& opponent);
         void reset_points();
  
     protected:

@@ -29,22 +29,29 @@ void Piece::display() const
     cout << "Piece is not in use" << endl;
 }
 
-// @Dev - .
-// Args -> .
-// Returns -> .
+// @Dev - Confirms if a piece is an individual piece.
+// Args -> None.
+// Returns -> Boolean.
 bool Piece::is_individual()
 {
   return individual;
 }
 
+// @Dev - Confirms if a piece is a community piece.
+// Args -> None.
+// Returns -> Boolean.
 bool Piece::is_community()
 {
   return community;
 }
 
+// @Dev - Takes a piece object and replicates its data members.
+// Args -> Piece object by reference.
+// Returns -> Integer success.
 int Piece::copy_piece(Piece& source)
 {
   individual = source.individual;
   community = source.community;
   return 0;
 }
+
