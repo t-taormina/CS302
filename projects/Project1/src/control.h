@@ -15,6 +15,9 @@
 
 // Contains headers for client functions.
 //================================================================================
+// These functions control the flow of the game and are a rough sketch of what the client
+// might choose to do given the class hierarchy and data structures I have written for
+// this game.
 
 int run();
 int display_hands(ALL& p1, ALL& p2);

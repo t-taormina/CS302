@@ -9,9 +9,11 @@
 #include <iostream>
 using namespace std;
 
-// Contains headers for the node, circular linked list, and the array of 
-// linked list classes.
+// This file contains the headers for the data structures used in the game. There is
+// a Node class, a Circular Linked List (CLL), and an Array of Linear Linked Lists(ALL).
+// All function definitions are found in data_structures.cpp
 //================================================================================
+ 
 
 class Node: public Card
 {
