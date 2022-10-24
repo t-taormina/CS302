@@ -4,12 +4,12 @@ CS302 Fall 2022
 
 ### Efficiency Writeup
 - The purpose of program 1 was to implement a game using object oriented programming
-  methods. This allows for seperation of responsiblity and roles within the game and when
+  methods. This allows for separation of responsibility and roles within the game and when
 implemented correctly, it can result in less code and simpler maintenance for future
 developers among other benefits. A key part to being successful with programming in this
 style is to carefully plan and delegate responsibilities for all the classes that are going
 to be implemented. With careful planning in place, I then (as Karla loves to say) "found
-the similiarities, and pushed them up". This creates hierarchies of objects that when used properly allows
+the similarities, and pushed them up". This creates hierarchies of objects that when used properly allows
 for some very efficient and concise functions to be written. In my program I believe
 I have done a careful and successful job of isolating objects and their specific jobs.
 There are few instances of classes reaching out to other classes and requesting their
@@ -20,9 +20,18 @@ in the "Player" class which uses a setter to keep track of points as they are sc
 during the course of the game. The last setters are found in the shape of editing
 functions that are intended to be available should a user want to change their name,
 correct a typo, etc. With the minimal amount of getting and setting that I have in my
-program, I think that this indicates a solid seperation of roles and responsibilities for
+program, I think that this indicates a solid separation of roles and responsibilities for
 my classes. 
 
 - The data structures implemented in my program solely consisted of the required
   structures. They were a circular linked list, an array of linear linked lists, and
-a vector from the standard template library. 
+a vector from the standard template library. The circular linked list served as my deck of
+cards where each node in the list was derived from the "Card" class, and in turn the
+"Piece" class. The array of linear linked lists served as the hands for each player. The
+array was of length 6 and each head node (card) was the card that was in play. As new
+hands were dealt, the cards were added at the head pushing everything else back. The
+vector served as a container for the pawns in my game. This data structure is probably the
+one that I would not include if I had a choice. The vector containing pawns is not
+something that needs to change in size during runtime and therefore an array would have
+worked just as well in this situation. The other two data structures worked exceptionally
+well in the context of my game though. 
