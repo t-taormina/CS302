@@ -5,7 +5,10 @@
 
 #ifndef CLL_H
 #define CLL_H
-#include "pawn.h"
+#include "piece.h"
+
+// Contains headers for the node, circular linked list, and the array of 
+// linked list classes.
 
 
 class Node: public Card

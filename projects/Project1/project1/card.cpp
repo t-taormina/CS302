@@ -3,7 +3,7 @@
 // October 2022
 // Program 1
 
-#include "pawn.h"
+#include "piece.h"
 #include <iostream>
 using namespace std;
 
@@ -61,9 +61,12 @@ int Card::copy_card(Card& source)
 // Returns -> 3 points if card value is an Ace.
 //            2 points if card value is a face card.
 //            1 points if card value is a number card.
+//            0 points if card value is invalid.
 int Card::point_conversion()
 {
-  if (value == card_value::ace)
+  if (value == card_value::invalid_value)
+    return 0;
+  else if (value == card_value::ace)
     return 3;
   else if (value == card_value::king || value == card_value::queen || value == card_value::jack)
     return 2;
@@ -140,6 +143,10 @@ void Card::display() const
     case card_value::ace:
       cout << "Ace ";
       break;
+
+    case card_value::invalid_value:
+      cout << "invalid card value ";
+      break;
   }
 
   cout << "of ";
@@ -160,6 +167,10 @@ void Card::display() const
 
     case card_suit::spades:
       cout << "spades" << endl;
+      break;
+
+    case card_suit::invalid_suit:
+      cout << "invalid card suit" << endl;
       break;
   }
   cout << endl;

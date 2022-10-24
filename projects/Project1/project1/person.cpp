@@ -9,9 +9,15 @@
 using namespace std;
 const int SIZE = 100;
 
+// CONTAINS BOTH PERSON AND PLAYER CLASS
+// PLAYER class starts at line 111
+
+// Person Class
+//=============================================================
 
 // Default Constructor.
-Person::Person(): wins(0), losses(0){
+Person::Person(): first_name(nullptr), last_name(nullptr), wins(0), losses(0)
+{
   first_name = new char[SIZE];
   last_name = new char[SIZE];
   cout << "Please provide your first name: ";
@@ -22,14 +28,17 @@ Person::Person(): wins(0), losses(0){
   std::cin.ignore(SIZE, '\n');
 }
 
-// Parameterized Constructor.
-Person::Person(const Person& to_copy): wins(to_copy.wins), losses(to_copy.losses) 
+// Copy Constructor.
+Person::Person(const Person& to_copy) 
 {
   first_name = new char[strlen(to_copy.first_name) + 1];
   strcpy(first_name, to_copy.first_name);
 
   last_name = new char[strlen(to_copy.last_name) + 1];
   strcpy(last_name, to_copy.last_name);
+  
+  wins = to_copy.wins;
+  losses = to_copy.losses;
 }
 
 // Deconstructor.
@@ -96,5 +105,87 @@ int Person::edit_last_name(char* edit)
   last_name = new char[strlen(edit)+1];
   strcpy(last_name,edit);
   return 1;
+}
+
+
+// Player Class
+//=============================================================
+
+// Default constructor
+Player::Player(): Person(), points(0), username(nullptr)
+{ 
+  username = new char[SIZE];
+  cout << "Please provide your desired username: ";
+  std::cin.get(username, SIZE, '\n');
+  std::cin.ignore(SIZE, '\n');
+}
+
+// Deconstructor
+Player::~Player() 
+{
+  if (username)
+  {
+    delete [] username;
+    username = nullptr;
+  }
+}
+
+// Copy Constructor.
+Player::Player(const Player& to_copy): Person(to_copy), points(to_copy.points)
+{
+  username = new char[strlen(to_copy.username) + 1];
+  strcpy(username, to_copy.username);
+}
+
+// @Dev - Displays member data.
+// Args -> None.
+// Returns -> None.
+void Player::display() const
+{
+  cout << "Points: " << points << endl;
+  Person::display();
+}
+
+// @Dev - Adds points to member data field "points".
+// Args -> Integer.
+// Returns -> 0 if argument is negative (End game in this situation, its been hacked)
+//            value stored in argument otherwise.
+int Player::add_points(int add_points)
+{
+  if (add_points < 0)
+    return 0;
+  points += add_points;
+  return add_points;
+}
+
+// @Dev - Displays data currently stored in member value.
+// Args -> None.
+// Returns -> None.
+void Player::display_points()
+{
+  cout << "Points: " << points << endl;
+}
+
+// @Dev - Determines which player has a higher score.
+// Args -> Player object by reference.
+// Returns -> Bool.
+bool Player::is_winner(const Player& opponent)
+{
+  if (points > opponent.points)
+    return true;
+  else 
+    return false;
+}
+
+// @Dev - Resets data in member for "points" to zero.
+// Args -> None.
+// Returns -> Integer for success.
+int Player::reset_points()
+{
+  points = 0;
+  if (points == 0)
+    return 1;
+  else 
+    return 0;
 }
 

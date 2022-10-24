@@ -3,12 +3,14 @@
 // October 2022
 // Program 1
 
-#include "pawn.h"
+#include "piece.h"
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
 using namespace std;
-//Contains pawn and dice class implementation.
+
+//CONTAINS PAWN AND DICE IMPLEMENTATION.
+//DICE class starts line 66
 
 
 //Pawn Class 

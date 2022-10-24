@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include "piece.h"
-#include "pawn.h"
 #include "person.h"
 #include "data_structures.h"
 
@@ -31,16 +30,15 @@ int main()
   Node c11 = Node();
   Node c12 = Node();
   
-/*
+  cll.draw_card(card);
   // empty draw should display empty list to konsole
   if (card.has_next())
     cout << "Valid" << endl;
   else
     cout << "Empty list" << endl;
-  */
   cll.build_deck();
-  //int check = cll.display();
-  //cout << "Card count: " << check << endl;
+  int check = cll.display();
+  cout << "Card count: " << check << endl;
   cll.draw_card(c1);
   cll.draw_card(c2);
   cll.draw_card(c3);
@@ -70,54 +68,40 @@ int main()
   all.display_all();
   all.display_current_hand();
   cout << endl;
-  //card.display();
+  card.display();
   cout << endl;
-  //int check = cll.display();
-  //cout << "Card count: " << check << endl;
+  check = cll.display();
+  cout << "Card count: " << check << endl;
   cout << endl;
 
-  /*
-  Person p1 = Person();
-  p1.display();
-  Person p2 = Person(p1);
-  p2.display();
+  cout << "PLAYER AND PERSON TEST" << endl;
+  Player play1 = Player();
+  play1.display();
+  Player play2 = Player(play1);
+  play2.display();
+  cout << endl;
 
+  cout << "ROLLING DICE TEST" << endl;
+  cout << endl;
   Dice d1 = Dice();
   int roll = d1.roll();
-  d1.display();
+  cout << "Rolled: " << roll << endl;
   roll = d1.roll();
-  d1.display();
+  cout << "Rolled: " << roll << endl;
   roll = d1.roll();
+  cout << "Rolled: " << roll << endl;
   roll = d1.roll();
-  d1.display();
-
-  Card card = Card(0, 0);
-  card.display();
-  Card c1 = Card();
-  c1.display();
+  cout << "Rolled: " << roll << endl;
 
   Pawn pawn1 = Pawn();
   pawn1.display();
 
-  Dice dice1 = Dice();
-  dice1.display();
 
-  Player play1 = Player();
-  play1.display();
-
-
-  Piece p1 = Piece();
-  Piece p2 = Piece(false, true);
-  p1.display();
-  p2.display();
-
-  if (p2.is_individual())
+  if (pawn1.is_individual())
     cout << "individual" << endl;
 
-  if (p2.is_community())
+  if (pawn1.is_community())
     cout << "community" << endl;
-    */
-
   return 0;
 }
 
