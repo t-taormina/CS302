@@ -17,4 +17,12 @@ member data in order to manipulate it. The few instances where I do have "getter
 "setters" are in the node class where the "get/set" functions are used to access the
 "next" pointer which is a private data member. Another instance where I have a setter is
 in the "Player" class which uses a setter to keep track of points as they are scored
-during the course of the game.  
+during the course of the game. The last setters are found in the shape of editing
+functions that are intended to be available should a user want to change their name,
+correct a typo, etc. With the minimal amount of getting and setting that I have in my
+program, I think that this indicates a solid seperation of roles and responsibilities for
+my classes. 
+
+- The data structures implemented in my program solely consisted of the required
+  structures. They were a circular linked list, an array of linear linked lists, and
+a vector from the standard template library. 

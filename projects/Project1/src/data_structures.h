@@ -63,9 +63,9 @@ class ALL
 
   private:
     Node ** table;
+    int table_size;
     int current_index;
     int display_all(Node*& current);
-    int table_size;
     int remove_all(Node*& current);
 };
 
