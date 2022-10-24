@@ -14,15 +14,13 @@ valgrind ./a.out
 This is stored in a .sh file in the project directory that can be executed by running the 
 command "zsh ./{file name}.sh". From here I add a alias in my .zshrc which is in my home 
 directory. This alias lets me run the script with a short command such as "run". However, 
-it will only run if you are in the directory that the project is stored in. That is just 
+it will only run if you are in the directory that the .sh file is stored in. That is just 
 the way I set it up. There are limitless ways you can optimize your work flow with zsh and 
 bash. But for grading purposes, compiling with the follow will work.
  
 ```
 g++ -std=c++17 *.cpp -g -Wall
 ```
-
-
-
-
+Feedback is always appreciated!
+-Tyler
 
