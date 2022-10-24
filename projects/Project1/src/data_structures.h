@@ -6,6 +6,8 @@
 #ifndef CLL_H
 #define CLL_H
 #include "piece.h"
+#include <iostream>
+using namespace std;
 
 // Contains headers for the node, circular linked list, and the array of 
 // linked list classes.
