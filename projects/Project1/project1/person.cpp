@@ -163,7 +163,7 @@ int Player::add_points(int add_points)
 // Returns -> None.
 void Player::display_points()
 {
-  cout << "Points: " << points << endl;
+  cout << points << endl;
 }
 
 // @Dev - Determines which player has a higher score.
@@ -189,3 +189,20 @@ int Player::reset_points()
     return 0;
 }
 
+// @Dev - Increments "wins" data member by one.
+// Args -> None.
+// Returns -> Integer for success.
+int Player::add_win()
+{
+  wins += 1;
+  return 0;
+}
+
+// @Dev - Increments "losses" data member by one.
+// Args -> None.
+// Returns -> Integer for success.
+int Player::add_loss()
+{
+  losses += 1;
+  return 0;
+}

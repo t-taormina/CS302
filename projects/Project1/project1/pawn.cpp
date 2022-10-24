@@ -47,13 +47,13 @@ void Pawn::display()
 // Returns -> Integer success.
 int Pawn::change_position(int arg)
 {
-  if (arg < 7 && arg > 0)
+  if (arg < 6 && arg >= 0)
   {
-    position = arg - 1;
-    return 1;
+    position = arg;
+    return position;
   }
   cout << "Position cannot be changed to an out of bounds value. No change has been made." << endl;
-  return 0;
+  return INVALID;
 }
 
 // @Dev - Confirms if pawn has a certain "position" value.
@@ -68,7 +68,7 @@ bool Pawn::is_position(int arg)
 //=============================================================
 
 // Default Constructor.
-Dice::Dice():  Piece(false, true), value(0) 
+Dice::Dice():  Piece(false, true), value(INVALID) 
 {
   srand(time(NULL)); // seeds random num gen with current time
 }
@@ -90,7 +90,6 @@ void Dice::display() const
 int Dice::roll()
 {
   int result = rand() % 6;
-  result += 1;
   value = result;
   return result;
 }

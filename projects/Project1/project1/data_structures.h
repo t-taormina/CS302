@@ -56,7 +56,7 @@ class ALL
     ~ALL(void);
 
     int insert(Node& to_add);
-    int retrieve();
+    int score(int num);
     int display_all(void);
     int display_hand();
     int remove_all();

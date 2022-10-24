@@ -34,20 +34,57 @@ int run()
 
     std::vector<Pawn> p1(PAWNS, Pawn());
     std::vector<Pawn> p2(PAWNS, Pawn());
-    flag = game_loop(cll, all1, all2, p1, p2);
+    flag = game_loop(cll, all1, all2, p1, p2, player1, player2);
   }
   goodbye();
   return 0;
 }
 
-int game_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2)
+int game_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2, Player& player1, Player& player2)
 {
   for (int i = 0; i < 4; i++)
-    turn_loop(cll, all1, all2, pawns1, pawns2);
-  return 0;
+  {
+    turn_loop(cll, all1, all2, pawns1, pawns2, player1, player2);
+    cout << endl;
+    cout << "=======================================" << endl;
+    cout << "After that round, the score is..." << endl;
+    cout << "Player 1: ";
+    player1.display_points();
+
+    cout << "Player 2: ";
+    player2.display_points();
+    cout << "=======================================" << endl;
+    cout << endl;
+    if (i == 2)
+      cout << "Final Round!" << endl;
+    else
+      cout << "Lets start Round " << i + 2 << "!" << endl;
+    cout << endl;
+  }
+  if (player1.is_winner(player2))
+  {
+    cout << "Player 1 wins!... Congrats." << endl;
+    player1.add_win();
+    player2.add_loss();
+  }
+  else if (player2.is_winner(player1))
+  {
+    cout << "Player 2 wins!... Congrats." << endl;
+    player2.add_win();
+    player1.add_loss();
+  }
+  else
+  {
+    cout << "It is a tie! No one wins..." << endl;
+  }
+  int play_again;
+  cout << "Would you like to play again?" << endl;
+  cout << "Enter 1 for yes and 0 for no" << endl;
+  cin >> play_again;
+  return play_again;
 }
 
-int turn_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2)
+int turn_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2, Player& player1, Player& player2)
 {
   deal_loop(cll, all1, all2);
   display_hands(all1, all2);
@@ -56,28 +93,61 @@ int turn_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::ve
   pawn_loop(pawns1, pawns2);
   cout << endl;
   roll_message();
-  easy_view(all2, pawns2);
-  
-  
-  cout << "" << endl;
+  cout << endl;
+  easy_view(all2, pawns2, 2);
+  cout << "Player 1... Attack!" << endl;
+  attack_roll(all2, pawns2, player1);
+  cout << endl;
+  cout << "Press enter to continue..." << endl;
+  cout << endl;
+  easy_view(all1, pawns1, 1);
+  cout << "Player 2... Attack!" << endl;
+  attack_roll(all1, pawns1, player2);
   return 0;
 }
 
-int attack_roll()
+int attack_roll(ALL& all, std::vector<Pawn>& pawns, Player& attacker)
 {
   Dice di = Dice();
   for (int i = 0; i < PAWNS; i++)
   {
+    cin.ignore();
+    int pos = di.roll();
+    cout << pos << endl;
+    check_pawns(all, pawns, attacker, pos);
   }
+  return 0;
+}
+
+int check_pawns(ALL& all, std::vector<Pawn>& pawns, Player& attacker, int num)
+{
+  bool flag = true;
+  for (int i = 0; i < PAWNS; i++)
+  {
+    if (pawns[i].is_position(num))
+      flag = false;
+  }
+  if(flag)
+  {
+    int score = all.score(num);
+    attacker.add_points(score);
+    cout << "You scored " << score << " points!" << endl;
+  }
+  else
+    cout << "No points awarded..." << endl;
   return 0;
 }
 
 int easy_view(ALL& all, std::vector<Pawn>& pawns, int player)
 {
-  cout << "Player " << player << endl;
+  cout << "Player " << player << " has this layout right now." << endl;
   display_hand(all);
   for (int i = 0; i < PAWNS; i++)
-    cout << "Pawn at Position: " << pawns[i].display_position() << endl;
+  {
+    cout << "Pawn ";
+    pawns[i].display_position();
+  }
+  return 0;
 }
 
 int pawn_loop(std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2)
@@ -89,8 +159,8 @@ int pawn_loop(std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2)
   for (int i = 0; i < PAWNS; i++)
   {
     int pos = di.roll();
-    cout << "Pawn " << i + 1 << " position: " << pos << endl;
     pawns1[i].change_position(pos);
+    cout << "Pawn " << i + 1 << " position: " << pos << endl;
   }
   cout << endl;
 
@@ -104,6 +174,8 @@ int pawn_loop(std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2)
     pawns2[j].change_position(pos);
   }
   cout << endl;
+  cout << "Press enter to continue..." << endl;
+  cin.ignore();
   return 0;
 }
 
@@ -121,15 +193,16 @@ int deal_loop(CLL& cll, ALL& all1, ALL& all2)
   return 0;
 }
 
-int display_hand(ALL& p)
+int display_hand(ALL& all)
 {
-  p.display_hand();
+  return all.display_hand();
 }
 
 int display_hands(ALL& p1, ALL& p2)
 {
   cout << "Player 1's hand..." << endl;
   p1.display_hand();
+  cout << endl;
   cout << "Player 2's hand..." << endl;
   p1.display_hand();
   return 0;
@@ -155,6 +228,8 @@ int roll_message()
 
 int goodbye()
 {  
+  cout << endl;
+  cout << endl;
   cout << "Thanks for playing!" << endl;
   cout << "By Tyler Taormina" << endl;
   return 0;

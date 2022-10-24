@@ -36,6 +36,8 @@ class Player: public Person
         int add_points(int points);
         void display_points();
         bool is_winner(const Player& opponent);
+        int add_win();
+        int add_loss();
         int reset_points();
  
     protected:

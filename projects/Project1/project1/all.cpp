@@ -83,12 +83,12 @@ int ALL::insert(Node& to_add)
   return current_index;
 }
 
-// @Dev - .
-// Args -> .
-// Returns -> .
-int ALL::retrieve()
+// @Dev - Calculates points earned based on card suit.
+// Args -> Integer representing index location of card to check.
+// Returns -> Integer for points earned.
+int ALL::score(int num)
 {
-  return 1;
+  return (*(table + num))->point_conversion();
 }
 
 // @Dev - Displays all nodes stored in the array. Calls recursive display all function.
