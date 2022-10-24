@@ -57,10 +57,12 @@ int game_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::ve
     player2.display_points();
     cout << "=======================================" << endl;
     cout << endl;
-    if (i == 2)
-      cout << "Final Round!" << endl;
-    else
+    if (i < 2)
       cout << "Lets start Round " << i + 2 << "!" << endl;
+    else if (i < 3)
+      cout << "Final Round!" << endl;
+    else 
+      cout << "GAME OVER" << endl;
     cout << endl;
   }
   if (player1.is_winner(player2))
@@ -79,6 +81,8 @@ int game_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::ve
   {
     cout << "It is a tie! No one wins..." << endl;
   }
+  player1.reset_points();
+  player2.reset_points();
   int play_again;
   cout << "Would you like to play again?" << endl;
   cout << "Enter 1 for yes and 0 for no" << endl;
