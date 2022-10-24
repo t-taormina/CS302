@@ -13,6 +13,8 @@
 #include "person.h"
 #include "data_structures.h"
 
+// Contains headers for client functions.
+//================================================================================
 
 int run();
 int display_hands(ALL& p1, ALL& p2);

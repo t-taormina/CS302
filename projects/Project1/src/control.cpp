@@ -10,6 +10,7 @@ using std::string;
 const int SIZE = 6;
 const int PAWNS = 4;
 
+// Program Driver.
 int run()
 { 
   welcome_message();
@@ -40,6 +41,7 @@ int run()
   return 0;
 }
 
+// Master loop.
 int game_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2, Player& player1, Player& player2)
 {
   for (int i = 0; i < 4; i++)
@@ -84,6 +86,7 @@ int game_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::ve
   return play_again;
 }
 
+// Loops through each round in the game.
 int turn_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2, Player& player1, Player& player2)
 {
   deal_loop(cll, all1, all2);
@@ -106,6 +109,7 @@ int turn_loop(CLL& cll, ALL& all1, ALL& all2, std::vector<Pawn>& pawns1, std::ve
   return 0;
 }
 
+// Loops through attacking logic.
 int attack_roll(ALL& all, std::vector<Pawn>& pawns, Player& attacker)
 {
   Dice di = Dice();
@@ -119,6 +123,7 @@ int attack_roll(ALL& all, std::vector<Pawn>& pawns, Player& attacker)
   return 0;
 }
 
+// Checks pawn positions and awards points based on card values.
 int check_pawns(ALL& all, std::vector<Pawn>& pawns, Player& attacker, int num)
 {
   bool flag = true;
@@ -138,6 +143,7 @@ int check_pawns(ALL& all, std::vector<Pawn>& pawns, Player& attacker, int num)
   return 0;
 }
 
+// Provides a visual for each players cards and pawn positions.
 int easy_view(ALL& all, std::vector<Pawn>& pawns, int player)
 {
   cout << "Player " << player << " has this layout right now." << endl;
@@ -150,6 +156,7 @@ int easy_view(ALL& all, std::vector<Pawn>& pawns, int player)
   return 0;
 }
 
+// Determines and sets position for all pawns during a round.
 int pawn_loop(std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2)
 {
   Dice di = Dice();
@@ -179,6 +186,7 @@ int pawn_loop(std::vector<Pawn>& pawns1, std::vector<Pawn>& pawns2)
   return 0;
 }
 
+// Deals cards to each player's array of linked lists (ALL).
 int deal_loop(CLL& cll, ALL& all1, ALL& all2)
 {
   for (int j = 0; j < 12; j++)
@@ -193,11 +201,13 @@ int deal_loop(CLL& cll, ALL& all1, ALL& all2)
   return 0;
 }
 
+// Displays the head node of each index in the specified array of linked lists (ALL).
 int display_hand(ALL& all)
 {
   return all.display_hand();
 }
 
+// Displays the head node of each index in both players array of linked lists (ALL).
 int display_hands(ALL& p1, ALL& p2)
 {
   cout << "Player 1's hand..." << endl;
@@ -208,6 +218,7 @@ int display_hands(ALL& p1, ALL& p2)
   return 0;
 }
 
+// Displays welcome message.
 int welcome_message()
 {    
   cout << "Welcome to Dice Soccer!" << endl;
@@ -216,6 +227,7 @@ int welcome_message()
   return 0;
 }
 
+// Displays information about the rolling dice process.
 int roll_message()
 {
   cout << "Each player will now roll their dice 4 times..." << endl;
@@ -226,6 +238,7 @@ int roll_message()
   return 0;
 }
 
+// Farewell and signature.
 int goodbye()
 {  
   cout << endl;

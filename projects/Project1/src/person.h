@@ -7,6 +7,7 @@
 #define PERSON_H
 
 // Contains both person and player headers.
+//================================================================================
 
 class Person 
 {

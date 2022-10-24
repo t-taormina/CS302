@@ -8,6 +8,7 @@
 const int INVALID = 9999;
 
 // Contains headers for Piece, Pawn, Card, and Dice classes.
+//================================================================================
 
 class Piece 
 {
