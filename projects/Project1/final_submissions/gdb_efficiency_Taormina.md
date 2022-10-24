@@ -46,3 +46,7 @@ objects and their roles makes for a much cleaner development process.
 
 
 ### GDB Writeup
+  During the programming of this assignment I made it a priority to use GDB in every
+situation that it seemed fitting. At first, the process can be challenging but that is
+only because it is new and not familiar. Once, I began to get more comfortable stepping
+through my program 
