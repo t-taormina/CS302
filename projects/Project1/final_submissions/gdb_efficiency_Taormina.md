@@ -34,4 +34,16 @@ vector served as a container for the pawns in my game. This data structure is pr
 one that I would not include if I had a choice. The vector containing pawns is not
 something that needs to change in size during runtime and therefore an array would have
 worked just as well in this situation. The other two data structures worked exceptionally
-well in the context of my game though. 
+well in the context of my game though. Recursion was used in all repetitive situations and
+pointer arithmetic was used where appropriate which helps with the efficiency of my
+program. Something that I would like to change might be the way that I transfer nodes from
+my circular linked list to the array of linked lists. In both data structures this is what
+my "retrieve" method is used for but instead of just getting a deep copy of the data, it
+also removes the node from the corresponding list. With this process, there is a lot of
+copying going on and I wonder if there might be a more efficient way to go about this.
+Overall I learned a lot from this assignment and if I had to do it again I would spend
+more time planning and elaborating on my UML and pre coding planning. A clear vision of
+objects and their roles makes for a much cleaner development process. 
+
+
+### GDB Writeup
