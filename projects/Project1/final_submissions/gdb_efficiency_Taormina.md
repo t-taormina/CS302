@@ -3,7 +3,7 @@ Tyler Taormina - taormina@pdx.edu
 CS302 Fall 2022
 
 ### Efficiency Writeup
-- The purpose of program 1 was to implement a game using object oriented programming
+  The purpose of program 1 was to implement a game using object oriented programming
   methods. This allows for separation of responsibility and roles within the game and when
 implemented correctly, it can result in less code and simpler maintenance for future
 developers among other benefits. A key part to being successful with programming in this
@@ -22,7 +22,7 @@ user data should a user want to change their name, correct a typo, etc. With the
 amount of getting and setting that I have in my program, I think that this indicates a 
 solid separation of roles and responsibilities for my classes. 
 
-- The data structures implemented in my program solely consisted of the required
+  The data structures implemented in my program solely consisted of the required
   structures. They were a circular linked list, an array of linear linked lists, and
 a vector from the standard template library. The circular linked list served as my deck of
 cards where each node in the list was derived from the "Card" class, and in turn the
