@@ -10,7 +10,7 @@ using namespace std;
 const int SIZE = 100;
 
 // CONTAINS BOTH PERSON AND PLAYER CLASS
-// PLAYER class starts at line 111
+// PLAYER class starts at line 130
 
 // Person Class
 //=============================================================
@@ -59,7 +59,7 @@ Person::~Person()
 // Assignment Operator.
 Person& Person::operator=(const Person& arg)
 {
-  if (this == arg)
+  if (this == &arg)
     return *this;
   if (first_name)
     delete [] first_name;
@@ -158,7 +158,8 @@ Player::Player(const Player& to_copy): Person(to_copy), points(to_copy.points)
 // Assignment Operator.
 Player& Player::operator=(const Player& arg)
 {
-  if (this == arg)
+  Person::operator=(arg);
+  if (this == &arg)
     return *this;
   if (username)
     delete [] username;
@@ -173,8 +174,9 @@ Player& Player::operator=(const Player& arg)
 // Returns -> None.
 void Player::display() const
 {
-  cout << "Points: " << points << endl;
   Person::display();
+  cout << "Username: " << username << endl;
+  cout << "Points: " << points << endl;
 }
 
 // @Dev - Adds points to member data field "points".

@@ -10,9 +10,24 @@ using namespace std;
 
 int main()
 {
-  return run();
+  Player p1 = Player();
+  Player p2 = Player();
+  p1.display();
+  cout << endl;
+  p2.display();
+  cout << endl;
+  p2 = p1;
+  p2.display();
+  return 0;
+  //return run();
 }
   /*
+  Player p1 = Player();
+  Player p2 = p1;
+  p1.display();
+  cout << endl;
+  p2.display();
+
   CLL cll = CLL();
   ALL all = ALL(SIZE);
   Node card = Node();
