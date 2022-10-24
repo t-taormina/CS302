@@ -13,15 +13,14 @@ the similarities, and pushed them up". This creates hierarchies of objects that 
 for some very efficient and concise functions to be written. In my program I believe
 I have done a careful and successful job of isolating objects and their specific jobs.
 There are few instances of classes reaching out to other classes and requesting their
-member data in order to manipulate it. The few instances where I do have "getters" and
+member data but in no cases are we trying to manipulate it. The few instances where I do have "getters" and
 "setters" are in the node class where the "get/set" functions are used to access the
 "next" pointer which is a private data member. Another instance where I have a setter is
 in the "Player" class which uses a setter to keep track of points as they are scored
-during the course of the game. The last setters are found in the shape of editing
-functions that are intended to be available should a user want to change their name,
-correct a typo, etc. With the minimal amount of getting and setting that I have in my
-program, I think that this indicates a solid separation of roles and responsibilities for
-my classes. 
+during the course of the game. The last setters are found in the functions for editing 
+user data should a user want to change their name, correct a typo, etc. With the minimal 
+amount of getting and setting that I have in my program, I think that this indicates a 
+solid separation of roles and responsibilities for my classes. 
 
 - The data structures implemented in my program solely consisted of the required
   structures. They were a circular linked list, an array of linear linked lists, and
