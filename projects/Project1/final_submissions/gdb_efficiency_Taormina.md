@@ -55,4 +55,15 @@ of linear linked lists, that I was sure of, but after a quick scan I was stumped
 nothing jumped out at me as the problem. Running GDB through several functions I was able
 to determine that my initialization of the array was what I had forgotten to delete. Part
 of me feels like this should be something that I would notice, but all the same it was
-nice to solve a puzzling leak with GDB for the first time.
+nice to solve a puzzling leak with GDB for the first time.Another instance where the
+debugger was useful was in identifying a mix up in my values for position, which is
+heavily relied upon in the game for scoring. In one of my positions I was using indexes
+which meant that the position were 0-5 for a total of 6 spaces. In another instance I was
+using 1-6 to represent the 6 spaces and it was the misalignment that caused issues with
+scoring and overall gameplay. Using GDB I was able to step through all the functions where
+position was altered or used and eventually found my mix up. At the time of this issue
+I was feeling more comfortable with GDB so as soon as I noticed the inconsistency I fired
+up GDB and had the issue solved within minutes. It was great. Overall, valgrind and GDB
+are a huge value added to my development workflow. I would like to spend a class just
+going over everything that Karla knows about GDB at some point, but in the meantime the
+google has unlimited resources to get me going. And, you can always type "Help!".
