@@ -53,4 +53,6 @@ through my program the ease at which I was able to identify my problems was amaz
 first significant bug that I came across was a memory leak of 24 bytes. It was in my array
 of linear linked lists, that I was sure of, but after a quick scan I was stumped as
 nothing jumped out at me as the problem. Running GDB through several functions I was able
-to determine that my initialization of the array was what I had forgotten to delete. 
+to determine that my initialization of the array was what I had forgotten to delete. Part
+of me feels like this should be something that I would notice, but all the same it was
+nice to solve a puzzling leak with GDB for the first time.
