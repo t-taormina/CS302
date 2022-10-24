@@ -5,14 +5,15 @@
 
 #ifndef PIECE_H
 #define PIECE_H
+const int INVALID = 9999;
 
+// Contains headers for Piece, Pawn, Card, and Dice classes.
 
 class Piece 
 {
     public:
         Piece();
         ~Piece();
-        //Piece(Piece& source);
         Piece(bool ind, bool comm);
         void display() const;
         int copy_piece(Piece& source);
@@ -20,11 +21,8 @@ class Piece
         bool is_community();
 
     protected:
-        bool individual; // marked true if the piece is used only by one player, false otherwise
-        bool community; // marked true if the piece is used by both players, false otherwise
-        // I don't think this is necessarily useful but it does help to get practice with
-        // inheritance. If you have any other suggestions for what this class could be
-        // responsible for, please let me know!
+        bool individual;
+        bool community; 
 };
 
 
@@ -35,6 +33,7 @@ class Pawn: public Piece
         Pawn(int arg_position);
         ~Pawn();
         void display_position();
+        void display();
         int change_position(int);
         bool is_position(int);
  
@@ -52,7 +51,6 @@ class Card: public Piece
     public:
         Card();
         Card(int arg_value, int arg_suit);
-        //Card(Card& source);
         ~Card();
         void display() const;
         int copy_card(Card& source);

@@ -29,8 +29,7 @@ ALL::~ALL(void)
   {
     if ((*(table + i)) != nullptr)
     {
-      int num_del = remove_all( (*(table + i)) );
-      cout << "Nodes deleted: " << num_del << endl;
+      remove_all( (*(table + i)) );
     }
     (*(table + i)) = nullptr;
   }
@@ -69,7 +68,6 @@ int ALL::insert(Node& to_add)
     (*(table + current_index))->copy_node(to_add);
     (*(table + current_index))->set_next(nullptr);
     (*(table + current_index))->set_position(current_index);
-    cout << "Card added at index: " << current_index << endl;
   }
 
   // Head is not null case.
@@ -80,7 +78,6 @@ int ALL::insert(Node& to_add)
     (*(table + current_index))->copy_node(to_add);
     (*(table + current_index))->set_next(temp);
     (*(table + current_index))->set_position(current_index);
-    cout << "Card added at index: " << current_index << endl;
   }
   current_index++;
   return current_index;
@@ -121,7 +118,7 @@ int ALL::display_all(Node*& current)
 // @Dev - Displays all nodes at the head of each index.
 // Args -> None.
 // Returns -> Integer for success or failure.
-int ALL::display_current_hand()
+int ALL::display_hand()
 {
   for (int i = 0; i < table_size; i++)
   {

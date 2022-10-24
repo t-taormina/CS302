@@ -58,7 +58,7 @@ class ALL
     int insert(Node& to_add);
     int retrieve();
     int display_all(void);
-    int display_current_hand();
+    int display_hand();
     int remove_all();
 
   private:

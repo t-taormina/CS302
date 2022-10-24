@@ -7,7 +7,6 @@
 #include <iostream>
 using namespace std;
 
-const int INVALID = 9999;
 
 // Default constructor
 Card::Card(): Piece(), value(card_value::invalid_value), suit(card_suit::invalid_suit), position(0) {}
@@ -28,10 +27,10 @@ Card::~Card(){}
 // Returns -> Integer for success or failure.
 int Card::set_position(int arg)
 {
-  if (position > 5 || position < 0)
-    position = 0;
-  else 
+  if (arg < 6 || arg >= 0)
     position = arg;
+  else 
+    position = INVALID;
   return position;
 }
 
@@ -154,25 +153,25 @@ void Card::display() const
   switch(suit)
   {
     case card_suit::hearts:
-      cout << "hearts" << endl;
+      cout << "hearts ";
       break;
     
     case card_suit::diamonds:
-      cout << "diamonds" << endl;
+      cout << "diamonds ";
       break;
 
     case card_suit::clubs:
-      cout << "clubs" << endl;
+      cout << "clubs ";
       break;
 
     case card_suit::spades:
-      cout << "spades" << endl;
+      cout << "spades ";
       break;
 
     case card_suit::invalid_suit:
-      cout << "invalid card suit" << endl;
+      cout << "invalid card suit ";
       break;
   }
-  cout << endl;
+  cout << "at position: " << position << endl;
 }
 

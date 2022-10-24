@@ -17,7 +17,7 @@ using namespace std;
 //=============================================================
 
 // Default Constructor.
-Pawn::Pawn(): Piece(), position(0){}
+Pawn::Pawn(): Piece(), position(INVALID){}
 
 // Parameterized Constructor.
 Pawn::Pawn(int arg_position): position(arg_position){}
@@ -31,6 +31,14 @@ Pawn::~Pawn(){}
 void Pawn::display_position()
 {
   cout << "Position: " << position << endl;
+}
+
+// @Dev - Displays all member data.
+// Args -> None.
+// Returns -> None.
+void Pawn::display()
+{
+  cout << "Position: " << position << endl;
   Piece::display();
 }
 
@@ -41,7 +49,7 @@ int Pawn::change_position(int arg)
 {
   if (arg < 7 && arg > 0)
   {
-    position = arg;
+    position = arg - 1;
     return 1;
   }
   cout << "Position cannot be changed to an out of bounds value. No change has been made." << endl;

@@ -4,16 +4,15 @@
 // Program 1 CS302
 
 #include <iostream>
-#include "piece.h"
-#include "person.h"
-#include "data_structures.h"
-
+#include "control.h"
 
 using namespace std;
-const int SIZE = 6;
 
 int main()
 {
+  return run();
+}
+  /*
   CLL cll = CLL();
   ALL all = ALL(SIZE);
   Node card = Node();
@@ -102,8 +101,5 @@ int main()
 
   if (pawn1.is_community())
     cout << "community" << endl;
-  return 0;
-}
-
-
+  */
 
