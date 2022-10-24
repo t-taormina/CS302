@@ -46,7 +46,11 @@ objects and their roles makes for a much cleaner development process.
 
 
 ### GDB Writeup
-  During the programming of this assignment I made it a priority to use GDB in every
-situation that it seemed fitting. At first, the process can be challenging but that is
-only because it is new and not familiar. Once, I began to get more comfortable stepping
-through my program 
+  During the programming of this assignment I made it a priority to use GDB and valgrind in every
+situation that it seemed fitting. For valgrind, this was with every compilation. At first, the process can be challenging but that is
+only because it is new and not familiar. Once I began to get more comfortable stepping
+through my program the ease at which I was able to identify my problems was amazing. The
+first significant bug that I came across was a memory leak of 24 bytes. It was in my array
+of linear linked lists, that I was sure of, but after a quick scan I was stumped as
+nothing jumped out at me as the problem. Running GDB through several functions I was able
+to determine that my initialization of the array was what I had forgotten to delete. 
