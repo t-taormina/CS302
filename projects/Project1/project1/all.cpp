@@ -29,8 +29,7 @@ ALL::~ALL(void)
   {
     if ((*(table + i)) != nullptr)
     {
-      Node* head = (*(table + i));
-      int num_del = remove_all(head);
+      int num_del = remove_all( (*(table + i)) );
       cout << "Nodes deleted: " << num_del << endl;
     }
     (*(table + i)) = nullptr;
@@ -38,6 +37,19 @@ ALL::~ALL(void)
   delete [] table;
   table = nullptr;
   current_index = 0;
+}
+
+// @Dev - (PRIVATE) Removes all nodes stored in the table.
+// Args -> Node object by reference.
+// Returns -> Integer count of nodes deleted from each index.
+int ALL::remove_all(Node*& current)
+{
+  if (!current)
+    return 0;
+  Node* temp = current->get_next();
+  delete current;
+  current = nullptr;
+  return 1 + remove_all(temp);
 }
 
 // @Dev - Inserts node object to the next available index in the array.
@@ -117,19 +129,5 @@ int ALL::display_current_hand()
       (*(table + i))->display();
   }
   return 1;
-}
-
-// @Dev - (PRIVATE) Removes all nodes stored in the table.
-// Args -> Node object by reference.
-// Returns -> Integer count of nodes deleted from each index.
-int ALL::remove_all(Node*& current)
-{
-  if (!current)
-    return 0;
-  Node* temp = current->get_next();
-  delete current;
-  current = nullptr;
-  current = temp;
-  return 1 + remove_all(current);
 }
 

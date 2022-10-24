@@ -11,7 +11,7 @@
 
 
 using namespace std;
-const int SIZE = 5;
+const int SIZE = 6;
 
 int main()
 {
@@ -20,22 +20,53 @@ int main()
   Node card = Node();
   Node c1 = Node();
   Node c2 = Node();
+  Node c3 = Node();
+  Node c4 = Node();
+  Node c5 = Node();
+  Node c6 = Node();
+  Node c7 = Node();
+  Node c8 = Node();
+  Node c9 = Node();
+  Node c10 = Node();
+  Node c11 = Node();
+  Node c12 = Node();
+  
+/*
   // empty draw should display empty list to konsole
-  cll.draw_card(card);
   if (card.has_next())
     cout << "Valid" << endl;
   else
     cout << "Empty list" << endl;
-
+  */
   cll.build_deck();
   //int check = cll.display();
   //cout << "Card count: " << check << endl;
-  cll.draw_card(card);
   cll.draw_card(c1);
   cll.draw_card(c2);
-  all.insert(card);
+  cll.draw_card(c3);
+  cll.draw_card(c4);
+  cll.draw_card(c5);
+  cll.draw_card(c6);
+  cll.draw_card(c7);
+  cll.draw_card(c8);
+  cll.draw_card(c9);
+  cll.draw_card(c10);
+  cll.draw_card(c11);
+  cll.draw_card(c12);
+
   all.insert(c1);
   all.insert(c2);
+  all.insert(c3);
+  all.insert(c4);
+  all.insert(c5);
+  all.insert(c6);
+  all.insert(c7);
+  all.insert(c8);
+  all.insert(c9);
+  all.insert(c10);
+  all.insert(c11);
+  all.insert(c12);
+
   all.display_all();
   all.display_current_hand();
   cout << endl;

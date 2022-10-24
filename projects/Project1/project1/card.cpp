@@ -7,6 +7,7 @@
 #include <iostream>
 using namespace std;
 
+const int INVALID = 9999;
 
 // Default constructor
 Card::Card(): Piece(), value(card_value::invalid_value), suit(card_suit::invalid_suit), position(0) {}
@@ -16,6 +17,7 @@ Card::Card(int arg_value, int arg_suit): Piece(false, true)
 {
   value = (card_value) arg_value;
   suit = (card_suit) arg_suit;
+  position = INVALID;
 }
   
 // Deconstructor
@@ -30,6 +32,7 @@ int Card::set_position(int arg)
     position = 0;
   else 
     position = arg;
+  return position;
 }
 
 // @Dev - Checks to determine if the argument matches the position member value.
