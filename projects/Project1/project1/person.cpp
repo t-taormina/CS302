@@ -56,6 +56,24 @@ Person::~Person()
   }
 }
 
+// Assignment Operator.
+Person& Person::operator=(const Person& arg)
+{
+  if (this == arg)
+    return *this;
+  if (first_name)
+    delete [] first_name;
+  if (last_name)
+    delete [] last_name;
+  first_name = new char [strlen(arg.first_name) + 1];
+  last_name = new char [strlen(arg.last_name) + 1];
+  strcpy(first_name, arg.first_name);
+  strcpy(last_name, arg.last_name);
+  wins = arg.wins;
+  losses = arg.losses;
+  return *this;
+}
+
 // @Dev - Displays member data for object.
 // Args -> None.
 // Returns -> None.
@@ -135,6 +153,19 @@ Player::Player(const Player& to_copy): Person(to_copy), points(to_copy.points)
 {
   username = new char[strlen(to_copy.username) + 1];
   strcpy(username, to_copy.username);
+}
+
+// Assignment Operator.
+Player& Player::operator=(const Player& arg)
+{
+  if (this == arg)
+    return *this;
+  if (username)
+    delete [] username;
+  username = new char [strlen(arg.username) + 1];
+  strcpy(username, arg.username);
+  points = arg.points;
+  return *this;
 }
 
 // @Dev - Displays member data.

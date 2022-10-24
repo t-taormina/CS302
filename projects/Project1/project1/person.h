@@ -13,6 +13,7 @@ class Person
     public:
         Person();
         Person(const Person& to_copy);
+        Person& operator=(const Person& arg);
         ~Person();
         void display() const;
         int edit_first_name(char* edit);
@@ -32,6 +33,7 @@ class Player: public Person
         Player();
         ~Player();
         Player(const Player& to_copy);
+        Player& operator=(const Player& arg);
         void display() const;
         int add_points(int points);
         void display_points();
