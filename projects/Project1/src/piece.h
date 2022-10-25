@@ -7,7 +7,8 @@
 #define PIECE_H
 const int INVALID = 9999;
 
-// Contains headers for Piece, Pawn, Card, and Dice classes.
+// Contains headers for Piece, Pawn, Card, and Dice classes. These classes contain the
+// logic that represents the pieces used in the game.
 //================================================================================
 
 class Piece 
@@ -17,6 +18,8 @@ class Piece
         ~Piece();
         Piece(bool ind, bool comm);
         void display() const;
+        // Copies prefilled argument. If argument is null, no copy will occur and the
+        // piece will remain unchanged.
         int copy_piece(Piece& source);
         bool is_individual();
         bool is_community();
@@ -35,6 +38,9 @@ class Pawn: public Piece
         ~Pawn();
         void display_position();
         void display();
+        // Updates the position. Bounds checking is performed in function. Arguments out
+        // of bounds will set the position value to "INVALID". Invalid is a constant that
+        // represents an invalid piece.
         int change_position(int);
         bool is_position(int);
  
@@ -50,7 +56,9 @@ enum card_value {two, three, four, five, six, seven, eight, nine, ten, jack, que
 class Card: public Piece
 {
     public:
+        // Cards default to invalid suit and invalid value in default constructor.
         Card();
+        // Parameterized Constructor used to build deck.
         Card(int arg_value, int arg_suit);
         ~Card();
         void display() const;
@@ -58,6 +66,7 @@ class Card: public Piece
         int point_conversion();
         int set_position(int arg);
         bool is_position(int arg);
+        // Checks card data members for validity.
         bool is_valid();
         
  
@@ -74,6 +83,7 @@ class Dice: public Piece
         Dice();
         ~Dice();
         void display() const;
+        // Couldn't get three useful functions since the dice has one use in this game.
         int roll();
  
     protected:
