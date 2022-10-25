@@ -11,6 +11,7 @@ using namespace std;
 
 //Pawn Class: line 188
 //Dice Class: line 244
+//This file contains the function 
 
 
 // Default constructor
