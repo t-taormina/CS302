@@ -16,11 +16,12 @@ command "zsh ./{file name}.sh". From here I add a alias in my .zshrc which is in
 directory. This alias lets me run the script with a short command such as "run". However, 
 it will only run if you are in the directory that the .sh file is stored in. That is just 
 the way I set it up. There are limitless ways you can optimize your work flow with zsh and 
-bash. But for grading purposes, compiling with the follow will work.
+bash. But for grading purposes, compiling with the following will work.
  
 ```
 g++ -std=c++17 *.cpp -g -Wall
 ```
 Feedback is always appreciated!
--Tyler
+
+- Tyler
 
