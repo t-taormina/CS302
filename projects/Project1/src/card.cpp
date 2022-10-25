@@ -4,10 +4,6 @@
 // Program 1 CS302
 
 #include "piece.h"
-#include <iostream>
-#include <cstdlib>
-#include <time.h>
-using namespace std;
 
 //Pawn Class: line 188
 //Dice Class: line 244

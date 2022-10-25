@@ -3,12 +3,12 @@
 // October 2022
 // Program 1 CS302
 
-#include <iostream>
 #include "control.h"
+#include <iostream>
+using namespace std;
 
 // DICE SOCCER PROGRAM DRIVER
 
-using namespace std;
 
 int main()
 {

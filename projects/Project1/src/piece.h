@@ -5,7 +5,13 @@
 
 #ifndef PIECE_H
 #define PIECE_H
+
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+using namespace std;
 const int INVALID = 9999;
+
 
 // Contains headers for Piece, Pawn, Card, and Dice classes. These classes contain the
 // logic that represents the pieces used in the game.

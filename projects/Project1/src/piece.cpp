@@ -4,8 +4,6 @@
 // Program 1 CS302
 
 #include "piece.h"
-#include <iostream>
-using namespace std;
 
 // Default Constructor.
 Piece::Piece(): individual(false), community(false){}

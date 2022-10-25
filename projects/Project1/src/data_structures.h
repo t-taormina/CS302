@@ -5,6 +5,7 @@
 
 #ifndef CLL_H
 #define CLL_H
+
 #include "piece.h"
 #include <iostream>
 using namespace std;

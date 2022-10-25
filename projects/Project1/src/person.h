@@ -6,6 +6,11 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+#include <iostream>
+#include <cstring>
+using namespace std;
+const int SIZE = 100;
+
 // Contains both person and player headers. These classes contain the logic that
 // represents a player of the game. 
 //================================================================================

@@ -4,10 +4,6 @@
 // Program 1 CS302
 
 #include "person.h"
-#include <iostream>
-#include <cstring>
-using namespace std;
-const int SIZE = 100;
 
 // CONTAINS BOTH PERSON AND PLAYER CLASS
 // PLAYER class starts at line 130

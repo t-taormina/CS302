@@ -7,7 +7,7 @@
 using namespace std;
 using std::string;
 
-const int SIZE = 6;
+const int TABLE = 6;
 const int PAWNS = 4;
 
 // Program Driver.
@@ -30,8 +30,8 @@ int run()
     CLL cll = CLL();
     cll.build_deck();
 
-    ALL all1 = ALL(SIZE);
-    ALL all2 = ALL(SIZE);
+    ALL all1 = ALL(TABLE);
+    ALL all2 = ALL(TABLE);
 
     std::vector<Pawn> p1(PAWNS, Pawn());
     std::vector<Pawn> p2(PAWNS, Pawn());
