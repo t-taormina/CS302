@@ -21,19 +21,23 @@
 ### Single inheritance
 - base vs derived class
 - what does a derived class inherit?
+  - everything in the hierarchy
 - what can a derived class access?
+  - all protected anb public members of hierarchy
 - what can the client access?
   - public of entire hierarchy
 - what if members have the same name?
   - derived member of the same name hides the parent member of the same name
   - would have to use the parents name and "::" to access (ParentName::memberName)
-  -
-
 
 ### Copy Constructors
 - what is a copy constuctor?
+  - performs a deep copy of an object
 - why is it important?
+  - needs to be done when working with dynamic memory or when using pointers in your data members
 - what is the syntax?
+  - class(const class& to_copy); // in header file
+  - class::class(const class& to_copy); // in cpp file
 - what would cause it to be invoked?
   - pass by value, return by value, create an object with another object as the initial value 
 
