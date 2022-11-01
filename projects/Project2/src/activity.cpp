@@ -3,7 +3,12 @@
 // October 2022
 // Program 2 CS302
 
+// Contains Activity, Skiing, ... classes.
+// Skiing-> line number 118
+
 #include "activity.h"
+
+
 
 // ACTIVITY CLASS
 // =================================================================
@@ -103,12 +108,16 @@ int Activity::display()
   return 0;
 }
 
+/*
+  char* location;
+    float day_cost;
+    float rental_cost;
+    string review; 
+*/
 
 // SKI CLASS
 // =================================================================
-Skiing::Skiing()
-{
-}
+Skiing::Skiing(): Activity(), location(nullptr), day_cost(0), rental_cost(0), review("") {}
 
 Skiing::Skiing(char* arg_location, float arg_dcost, float arg_lcost)
 {

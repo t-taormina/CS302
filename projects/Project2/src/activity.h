@@ -70,6 +70,7 @@ class Skiing: public Activity
     char* location;
     float day_cost;
     float rental_cost;
+    string review;
 };
 
 
