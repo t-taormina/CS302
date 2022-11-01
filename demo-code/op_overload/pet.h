@@ -26,7 +26,7 @@ class Pet: public Animal
     ~Pet();
     Pet& operator=(const Pet&);
     friend ostream& operator<<(ostream& out, const Pet&);
-    //friend istream& operator>>(istream& in, const Pet&);
+    friend istream& operator>>(istream& in, const Pet&);
     
     // Member function format.
     int operator==(const Pet&, const Pet&) const;
