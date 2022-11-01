@@ -20,15 +20,12 @@ Activity::Activity(): season(nullptr), level(0)
   std::cin.ignore(SIZE, '\n');
 }
 
-Activity::Activity(char* arg_season, int arg_level)
+Activity::Activity(int arg_level)
 {
-  if (arg_season)
-  {
-    season = new char[strlen(arg_season) + 1];
-    strcpy(season, arg_season);
-  }
-  else
-    season = nullptr;
+  season = new char[SIZE];
+  cout << "Please enter the best season(s) for this activity: ";
+  std::cin.get(season, SIZE, '\n');
+  std::cin.ignore(SIZE, '\n');
   level = arg_level;
 }
 
@@ -117,33 +114,91 @@ int Activity::display()
 
 // SKI CLASS
 // =================================================================
-Skiing::Skiing(): Activity(), location(nullptr), day_cost(0), rental_cost(0), review("") {}
+Skiing::Skiing(): Activity(1), location(nullptr), day_cost(0), rental_cost(0), review("") {}
 
-Skiing::Skiing(char* arg_location, float arg_dcost, float arg_lcost)
+Skiing::Skiing(char* arg_location, float arg_dcost, float arg_lcost, string arg_review, char* arg_season, int arg_level): Activity(arg_season, arg_level)
+{
+  if (arg_location)
+  {
+    location = new char[strlen(arg_location) + 1];
+    strcpy(location, arg_location);
+  }
+  else 
+    location = nullptr;
+  day_cost = arg_dcost;
+  rental_cost = arg_lcost;
+  review = arg_review;
+}
+
+Skiing::Skiing(const Skiing& to_copy): Activity(to_copy) 
+{
+  location = new char[strlen(to_copy.location) + 1];
+  strcpy(location, to_copy);
+  day_cost = to_copy.day_cost;
+  rental_cost = to_copy.rental_cost;
+  review = to_copy.review;
+}
+
+Skiing~Skiing() 
+{
+  if (location)
+  {
+    delete [] location;
+    location = nullptr;
+  }
+}
+
+Skiing& Skiing::operator=(const Skiing& arg)
+{
+  if (*this == arg)
+    return *this;
+  if (location)
+    delete [] location;
+  location = new char[strlen(arg.location) + 1];
+  strcpy(location, arg.location);
+  day_cost = arg.day_cost;
+  rental_cost = arg.rental_cost;
+  review = arg.review;
+  return *this;
+}
+
+Skiing operator + (const Skiing& op2) const
 {
 }
 
-Skiing::Skiing(const Skiing&)
+bool operator == (const Skiing& arg) const
+{
+  bool success = true;
+  success = Activity::operator==(arg);
+  if (strcmp(location, arg.location) != 0)
+    success = false;
+  return success;
+}
+
+//bool operator != (const Skiing& arg) const;
+ostream & operator << (ostream & out, const Skiing& arg)
 {
 }
 
-Skiing~Skiing()
+istream & operator >> (istream & in, const Skiing& arg)
 {
 }
 
-Skiing& operator=(const Skiing& arg);
-Skiing operator + (const Skiing& op2) const;
-bool operator == (const Skiing& arg) const;
-bool operator != (const Skiing& arg) const;
-friend ostream & operator << (ostream & out, const Skiing& arg);
-friend istream & operator >> (istream & in, const Skiing& arg);
-friend int operator<(const Skiing&, const Skiing&); 
-friend int operator<=(const Skiing&, const Skiing&); 
-friend int operator>(const Skiing&, const Skiing&); 
-friend int operator>=(const Skiing&, const Skiing&);
+int operator<(const Skiing&, const Skiing&); 
+int operator<=(const Skiing&, const Skiing&); 
+int operator>(const Skiing&, const Skiing&); 
+int operator>=(const Skiing&, const Skiing&);
 
-int display();
-int calculate_max_cost();
-int calculate_min_cost();
+int Skiing::display_review()
+{
+}
+
+int Skiing::calculate_max_cost()
+{
+}
+
+int Skiing::calculate_min_cost()
+{
+}
 // =================================================================
 

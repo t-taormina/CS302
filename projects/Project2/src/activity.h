@@ -15,7 +15,7 @@ class Activity
 { 
   public: 
     Activity();
-    Activity(char*, int);
+    Activity(int);
     Activity(const Activity&);
     ~Activity();
 
@@ -47,7 +47,7 @@ class Skiing: public Activity
 {
   public: 
     Skiing();
-    Skiing(char* arg_location, float arg_dcost, float arg_lcost);
+    Skiing(char*, float, float, string);
     Skiing(const Skiing&);
     ~Skiing();
 
