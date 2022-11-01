@@ -7,9 +7,15 @@
 
 int main()
 {
-  char seas[7] = "winter";
+  char loc[9] = "Mt. Hood";
+  Skiing s1 = Skiing(loc,50.0, 40.0, "The runs were amazing", 2); 
+  cout << s1 << endl;
+   return 0;
+}
+/*
+ char seas[7] = "winter";
   int lvl = 1;
-  Activity a1 = Activity(seas,lvl);
+  Activity a1 = Activity(lvl);
   Activity a2 = Activity(a1);
   cout << a1 << endl;
   cout << a2 << endl;
@@ -28,8 +34,7 @@ int main()
   a2 = a1;
   a2.display();
   //cin >> a2 >> endl;
-  return 0;
-}
+*/
 
 /* NO USE
 friend int operator<(const Activity&, const Activity&); 
