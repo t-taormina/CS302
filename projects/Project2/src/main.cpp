@@ -9,7 +9,9 @@ int main()
 {
   char loc[9] = "Mt. Hood";
   Skiing s1 = Skiing(loc,50.0, 40.0, "The runs were amazing", 2); 
-  cout << s1 << endl;
+  Skiing s2 = Skiing(s1);
+  cout << s2 << endl;
+  s2.display();
    return 0;
 }
 /*

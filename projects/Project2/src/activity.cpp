@@ -108,9 +108,9 @@ int Activity::display()
 
 // SKI CLASS
 // =================================================================
-Skiing::Skiing(): Activity(1), location(nullptr), day_cost(0), rental_cost(0), review("") {}
+Skiing::Skiing(): Activity(1), location(nullptr), day_cost(0), rental_cost(0) {}
 
-Skiing::Skiing(char* arg_location, float arg_dcost, float arg_lcost, string arg_review, int arg_level): Activity(arg_level)
+Skiing::Skiing(char* arg_location, float arg_dcost, float arg_lcost, int arg_level): Activity(arg_level)
 {
   if (arg_location)
   {
@@ -121,7 +121,6 @@ Skiing::Skiing(char* arg_location, float arg_dcost, float arg_lcost, string arg_
     location = nullptr;
   day_cost = arg_dcost;
   rental_cost = arg_lcost;
-  review = arg_review;
 }
 
 Skiing::Skiing(const Skiing& to_copy): Activity(to_copy) 
@@ -130,7 +129,8 @@ Skiing::Skiing(const Skiing& to_copy): Activity(to_copy)
   strcpy(location, to_copy.location);
   day_cost = to_copy.day_cost;
   rental_cost = to_copy.rental_cost;
-  review = to_copy.review;
+  for (auto iter = to_copy.reviews.begin(); iter < to_copy.reviews.end(); iter++)
+    reviews.push_front(iter);
 }
 
 Skiing::~Skiing() 
@@ -152,7 +152,9 @@ Skiing& Skiing::operator=(const Skiing& arg)
   strcpy(location, arg.location);
   day_cost = arg.day_cost;
   rental_cost = arg.rental_cost;
-  review = arg.review;
+  rating = arg.rating;
+  for (auto iter = arg.reviews.begin(); iter < arg.reviews.end(); iter++)
+    reviews.push_front(iter);
   return *this;
 }
 
@@ -183,7 +185,6 @@ ostream & operator << (ostream & out, const Skiing& arg)
   out << "Location: " << arg.location << endl;
   out << "Day cost: " << arg.day_cost << endl;
   out << "Rental cost: " << arg.rental_cost << endl;
-  out << "Review: " << arg.review << endl;
   return out;
 }
 
@@ -191,9 +192,10 @@ istream & operator >> (istream & in, const Skiing& arg)
 {
 }
 
-int operator<(const Skiing&, const Skiing&)
+int operator<(const Skiing& l_ski, const Skiing& r_ski)
 {
 }
+
 int operator<=(const Skiing&, const Skiing&)
 {
 }
@@ -206,8 +208,27 @@ int operator>=(const Skiing&, const Skiing&)
 {
 }
 
-int Skiing::display_review()
+int Skiing::display()
 {
+  Activity::display();
+  cout << *this << endl;
+}
+
+int Skiing::display_reviews()
+{
+  int count = 1;
+  cout << "Reviews: " << endl;
+  for (auto iter = reviews.begin(); iter < reviews.end(); iter++)
+  {
+    cout << count << ": " << iter << endl;
+    count++;
+  }
+  return count - 1;
+}
+
+int Skiing::add_reviews()
+{
+
 }
 
 int Skiing::calculate_max_cost()
