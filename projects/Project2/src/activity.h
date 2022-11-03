@@ -59,10 +59,10 @@ class Skiing: public Activity
     bool operator != (const Skiing& arg) const;
     friend ostream & operator << (ostream & out, const Skiing& arg);
     friend istream & operator >> (istream & in, const Skiing& arg);
-    friend int operator<(const Skiing&, const Skiing&); 
-    friend int operator<=(const Skiing&, const Skiing&); 
-    friend int operator>(const Skiing&, const Skiing&); 
-    friend int operator>=(const Skiing&, const Skiing&);
+    friend int operator<(Skiing&, Skiing&); 
+    friend int operator<=(Skiing&, Skiing&); 
+    friend int operator>(Skiing&, Skiing&); 
+    friend int operator>=(Skiing&, Skiing&);
 
     int display();
     int avg_rating();

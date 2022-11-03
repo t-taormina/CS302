@@ -7,11 +7,22 @@
 
 int main()
 {
+  int lvl = 1;
+//  cin >> a2 >> endl;
   char loc[9] = "Mt. Hood";
+  char loc2[11] = "Timberline";
   Skiing s1 = Skiing(loc, 50.0, 40.0, 2); 
-  Skiing s2 = Skiing(s1);
-  cout << s2 << endl;
-  s2.display();
+  Skiing s2 = Skiing(loc2, 90.0, 80.0, 2); 
+
+  if (s2 > s1)
+    cout << "Passed" << endl;
+  if (s2 >= s1)
+    cout << "Passed" << endl;
+  if (!(s2 < s1))
+    cout << "Passed" << endl;
+  if (!(s2 <= s1))
+    cout << "Passed" << endl;
+  /*
   for (auto i = 0; i < 3; i++)
   {
     s2.add_rating();
@@ -22,6 +33,7 @@ int main()
   cout << s3 << endl;
   avg = s3.avg_rating();
   cout << "Average rating: " << avg << endl;
+  */
   return 0;
 }
 /*

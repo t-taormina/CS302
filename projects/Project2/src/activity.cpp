@@ -82,14 +82,17 @@ istream & operator >> (istream & in, Activity& arg)
 {
   if (arg.season)
     delete [] arg.season;
-  arg.season = new char[SIZE];
+  char temp[SIZE];
   cout << "Enter the season: ";
-  in.get(arg.season, SIZE, '\n');
+  in.get(temp, SIZE, '\n');
   in.ignore(SIZE, '\n');
+  arg.season = new char[strlen(temp) + 1];
+  strcpy(arg.season, temp);
   cout << "Enter the level of difficulty of the sport: ";
   in >> arg.level;
   return in;
 }
+
 int Activity::edit_season(char* new_season)
 {
   if (season)
@@ -183,20 +186,39 @@ istream & operator >> (istream & in, const Skiing& arg)
 {
 }
 
-int operator<(const Skiing& l_ski, const Skiing& r_ski)
+int operator<(Skiing& l_ski, Skiing& r_ski)
 {
+  int flag = 0;
+  if (l_ski.calculate_max_cost() < r_ski.calculate_max_cost())
+    flag = 1;
+  return flag;
 }
 
-int operator<=(const Skiing&, const Skiing&)
+int operator<=(Skiing& l_ski, Skiing& r_ski)
 {
+  int flag = 0;
+  if (l_ski.calculate_max_cost() <= r_ski.calculate_max_cost())
+    flag = 1;
+  return flag;
+
 }
 
-int operator>(const Skiing&, const Skiing&)
+int operator>(Skiing& l_ski, Skiing& r_ski)
 {
+  int flag = 0;
+  if (l_ski.calculate_max_cost() > r_ski.calculate_max_cost())
+    flag = 1;
+  return flag;
+
 }
 
-int operator>=(const Skiing&, const Skiing&)
+int operator>=(Skiing& l_ski, Skiing& r_ski)
 {
+  int flag = 0;
+  if (l_ski.calculate_max_cost() >= r_ski.calculate_max_cost())
+    flag = 1;
+  return flag;
+
 }
 
 int Skiing::display()
