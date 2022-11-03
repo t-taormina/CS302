@@ -17,7 +17,7 @@ class Activity
 { 
   public: 
     Activity();
-    Activity(int);
+    Activity(string arg_loc, int arg_level);
     Activity(const Activity&);
     ~Activity();
 
@@ -25,7 +25,7 @@ class Activity
     Activity operator ++ ();
     bool operator == (const Activity& arg) const;
     //bool operator != (const Activity& arg) const;
-    friend ostream & operator << (ostream & out, const Activity& arg);
+    friend ostream & operator << (ostream & out, Activity& arg);
     friend istream & operator >> (istream & in, Activity& arg);
     /*
     friend int operator<(const Activity&, const Activity&); 
@@ -34,11 +34,15 @@ class Activity
     friend int operator>=(const Activity&, const Activity&);
     */
 
-    int edit_season(char* new_season);
     int display();
+    int avg_rating();
+    int add_rating(int arg);
+    int rate();
 
-  private: 
+  protected: 
     char* season;
+    string location;
+    vector<int> ratings;
     int level;// 0 = default
               // 1 = begginer
               // 2 = intermediate
@@ -49,7 +53,7 @@ class Skiing: public Activity
 {
   public: 
     Skiing();
-    Skiing(char* arg_location, float arg_dcost, float arg_lcost, int arg_level);
+    Skiing(char*, float, float, int, int);
     Skiing(const Skiing&);
     ~Skiing();
 
@@ -65,16 +69,16 @@ class Skiing: public Activity
     friend int operator>=(Skiing&, Skiing&);
 
     int display();
-    int avg_rating();
-    int add_rating();
+    
     int calculate_max_cost();
     int calculate_min_cost();
 
-  private: 
-    char* location;
-    float day_cost;
+  protected: 
+    char* review;
+    float lift_cost;
     float rental_cost;
-    vector<int> ratings;
+    int easy_runs;
+    int hard_runs;
 };
 
 
