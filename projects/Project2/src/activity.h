@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-#include <list>
+#include <vector>
 using namespace std;
 const int SIZE = 100; // Used for dynamic character arrays.
 
@@ -65,8 +65,8 @@ class Skiing: public Activity
     friend int operator>=(const Skiing&, const Skiing&);
 
     int display();
-    int display_review();
-    int add_reviews();
+    int avg_rating();
+    int add_rating();
     int calculate_max_cost();
     int calculate_min_cost();
 
@@ -74,7 +74,7 @@ class Skiing: public Activity
     char* location;
     float day_cost;
     float rental_cost;
-    list<string> reviews;
+    vector<int> ratings;
 };
 
 

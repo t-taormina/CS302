@@ -4,7 +4,7 @@
 // Program 2 CS302
 
 // Contains Activity, Skiing, ... classes.
-// Skiing-> line number 118
+// Skiing-> line number 109
 
 #include "activity.h"
 
@@ -129,8 +129,8 @@ Skiing::Skiing(const Skiing& to_copy): Activity(to_copy)
   strcpy(location, to_copy.location);
   day_cost = to_copy.day_cost;
   rental_cost = to_copy.rental_cost;
-  for (auto iter = to_copy.reviews.begin(); iter < to_copy.reviews.end(); iter++)
-    reviews.push_front(iter);
+  for (auto iter = to_copy.ratings.begin(); iter < to_copy.ratings.end(); iter++)
+    ratings.push_back(*iter);
 }
 
 Skiing::~Skiing() 
@@ -152,9 +152,8 @@ Skiing& Skiing::operator=(const Skiing& arg)
   strcpy(location, arg.location);
   day_cost = arg.day_cost;
   rental_cost = arg.rental_cost;
-  rating = arg.rating;
-  for (auto iter = arg.reviews.begin(); iter < arg.reviews.end(); iter++)
-    reviews.push_front(iter);
+  for (auto iter = arg.ratings.begin(); iter < arg.ratings.end(); iter++)
+    ratings.push_back(*iter);
   return *this;
 }
 
@@ -170,14 +169,6 @@ bool Skiing::operator == (const Skiing& arg) const
     success = false;
   return success;
 }
-
-/*
-  char* location;
-    float day_cost;
-    float rental_cost;
-    string review; 
-*/
-
 
 //bool operator != (const Skiing& arg) const;
 ostream & operator << (ostream & out, const Skiing& arg)
@@ -214,29 +205,42 @@ int Skiing::display()
   cout << *this << endl;
 }
 
-int Skiing::display_reviews()
+int Skiing::avg_rating()
 {
-  int count = 1;
-  cout << "Reviews: " << endl;
-  for (auto iter = reviews.begin(); iter < reviews.end(); iter++)
+  int count = 0;
+  int sum = 0;
+  for (auto iter = ratings.begin(); iter < ratings.end(); iter++)
   {
-    cout << count << ": " << iter << endl;
+    sum += *iter;
     count++;
   }
-  return count - 1;
+  return sum / count;
 }
 
-int Skiing::add_reviews()
+int Skiing::add_rating()
 {
-
+  int flag = 0;
+  int rating;
+  while (flag == 0)
+  {
+    cout << "Please enter a rating from 1-5: ";
+    cin >> rating;
+    if (rating < 1 || rating > 5)
+      cout << "Invalid rating." << endl; 
+    else 
+      flag = 1;
+  }
+  ratings.push_back(rating);
 }
 
 int Skiing::calculate_max_cost()
 {
+  return day_cost + rental_cost;
 }
 
 int Skiing::calculate_min_cost()
 {
+  return day_cost;
 }
 // =================================================================
 

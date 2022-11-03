@@ -8,11 +8,21 @@
 int main()
 {
   char loc[9] = "Mt. Hood";
-  Skiing s1 = Skiing(loc,50.0, 40.0, "The runs were amazing", 2); 
+  Skiing s1 = Skiing(loc, 50.0, 40.0, 2); 
   Skiing s2 = Skiing(s1);
   cout << s2 << endl;
   s2.display();
-   return 0;
+  for (auto i = 0; i < 3; i++)
+  {
+    s2.add_rating();
+  }
+  int avg = s2.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  Skiing s3 = Skiing(s2);
+  cout << s3 << endl;
+  avg = s3.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  return 0;
 }
 /*
  char seas[7] = "winter";
