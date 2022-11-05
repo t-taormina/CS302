@@ -5,9 +5,28 @@
 
 #include "activity.h"
 
+int test_ski();
+int test_shoe();
+int test_skate();
+
 int main()
 {
-  Activity a1 = Activity("Timberline", 2);
+  int success = test_ski();
+    return 0;
+}
+
+int test_ski()
+{}
+
+int test_shoe()
+{}
+
+int test_skate()
+{}
+
+
+  /*
+  a1 = Activity("Timberline", 2);
   Activity a2 = Activity(a1);
   cout << a1 << endl;
   cout << a2 << endl;
@@ -23,10 +42,7 @@ int main()
 
 
   a2.display(); 
-  return 0;
-}
 
-  /*
   int lvl = 1;
   cin >> a2 >> endl;
 

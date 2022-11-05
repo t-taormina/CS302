@@ -4,23 +4,21 @@
 // Program 2 CS302
 
 // Contains Activity, Skiing, ... classes.
-// Skiing-> line number 125
+// Skiing-> line number 135
 
 #include "activity.h"
-
 
 
 // ACTIVITY CLASS
 // =================================================================
 Activity::Activity(): season(nullptr), location(""), level(0) {}
 
-Activity::Activity(string arg_loc, int arg_level)
+Activity::Activity(string arg_loc): level(0)
 {
   char temp[7] = "Winter";
   season = new char[strlen(temp) + 1];
   strcpy(season, temp);
   location = arg_loc;
-  level = arg_level;
 }
 
 Activity::Activity(const Activity& arg)
@@ -130,13 +128,14 @@ int Activity::rate()
   }
   ratings.push_back(rating);
 }
+// =================================================================
 
 
 // SKI CLASS
 // =================================================================
 Skiing::Skiing(): Activity("",1), review(nullptr), lift_cost(0), rental_cost(0), easy_runs(0), hard_runs(0) {}
 
-Skiing::Skiing(char* arg_review, float l_cost, float r_cost, int e_runs, int h_runs)
+Skiing::Skiing(char* arg_review, float l_cost, float r_cost, int e_runs, int h_runs, string arg_loc): location(arg_loc)
 {
   if (arg_review)
   {
@@ -186,8 +185,10 @@ Skiing& Skiing::operator=(const Skiing& arg)
   return *this;
 }
 
-Skiing Skiing::operator + (const Skiing& op2) const
+Skiing Skiing::operator + (const int& op2) const
 {
+  lift_cost += op2;
+  return *this;
 }
 
 bool Skiing::operator == (const Skiing& arg) const
@@ -264,3 +265,24 @@ int Skiing::calculate_min_cost()
 }
 // =================================================================
 
+
+// Snow Shoe Class
+// =================================================================
+Snowshoe::Snowshoe(){}
+Snowshoe::Snowshoe(float, int, string){}
+Snowshoe::Snowshoe(char* arg_location, float arg_dcost, float arg_lcost){}
+Snowshoe::Snowshoe(const Snowshoe&){}
+Snowshoe::~Snowshoe(){}
+
+Snowshoe& Snowshoe::operator=(const Snowshoe& arg){}
+Snowshoe Snowshoe::operator + (const Snowshoe& op2) const{}
+bool Snowshoe::operator == (const Snowshoe& arg) const{}
+bool Snowshoe::operator != (const Snowshoe& arg) const{}
+ostream & operator << (ostream & out, const Snowshoe& arg){}
+istream & operator >> (istream & in, const Snowshoe& arg){}
+int operator<(const Snowshoe&, const Snowshoe&){}
+int operator<=(const Snowshoe&, const Snowshoe&){} 
+int operator>(const Snowshoe&, const Snowshoe&){} 
+int operator>=(const Snowshoe&, const Snowshoe&){}
+
+int display(){}
