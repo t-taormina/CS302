@@ -18,6 +18,7 @@ class Activity
   public: 
     Activity();
     Activity(string arg_loc);
+    Activity(string arg_loc, int level);
     Activity(const Activity&);
     ~Activity();
 
@@ -86,8 +87,7 @@ class Snowshoe: public Activity
 {
   public: 
     Snowshoe();
-    Snowshoe(float, int, string);
-    Snowshoe(char* arg_location, float arg_dcost, float arg_lcost);
+    Snowshoe(float, int, string, string);
     Snowshoe(const Snowshoe&);
     ~Snowshoe();
 

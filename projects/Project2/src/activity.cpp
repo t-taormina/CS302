@@ -4,7 +4,9 @@
 // Program 2 CS302
 
 // Contains Activity, Skiing, ... classes.
-// Skiing-> line number 135
+// Skiing: line number 135
+// Snowshoe: line number 277
+// Skating: line number 
 
 #include "activity.h"
 
@@ -21,6 +23,14 @@ Activity::Activity(string arg_loc): level(0)
   location = arg_loc;
 }
 
+Activity::Activity(string arg_loc, int arg_level)
+{
+  char temp[7] = "Winter";
+  season = new char[strlen(temp) + 1];
+  strcpy(season, temp);
+  location = arg_loc;
+  level = arg_level;
+}
 Activity::Activity(const Activity& arg)
 {
   season = new char [strlen(arg.season) + 1];
@@ -133,9 +143,9 @@ int Activity::rate()
 
 // SKI CLASS
 // =================================================================
-Skiing::Skiing(): Activity("",1), review(nullptr), lift_cost(0), rental_cost(0), easy_runs(0), hard_runs(0) {}
+Skiing::Skiing(): Activity("",2), review(nullptr), lift_cost(0), rental_cost(0), easy_runs(0), hard_runs(0) {}
 
-Skiing::Skiing(char* arg_review, float l_cost, float r_cost, int e_runs, int h_runs, string arg_loc): location(arg_loc)
+Skiing::Skiing(char* arg_review, float l_cost, float r_cost, int e_runs, int h_runs, string arg_loc): Activity(arg_loc, 2)
 {
   if (arg_review)
   {
@@ -268,21 +278,100 @@ int Skiing::calculate_min_cost()
 
 // Snow Shoe Class
 // =================================================================
-Snowshoe::Snowshoe(){}
-Snowshoe::Snowshoe(float, int, string){}
-Snowshoe::Snowshoe(char* arg_location, float arg_dcost, float arg_lcost){}
-Snowshoe::Snowshoe(const Snowshoe&){}
+Snowshoe::Snowshoe(): Activity("", 1), distance(0), difficulty(0), trail_name("") {}
+
+Snowshoe::Snowshoe(float dist, int diff, string name, string loc): Activity(loc, 1)  
+{
+  distance = dist;
+  difficulty = diff;
+  trail_name = name;
+}
+
+Snowshoe::Snowshoe(const Snowshoe& obj): Activity(obj)
+{
+  distance = obj.distance;
+  difficulty = obj.difficulty;
+  trail_name = obj.difficulty;
+}
+
 Snowshoe::~Snowshoe(){}
 
-Snowshoe& Snowshoe::operator=(const Snowshoe& arg){}
-Snowshoe Snowshoe::operator + (const Snowshoe& op2) const{}
-bool Snowshoe::operator == (const Snowshoe& arg) const{}
-bool Snowshoe::operator != (const Snowshoe& arg) const{}
-ostream & operator << (ostream & out, const Snowshoe& arg){}
-istream & operator >> (istream & in, const Snowshoe& arg){}
-int operator<(const Snowshoe&, const Snowshoe&){}
-int operator<=(const Snowshoe&, const Snowshoe&){} 
-int operator>(const Snowshoe&, const Snowshoe&){} 
-int operator>=(const Snowshoe&, const Snowshoe&){}
+Snowshoe& Snowshoe::operator=(const Snowshoe& obj)
+{
+  if (*this == arg)
+    return *this;
+  Activity::operator=(arg);
+  distance = obj.distance;
+  difficulty = obj.difficulty;
+  trail_name = obj.difficulty;
+  return *this;
+}
 
-int display(){}
+Snowshoe Snowshoe::operator + (const Snowshoe& op2) const
+{
+  return *this;
+}
+
+bool Snowshoe::operator == (const Snowshoe& arg) const
+{
+  bool success = false;
+  if (trail_name == arg.trail_name && Activity::operator==(arg))
+    success = true;
+  return success;
+}
+
+bool Snowshoe::operator != (const Snowshoe& arg) const
+{
+  bool success = true;
+  if (trail_name == arg.trail_name && Activity::operator==(arg))
+    success = false;
+  return success;
+}
+
+ostream & operator << (ostream & out, const Snowshoe& arg)
+{
+}
+
+istream & operator >> (istream & in, const Snowshoe& arg)
+{
+}
+
+int operator<(const Snowshoe& l_arg, const Snowshoe& r_arg)
+{
+  int flag = 0;
+  if (l_arg.difficulty < r_arg.difficulty)
+    flag = 1;
+  return flag;
+}
+
+int operator<=(const Snowshoe&, const Snowshoe&)
+{
+  int flag = 0;
+  if (l_arg.difficulty <= r_arg.difficulty)
+    flag = 1;
+  return flag;
+} 
+
+int operator>(const Snowshoe&, const Snowshoe&)
+{
+  int flag = 0;
+  if (l_arg.difficulty > r_arg.difficulty)
+    flag = 1;
+  return flag;
+} 
+
+int operator>=(const Snowshoe&, const Snowshoe&)
+{
+  int flag = 0;
+  if (l_arg.difficulty >= r_arg.difficulty)
+    flag = 1;
+  return flag;
+}
+
+int display()
+{
+}
+// =================================================================
+
+
+
