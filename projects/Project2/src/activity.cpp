@@ -80,6 +80,14 @@ bool Activity::operator == (const Activity& arg) const
   return success;
 }
 
+bool Activity::operator != (const Activity& arg) const
+{
+  bool success = false;
+  if (strcmp(arg.season, season) != 0 || arg.location != location)
+    success = true;
+  return success;
+}
+
 ostream & operator << (ostream & out, Activity& arg)
 {
   int rating = arg.avg_rating();
@@ -87,6 +95,7 @@ ostream & operator << (ostream & out, Activity& arg)
   return out;
 }
 
+/*
 istream & operator >> (istream & in, Activity& arg)
 {
   int num; 
@@ -94,11 +103,11 @@ istream & operator >> (istream & in, Activity& arg)
   arg.add_rating(num);
   return in;
 }
+*/
 
-int Activity::display()
+void Activity::display(ostream& out)
 {
   cout << *this << endl;
-  return 0;
 }
 
 int Activity::avg_rating()
@@ -218,6 +227,7 @@ bool Skiing::operator == (const Skiing& arg) const
 //bool operator != (const Skiing& arg) const;
 ostream & operator << (ostream & out, const Skiing& arg)
 {
+  arg.display(out);
   out << "Lift cost: " << arg.lift_cost << endl;
   out << "Rental cost: " << arg.rental_cost << endl;
   out << "Easy runs: " << arg.easy_runs << endl;

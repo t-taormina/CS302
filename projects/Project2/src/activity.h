@@ -29,17 +29,17 @@ class Activity
     Activity& operator=(const Activity& arg);
     Activity operator ++ ();
     bool operator == (const Activity& arg) const;
-    //bool operator != (const Activity& arg) const;
+    bool operator != (const Activity& arg) const;
     friend ostream & operator << (ostream & out, Activity& arg);
-    friend istream & operator >> (istream & in, Activity& arg);
     /*
+    friend istream & operator >> (istream & in, Activity& arg);
     friend int operator<(const Activity&, const Activity&); 
     friend int operator<=(const Activity&, const Activity&); 
     friend int operator>(const Activity&, const Activity&); 
     friend int operator>=(const Activity&, const Activity&);
     */
 
-    int display();
+    void display(ostream& out);
     int avg_rating();
     int add_rating(int arg);
     int rate();
@@ -67,7 +67,7 @@ class Skiing: public Activity
     bool operator == (const Skiing& arg) const;
     bool operator != (const Skiing& arg) const;
     friend ostream & operator << (ostream & out, const Skiing& arg);
-    friend istream & operator >> (istream & in, const Skiing& arg);
+    //friend istream & operator >> (istream & in, const Skiing& arg);
     friend int operator<(Skiing&, Skiing&); 
     friend int operator<=(Skiing&, Skiing&); 
     friend int operator>(Skiing&, Skiing&); 
@@ -102,7 +102,7 @@ class Snowshoe: public Activity
     bool operator == (const Snowshoe& arg) const;
     bool operator != (const Snowshoe& arg) const;
     friend ostream & operator << (ostream & out, const Snowshoe& arg);
-    friend istream & operator >> (istream & in, const Snowshoe& arg);
+    //friend istream & operator >> (istream & in, const Snowshoe& arg);
     friend int operator<(const Snowshoe&, const Snowshoe&); 
     friend int operator<=(const Snowshoe&, const Snowshoe&); 
     friend int operator>(const Snowshoe&, const Snowshoe&); 
@@ -132,7 +132,7 @@ class Skating: public Activity
     bool operator == (const Skating& arg) const;
     bool operator != (const Skating& arg) const;
     friend ostream & operator << (ostream & out, const Skating& arg);
-    friend istream & operator >> (istream & in, const Skating& arg);
+    //friend istream & operator >> (istream & in, const Skating& arg);
     friend int operator<(const Skating&, const Skating&); 
     friend int operator<=(const Skating&, const Skating&); 
     friend int operator>(const Skating&, const Skating&); 
