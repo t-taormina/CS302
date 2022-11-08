@@ -6,7 +6,7 @@
 // Contains Activity, Skiing, Snowshoe, and Skating classes.
 // Skiing: line number 135
 // Snowshoe: line number 281
-// Skating: line number 
+// Skating: line number 404
 
 #include "activity.h"
 
@@ -125,6 +125,7 @@ int Activity::add_rating(int arg)
     return 0;
   }
   ratings.push_back(arg);
+  return 0;
 }
 
 int Activity::rate()
@@ -141,6 +142,7 @@ int Activity::rate()
       flag = 1;
   }
   ratings.push_back(rating);
+  return rating;
 }
 // =================================================================
 
@@ -348,10 +350,15 @@ bool Snowshoe::operator != (const Snowshoe& arg) const
 
 ostream & operator << (ostream & out, const Snowshoe& arg)
 {
+  out << "Trail Name: " << arg.trail_name << endl;
+  out << "Difficulty: " << arg.difficulty << endl;
+  out << "Distance: " << arg.distance << endl;
+  return out;
 }
 
 istream & operator >> (istream & in, const Snowshoe& arg)
 {
+  return in;
 }
 
 int operator<(const Snowshoe& l_arg, const Snowshoe& r_arg)
@@ -393,13 +400,6 @@ int Snowshoe::display()
 }
 // =================================================================
 
-
-/*
-  private: 
-    float week_cost;
-    float weekend_cost;
-    bool events;
-*/
 
 // Skating Class
 // =================================================================
@@ -453,6 +453,13 @@ bool Skating::operator != (const Skating& arg) const
 
 ostream & operator << (ostream & out, const Skating& arg)
 {
+  out << "Name: " << arg.name << endl;
+  out << "Week day cost: " << arg.week_cost << endl;
+  out << "Weekend cost: " << arg.weekend_cost << endl;
+  if (arg.events)
+    out << "This venue holds other events. Please ensure there is no scheduled events before visiting."<< endl;
+  else 
+    out << "This venue rarely holds events. It is advised that you still visit their website to ensure availability." << endl;
   return out;
 }
 
@@ -495,6 +502,8 @@ int operator>=(const Skating& l_arg, const Skating& r_arg)
 
 int Skating::display()
 {
+  cout << *this << endl;
+  return 0;
 }
 
 

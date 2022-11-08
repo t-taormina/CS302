@@ -12,6 +12,9 @@ int test_skate();
 int main()
 {
   int success = test_ski();
+  success = test_shoe();
+  success = test_skate();
+  cout << success;
     return 0;
 }
 
@@ -44,45 +47,74 @@ int test_ski()
   cout << s4 << endl;
   avg = s4.avg_rating();
   cout << "Average rating: " << avg << endl;
-  //cin >> a2 >> endl;
-
+  return 0;
 }
 
 int test_shoe()
-{}
+{
+  Snowshoe s1 = Snowshoe(); 
+  Snowshoe s2 = Snowshoe(); 
+
+  if (s2 > s1)
+    cout << "Passed" << endl;
+  if (s2 >= s1)
+    cout << "Passed" << endl;
+  if (!(s2 < s1))
+    cout << "Passed" << endl;
+  if (!(s2 <= s1))
+    cout << "Passed" << endl;
+
+  int avg = s2.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  Snowshoe s3 = Snowshoe (s2);
+  cout << s3 << endl;
+  for (auto i = 0; i < 3; i++)
+  {
+    s3.rate();
+  }
+  avg = s3.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  Snowshoe s4 = Snowshoe();
+  s4 = s3;
+  cout << s4 << endl;
+  avg = s4.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  return 0;
+}
 
 int test_skate()
-{}
+{
+  Skating s1 = Skating(); 
+  Skating s2 = Skating(); 
 
+  if (s2 > s1)
+    cout << "Passed" << endl;
+  if (s2 >= s1)
+    cout << "Passed" << endl;
+  if (!(s2 < s1))
+    cout << "Passed" << endl;
+  if (!(s2 <= s1))
+    cout << "Passed" << endl;
 
-  /*
-  a1 = Activity("Timberline", 2);
-  Activity a2 = Activity(a1);
-  cout << a1 << endl;
-  cout << a2 << endl;
-  if (a1 == a2) 
-    cout << "True" << endl;
-  else
-    cout << "False" << endl;
+  int avg = s2.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  Skating s3 = Skating (s2);
+  cout << s3 << endl;
+  for (auto i = 0; i < 3; i++)
+  {
+    s3.rate();
+  }
+  avg = s3.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  Skating s4 = Skating();
+  s4 = s3;
+  cout << s4 << endl;
+  avg = s4.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  return 0;
+}
 
-  
-
-
-  a2.display(); 
-
-  int lvl = 1;
-  cin >> a2 >> endl;
-
-  ++a1;
-  if (a1 == a2) 
-    cout << "True" << endl;
-  else
-    cout << "False" << endl;
-  cout << a1 << endl;
-  a2.display();
-  a2 = a1;
-
-  
+/* 
  NO USE
 friend int operator<(const Activity&, const Activity&); 
 friend int operator<=(const Activity&, const Activity&); 

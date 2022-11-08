@@ -109,6 +109,9 @@ class Snowshoe: public Activity
     friend int operator>=(const Snowshoe&, const Snowshoe&);
 
     int display();
+    void add_rating(int arg);
+    void rate();
+
 
   private: 
     float distance;
@@ -136,6 +139,8 @@ class Skating: public Activity
     friend int operator>=(const Skating&, const Skating&);
 
     int display();
+    void add_rating(int arg);
+    void rate();
 
   private: 
     float week_cost;
