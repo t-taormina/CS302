@@ -17,10 +17,20 @@ class Node
     Node<T>(const Node<T>& source);
     ptr & get_next();
     ptr & get_previous();
+    Node<T> & operator=(const Node<T> arg);
+    void set_next(const Node<T>& source);
+    void set_prev(const Node<T>& source);
+    bool less_than(const T & new_data) const;
+    bool greater_than(const T & new_data) const;
+    bool less_than_or_equal(const T & new_data) const;
+    bool greater_than_or_equal(const T & new_data) const;
+    bool equal_to(const T & new_data) const;
+    bool not_equal_to(const T & new_data) const;
     void display() const;
+
     //template <typename U>
+    /*
     friend ostream & operator << (ostream & out, const Node<T>& obj);
-    Node& operator=(const Node& arg);
     Node operator + (const int& op2);
     bool operator == (const Node& arg) const;
     bool operator != (const Node& arg) const;
@@ -29,7 +39,7 @@ class Node
     friend int operator<=(Node&, Node&); 
     friend int operator>(Node&, Node&); 
     friend int operator>=(Node&, Node&);
-
+    */
 
   private: 
     T data;
@@ -37,7 +47,8 @@ class Node
     ptr next;
 };
 
-template <typename t>
+
+template <typename T>
 class DLL
 {
   public:
@@ -47,17 +58,20 @@ class DLL
     ~DLL();
     DLL(const DLL<T>& source);
     DLL<T> & operator=(const DLL<T> & arg);
-    void insert(const T & data);
-    friend ostream & operator << (ostream & out, const DLL& obj);
+    void insert(const T & obj);
+    void copy();
+    void display() const;
 
   private: 
     ptr head;
     ptr tail;
     
+    void remove_all(ptr & head);
     void copy(ptr & dest, const ptr & source);
     void insert(ptr & tail, const T & data);
     void display(const ptr & head) const;
 };
 
+#include "DLL.tpp"
 #endif
 

@@ -105,9 +105,10 @@ istream & operator >> (istream & in, Activity& arg)
 }
 */
 
-void Activity::display(ostream& out)
+int Activity::display()
 {
   cout << *this << endl;
+  return 0;
 }
 
 int Activity::avg_rating()
@@ -227,7 +228,6 @@ bool Skiing::operator == (const Skiing& arg) const
 //bool operator != (const Skiing& arg) const;
 ostream & operator << (ostream & out, const Skiing& arg)
 {
-  arg.display(out);
   out << "Lift cost: " << arg.lift_cost << endl;
   out << "Rental cost: " << arg.rental_cost << endl;
   out << "Easy runs: " << arg.easy_runs << endl;
@@ -321,7 +321,7 @@ Snowshoe::Snowshoe(const Snowshoe& obj): Activity(obj)
 {
   distance = obj.distance;
   difficulty = obj.difficulty;
-  trail_name = obj.difficulty;
+  trail_name = obj.trail_name;
 }
 
 Snowshoe::~Snowshoe(){}
@@ -333,7 +333,7 @@ Snowshoe& Snowshoe::operator=(const Snowshoe& obj)
   Activity::operator=(obj);
   distance = obj.distance;
   difficulty = obj.difficulty;
-  trail_name = obj.difficulty;
+  trail_name = obj.trail_name;
   return *this;
 }
 
@@ -407,6 +407,16 @@ int Snowshoe::display()
 {
   cout << *this << endl;
   return 0;
+}
+
+void Snowshoe::rate()
+{
+  Activity::rate();
+}
+
+void Snowshoe::add_rating(int arg)
+{
+  Activity::add_rating(arg);
 }
 // =================================================================
 
@@ -514,6 +524,16 @@ int Skating::display()
 {
   cout << *this << endl;
   return 0;
+}
+
+void Skating::rate()
+{
+  Activity::rate();
+}
+
+void Skating::add_rating(int arg)
+{
+  Activity::add_rating(arg);
 }
 
 
