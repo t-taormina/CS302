@@ -9,6 +9,10 @@
 #include <vector>
 using namespace std;
 const int SIZE = 100; // Used for dynamic character arrays.
+const int DEFAULT = 0;
+const int BEGINNER = 1;
+const int INTERMEDIATE = 2;
+const int ADVANCED = 3;
 
 #ifndef ACTIVITY_H
 #define ACTIVITY_H
@@ -117,12 +121,11 @@ class Skating: public Activity
 {
   public: 
     Skating();
-    Skating(float arg_wcost, float arg_wecost, bool arg_events);
+    Skating(float arg_wcost, float arg_wkndcost, bool arg_events, string arg_name, string arg_location);
     Skating(const Skating&);
     ~Skating();
 
     Skating& operator=(const Skating& arg);
-    Skating operator + (const Skating& op2) const;
     bool operator == (const Skating& arg) const;
     bool operator != (const Skating& arg) const;
     friend ostream & operator << (ostream & out, const Skating& arg);
@@ -138,6 +141,7 @@ class Skating: public Activity
     float week_cost;
     float weekend_cost;
     bool events;
+    string name;
 };
 
 #endif

@@ -13,9 +13,9 @@
 
 // ACTIVITY CLASS
 // =================================================================
-Activity::Activity(): season(nullptr), location(""), level(0) {}
+Activity::Activity(): season(nullptr), location(""), level(DEFAULT) {}
 
-Activity::Activity(string arg_loc): level(0)
+Activity::Activity(string arg_loc): level(DEFAULT)
 {
   char temp[7] = "Winter";
   season = new char[strlen(temp) + 1];
@@ -147,9 +147,9 @@ int Activity::rate()
 
 // SKI CLASS
 // =================================================================
-Skiing::Skiing(): Activity("",2), review(nullptr), lift_cost(0), rental_cost(0), easy_runs(0), hard_runs(0) {}
+Skiing::Skiing(): Activity("",INTERMEDIATE), review(nullptr), lift_cost(0), rental_cost(0), easy_runs(0), hard_runs(0) {}
 
-Skiing::Skiing(float l_cost, float r_cost, int e_runs, int h_runs, string arg_loc): Activity(arg_loc, 2), review(nullptr)
+Skiing::Skiing(float l_cost, float r_cost, int e_runs, int h_runs, string arg_loc): Activity(arg_loc, INTERMEDIATE), review(nullptr)
 {
   lift_cost = l_cost;
   rental_cost = r_cost;
@@ -157,19 +157,19 @@ Skiing::Skiing(float l_cost, float r_cost, int e_runs, int h_runs, string arg_lo
   hard_runs = h_runs;
 }
 
-Skiing::Skiing(const Skiing& to_copy): Activity(to_copy) 
+Skiing::Skiing(const Skiing& obj): Activity(obj) 
 {
-  if (to_copy.review)
+  if (obj.review)
   {
-    review = new char[strlen(to_copy.review) + 1];
-    strcpy(review, to_copy.review);
+    review = new char[strlen(obj.review) + 1];
+    strcpy(review, obj.review);
   }
   else 
     review = nullptr;
-  lift_cost = to_copy.lift_cost;
-  rental_cost = to_copy.rental_cost;
-  easy_runs = to_copy.easy_runs;
-  hard_runs = to_copy.hard_runs;
+  lift_cost = obj.lift_cost;
+  rental_cost = obj.rental_cost;
+  easy_runs = obj.easy_runs;
+  hard_runs = obj.hard_runs;
 }
 
 Skiing::~Skiing() 
@@ -281,6 +281,7 @@ int Skiing::display()
     cout << "Review: " << review << endl;
   return 0;
 }
+
 int Skiing::calculate_max_cost()
 {
   return lift_cost + rental_cost;
@@ -295,9 +296,9 @@ int Skiing::calculate_min_cost()
 
 // Snow Shoe Class
 // =================================================================
-Snowshoe::Snowshoe(): Activity("", 1), distance(0), difficulty(0), trail_name("") {}
+Snowshoe::Snowshoe(): Activity("", BEGINNER), distance(0), difficulty(0), trail_name("") {}
 
-Snowshoe::Snowshoe(float dist, int diff, string name, string loc): Activity(loc, 1)  
+Snowshoe::Snowshoe(float dist, int diff, string name, string loc): Activity(loc, BEGINNER)  
 {
   distance = dist;
   difficulty = diff;
@@ -385,7 +386,7 @@ int operator>=(const Snowshoe& l_arg, const Snowshoe& r_arg)
   return flag;
 }
 
-int display()
+int Snowshoe::display()
 {
   cout << *this << endl;
   return 0;
@@ -393,7 +394,107 @@ int display()
 // =================================================================
 
 
+/*
+  private: 
+    float week_cost;
+    float weekend_cost;
+    bool events;
+*/
+
 // Skating Class
 // =================================================================
+Skating::Skating():Activity("", BEGINNER), week_cost(0), weekend_cost(0), events(false), name("") {}
+
+Skating::Skating(float arg_wcost, float arg_wkndcost, bool arg_events, string arg_name, string arg_location): Activity(arg_location, BEGINNER)
+{
+  week_cost = arg_wcost;
+  weekend_cost = arg_wkndcost;
+  events = arg_events;
+  name = arg_name;
+}
+
+Skating::Skating(const Skating& obj): Activity(obj)
+{
+  week_cost = obj.week_cost;
+  weekend_cost = obj.weekend_cost;
+  events = obj.events;
+  name = obj.name;
+}
+
+Skating::~Skating(){}
+
+Skating& Skating::operator=(const Skating& obj)
+{
+  if (*this == obj)
+    return *this;
+  Activity::operator=(obj);
+  week_cost = obj.week_cost;
+  weekend_cost = obj.weekend_cost;
+  events = obj.events;
+  name = obj.name;
+  return *this;
+}
+
+bool Skating::operator == (const Skating& arg) const
+{
+  bool success = false;
+  if (name == arg.name && Activity::operator==(arg))
+    success = true;
+  return success;
+}
+
+bool Skating::operator != (const Skating& arg) const
+{
+  bool success = true;
+  if (name == arg.name && Activity::operator==(arg))
+    success = false;
+  return success;
+}
+
+ostream & operator << (ostream & out, const Skating& arg)
+{
+  return out;
+}
+
+istream & operator >> (istream & in, const Skating& arg)
+{
+  return in;
+}
+
+int operator<(const Skating& l_arg, const Skating& r_arg)
+{
+  int flag = 0;
+  if (l_arg.weekend_cost < r_arg.weekend_cost )
+    flag = 1;
+  return flag;
+}
+
+int operator<=(const Skating& l_arg, const Skating& r_arg)
+{
+  int flag = 0;
+  if (l_arg.weekend_cost <= r_arg.weekend_cost )
+    flag = 1;
+  return flag;
+}
+
+int operator>(const Skating& l_arg, const Skating& r_arg)
+{
+  int flag = 0;
+  if (l_arg.weekend_cost > r_arg.weekend_cost )
+    flag = 1;
+  return flag;
+}
+
+int operator>=(const Skating& l_arg, const Skating& r_arg)
+{
+  int flag = 0;
+  if (l_arg.weekend_cost >= r_arg.weekend_cost )
+    flag = 1;
+  return flag;
+}
+
+int Skating::display()
+{
+}
 
 
