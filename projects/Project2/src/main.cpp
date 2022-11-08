@@ -16,7 +16,37 @@ int main()
 }
 
 int test_ski()
-{}
+{
+  Skiing s1 = Skiing(50.0, 40.0, 20, 10, "Timberline" ); 
+  Skiing s2 = Skiing(90.0, 80.0, 10, 20, "Mt hood"); 
+
+  if (s2 > s1)
+    cout << "Passed" << endl;
+  if (s2 >= s1)
+    cout << "Passed" << endl;
+  if (!(s2 < s1))
+    cout << "Passed" << endl;
+  if (!(s2 <= s1))
+    cout << "Passed" << endl;
+
+  int avg = s2.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  Skiing s3 = Skiing(s2);
+  cout << s3 << endl;
+  for (auto i = 0; i < 3; i++)
+  {
+    s3.rate();
+  }
+  avg = s3.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  Skiing s4 = Skiing();
+  s4 = s3;
+  cout << s4 << endl;
+  avg = s4.avg_rating();
+  cout << "Average rating: " << avg << endl;
+  //cin >> a2 >> endl;
+
+}
 
 int test_shoe()
 {}
@@ -35,10 +65,7 @@ int test_skate()
   else
     cout << "False" << endl;
 
-  for (auto i = 0; i < 3; i++)
-  {
-    a2.add_rating();
-  }
+  
 
 
   a2.display(); 
@@ -55,33 +82,8 @@ int test_skate()
   a2.display();
   a2 = a1;
 
-  char loc[9] = "Mt. Hood";
-  char loc2[11] = "Timberline";
-
-  Skiing s1 = Skiing(loc, 50.0, 40.0, 2); 
-  Skiing s2 = Skiing(loc2, 90.0, 80.0, 2); 
-
-  if (s2 > s1)
-    cout << "Passed" << endl;
-  if (s2 >= s1)
-    cout << "Passed" << endl;
-  if (!(s2 < s1))
-    cout << "Passed" << endl;
-  if (!(s2 <= s1))
-    cout << "Passed" << endl;
-
-  int avg = s2.avg_rating();
-  cout << "Average rating: " << avg << endl;
-  Skiing s3 = Skiing(s2);
-  cout << s3 << endl;
-  avg = s3.avg_rating();
-  cout << "Average rating: " << avg << endl;
-  char seas[7] = "winter";
   
-  //cin >> a2 >> endl;
-*/
-
-/* NO USE
+ NO USE
 friend int operator<(const Activity&, const Activity&); 
 friend int operator<=(const Activity&, const Activity&); 
 friend int operator>(const Activity&, const Activity&); 

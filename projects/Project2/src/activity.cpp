@@ -3,9 +3,9 @@
 // October 2022
 // Program 2 CS302
 
-// Contains Activity, Skiing, ... classes.
+// Contains Activity, Skiing, Snowshoe, and Skating classes.
 // Skiing: line number 135
-// Snowshoe: line number 277
+// Snowshoe: line number 281
 // Skating: line number 
 
 #include "activity.h"
@@ -89,7 +89,9 @@ ostream & operator << (ostream & out, Activity& arg)
 
 istream & operator >> (istream & in, Activity& arg)
 {
-  arg.add_rating();
+  int num; 
+  in >> num;
+  arg.add_rating(num);
   return in;
 }
 
@@ -101,6 +103,8 @@ int Activity::display()
 
 int Activity::avg_rating()
 {
+  if (ratings.empty())
+    return 0;
   int count = 0;
   int sum = 0;
   for (auto iter = ratings.begin(); iter < ratings.end(); iter++)
@@ -145,15 +149,8 @@ int Activity::rate()
 // =================================================================
 Skiing::Skiing(): Activity("",2), review(nullptr), lift_cost(0), rental_cost(0), easy_runs(0), hard_runs(0) {}
 
-Skiing::Skiing(char* arg_review, float l_cost, float r_cost, int e_runs, int h_runs, string arg_loc): Activity(arg_loc, 2)
+Skiing::Skiing(float l_cost, float r_cost, int e_runs, int h_runs, string arg_loc): Activity(arg_loc, 2), review(nullptr)
 {
-  if (arg_review)
-  {
-    review = new char[strlen(arg_review) + 1];
-    strcpy(review, arg_review);
-  }
-  else 
-    review = nullptr;
   lift_cost = l_cost;
   rental_cost = r_cost;
   easy_runs = e_runs;
@@ -162,8 +159,13 @@ Skiing::Skiing(char* arg_review, float l_cost, float r_cost, int e_runs, int h_r
 
 Skiing::Skiing(const Skiing& to_copy): Activity(to_copy) 
 {
-  review = new char[strlen(to_copy.review) + 1];
-  strcpy(review, to_copy.review);
+  if (to_copy.review)
+  {
+    review = new char[strlen(to_copy.review) + 1];
+    strcpy(review, to_copy.review);
+  }
+  else 
+    review = nullptr;
   lift_cost = to_copy.lift_cost;
   rental_cost = to_copy.rental_cost;
   easy_runs = to_copy.easy_runs;
@@ -184,10 +186,14 @@ Skiing& Skiing::operator=(const Skiing& arg)
   if (*this == arg)
     return *this;
   Activity::operator=(arg);
-  if (review)
-    delete [] review;
-  review = new char[strlen(arg.review) + 1];
-  strcpy(review, arg.review);
+  if (arg.review)
+  {
+    if (review)
+      delete [] review;
+    review = new char[strlen(arg.review) + 1];
+    strcpy(review, arg.review);
+  }
+  else review = nullptr;
   lift_cost = arg.lift_cost;
   rental_cost = arg.rental_cost;
   easy_runs = arg.easy_runs;
@@ -195,7 +201,7 @@ Skiing& Skiing::operator=(const Skiing& arg)
   return *this;
 }
 
-Skiing Skiing::operator + (const int& op2) const
+Skiing Skiing::operator + (const int& op2)
 {
   lift_cost += op2;
   return *this;
@@ -210,11 +216,10 @@ bool Skiing::operator == (const Skiing& arg) const
 //bool operator != (const Skiing& arg) const;
 ostream & operator << (ostream & out, const Skiing& arg)
 {
-  out << "Review: " << arg.review << endl;
   out << "Lift cost: " << arg.lift_cost << endl;
   out << "Rental cost: " << arg.rental_cost << endl;
   out << "Easy runs: " << arg.easy_runs << endl;
-  out << "Hard runs: " << arg.hard_runs << endl;
+  out << "Hard runs: " << arg.hard_runs;
   return out;
 }
 
@@ -258,10 +263,22 @@ int operator>=(Skiing& l_ski, Skiing& r_ski)
 
 }
 
+void Skiing::add_rating(int arg)
+{
+  Activity::add_rating(arg);
+}
+
+void Skiing::rate()
+{
+  Activity::rate();
+}
+
 int Skiing::display()
 {
   Activity::display();
   cout << *this << endl;
+  if (review)
+    cout << "Review: " << review << endl;
   return 0;
 }
 int Skiing::calculate_max_cost()
@@ -298,9 +315,9 @@ Snowshoe::~Snowshoe(){}
 
 Snowshoe& Snowshoe::operator=(const Snowshoe& obj)
 {
-  if (*this == arg)
+  if (*this == obj)
     return *this;
-  Activity::operator=(arg);
+  Activity::operator=(obj);
   distance = obj.distance;
   difficulty = obj.difficulty;
   trail_name = obj.difficulty;
@@ -344,7 +361,7 @@ int operator<(const Snowshoe& l_arg, const Snowshoe& r_arg)
   return flag;
 }
 
-int operator<=(const Snowshoe&, const Snowshoe&)
+int operator<=(const Snowshoe& l_arg, const Snowshoe& r_arg)
 {
   int flag = 0;
   if (l_arg.difficulty <= r_arg.difficulty)
@@ -352,7 +369,7 @@ int operator<=(const Snowshoe&, const Snowshoe&)
   return flag;
 } 
 
-int operator>(const Snowshoe&, const Snowshoe&)
+int operator>(const Snowshoe& l_arg, const Snowshoe& r_arg)
 {
   int flag = 0;
   if (l_arg.difficulty > r_arg.difficulty)
@@ -360,7 +377,7 @@ int operator>(const Snowshoe&, const Snowshoe&)
   return flag;
 } 
 
-int operator>=(const Snowshoe&, const Snowshoe&)
+int operator>=(const Snowshoe& l_arg, const Snowshoe& r_arg)
 {
   int flag = 0;
   if (l_arg.difficulty >= r_arg.difficulty)
@@ -370,6 +387,8 @@ int operator>=(const Snowshoe&, const Snowshoe&)
 
 int display()
 {
+  cout << *this << endl;
+  return 0;
 }
 // =================================================================
 

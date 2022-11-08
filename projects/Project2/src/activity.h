@@ -54,12 +54,12 @@ class Skiing: public Activity
 {
   public: 
     Skiing();
-    Skiing(char*, float, float, int, int, string);
+    Skiing(float, float, int, int, string);
     Skiing(const Skiing&);
     ~Skiing();
 
     Skiing& operator=(const Skiing& arg);
-    Skiing operator + (const int& op2) const;
+    Skiing operator + (const int& op2);
     bool operator == (const Skiing& arg) const;
     bool operator != (const Skiing& arg) const;
     friend ostream & operator << (ostream & out, const Skiing& arg);
@@ -73,6 +73,8 @@ class Skiing: public Activity
     
     int calculate_max_cost();
     int calculate_min_cost();
+    void add_rating(int arg);
+    void rate();
 
   protected: 
     char* review;
@@ -110,12 +112,12 @@ class Snowshoe: public Activity
     string trail_name;
 };
 
-/*
+
 class Skating: public Activity
 {
   public: 
     Skating();
-    Skating(char* arg_location, float arg_dcost, float arg_lcost);
+    Skating(float arg_wcost, float arg_wecost, bool arg_events);
     Skating(const Skating&);
     ~Skating();
 
@@ -131,15 +133,12 @@ class Skating: public Activity
     friend int operator>=(const Skating&, const Skating&);
 
     int display();
-    int calculate_max_cost();
-    int calculate_min_cost();
 
   private: 
-    string location;
-    float cost;
-    float rental_cost;
+    float week_cost;
+    float weekend_cost;
+    bool events;
 };
-*/
 
 #endif
 
