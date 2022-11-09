@@ -20,7 +20,7 @@ int run()
   {
     menu();
     int choice = validate_menu_choice();
-    process_choice(flag, choice, ski, shoe, skate);
+    process_main(flag, choice, ski, shoe, skate);
   }
   return 0;
 }
@@ -32,16 +32,67 @@ int menu()
    std::cout << "==================================================================\n";
   
    std::cout << "===============================\n";
-   std::cout << "1) Skiing options.\n"; 
-   std::cout << "2) Snowshoe options.\n"; 
-   std::cout << "3) Ice Skating options.\n";
-   std::cout << "4) Display most affordable or easiest options.\n";
-   std::cout << "5) Display most expensive or hardest options.\n";
-   std::cout << "6) Add review.\n";
-   std::cout << "7) Rate an activity at a given location.\n";
-   std::cout << "8) \n";
+   std::cout << "1) Skiing Menu.\n"; 
+   std::cout << "2) Snowshoe Menu.\n"; 
+   std::cout << "3) Ice Skating Menu.\n";
+   std::cout << "4) Display All options.\n";
+   std::cout << "5) .\n";
    std::cout << std::endl;
    std::cout << "0) Exit Program\n";
+   std::cout << "Enter: ";
+   return 0;
+}
+
+int ski_menu()
+{
+   std::cout << "==================================================================\n";
+   std::cout << "                         SKI MENU" << std::endl;
+   std::cout << "==================================================================\n";
+  
+   std::cout << "===============================\n";
+   std::cout << "1) .\n"; 
+   std::cout << "2) .\n"; 
+   std::cout << "3) .\n";
+   std::cout << "4) Add review.\n";
+   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << std::endl;
+   std::cout << "0) Exit Program\n";
+   std::cout << "Enter: ";
+   return 0;
+}
+
+int shoe_menu()
+{
+   std::cout << "==================================================================\n";
+   std::cout << "                         SNOWSHOE MENU" << std::endl;
+   std::cout << "==================================================================\n";
+  
+   std::cout << "===============================\n";
+   std::cout << "1) .\n"; 
+   std::cout << "2) .\n"; 
+   std::cout << "3) .\n";
+   std::cout << "4) Add review.\n";
+   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << std::endl;
+   std::cout << "0) Exit Program\n";
+   std::cout << "Enter: ";
+   return 0;
+}
+
+int skate_menu()
+{
+   std::cout << "==================================================================\n";
+   std::cout << "                         ICE SKATING MENU" << std::endl;
+   std::cout << "==================================================================\n";
+  
+   std::cout << "===============================\n";
+   std::cout << "1) .\n"; 
+   std::cout << "2) .\n"; 
+   std::cout << "3) .\n";
+   std::cout << "4) Add review.\n";
+   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << std::endl;
+   std::cout << "0) Exit Menu\n";
    std::cout << "Enter: ";
    return 0;
 }
@@ -53,7 +104,7 @@ int validate_menu_choice()
   cin >> menu_choice_int;
   std::cin.ignore(100, '\n');
  
-  while (menu_choice_int > 8 || menu_choice_int < 0) 
+  while (menu_choice_int > 5 || menu_choice_int < 0) 
   {
     cout << "Please select a valid menu item." << endl;
     cin >> menu_choice_int;
@@ -63,7 +114,7 @@ int validate_menu_choice()
 }
 
 // Provides option processing for the menu 
-void process_choice (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<Snowshoe>>& shoe, DLL<Node<Skating>>& skate)
+void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<Snowshoe>>& shoe, DLL<Node<Skating>>& skate)
 {
   // Takes in user input for menu choice and calls the appropriate function.
   int no = 0;
