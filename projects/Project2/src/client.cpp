@@ -5,6 +5,7 @@
 
 #include "client.h"
 
+
 int run()
 {
   DLL<Node<Skiing>> ski;
@@ -14,7 +15,14 @@ int run()
   DLL<Node<Skating>> skate;
   fill_skate(skate);
   welcome();
-  menu();
+  int flag = 1;
+  while (flag)
+  {
+    menu();
+    int choice = validate_menu_choice();
+    process_choice(flag, choice, ski, shoe, skate);
+  }
+  return 0;
 }
 
 int menu()
@@ -24,13 +32,13 @@ int menu()
    std::cout << "==================================================================\n";
   
    std::cout << "===============================\n";
-   std::cout << "1) \n"; 
-   std::cout << "2) \n"; 
-   std::cout << "3) \n";
-   std::cout << "4) \n";
-   std::cout << "5) \n";
-   std::cout << "6) \n";
-   std::cout << "7) \n";
+   std::cout << "1) Skiing options.\n"; 
+   std::cout << "2) Snowshoe options.\n"; 
+   std::cout << "3) Ice Skating options.\n";
+   std::cout << "4) Display most affordable or easiest options.\n";
+   std::cout << "5) Display most expensive or hardest options.\n";
+   std::cout << "6) Add review.\n";
+   std::cout << "7) Rate an activity at a given location.\n";
    std::cout << "8) \n";
    std::cout << std::endl;
    std::cout << "0) Exit Program\n";
@@ -55,7 +63,7 @@ int validate_menu_choice()
 }
 
 // Provides option processing for the menu 
-void processChoice (int& flag, int menu_choice)
+void process_choice (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<Snowshoe>>& shoe, DLL<Node<Skating>>& skate)
 {
   // Takes in user input for menu choice and calls the appropriate function.
   int no = 0;
@@ -68,22 +76,31 @@ void processChoice (int& flag, int menu_choice)
           proceed = no;
           break;
         }
-
+ 
       // Display full graph 
       case 1: 
         {
+          cout << "SKIING" << endl;
+          cout << "====================================" << endl;
+          ski.display();
           break;
         }
 
       // Insert Vertex
       case 2:
         {
+          cout << "SNOWSHOE" << endl;
+          cout << "====================================" << endl;
+          shoe.display();
           break;         
         }
 
       // Insert edge
       case 3: 
         {
+          cout << "SKATING" << endl;
+          cout << "====================================" << endl;
+          skate.display();
           break;
         }
 
@@ -92,6 +109,31 @@ void processChoice (int& flag, int menu_choice)
         {
           break;
         }
+
+      // Display adjacent
+      case 5: 
+        {
+          break;
+        }
+
+      // Display adjacent
+      case 6: 
+        {
+          break;
+        }
+
+      // Display adjacent
+      case 7: 
+        {
+          break;
+        }
+
+      // Display adjacent
+      case 8: 
+        {
+          break;
+        }
+
 
       // Provide a backstop for out of bounds menu choices.
       default:
@@ -145,8 +187,8 @@ int welcome()
   cout << "IT IS WINTER TIME!\n" << endl;
   cout << "With winter weather here we now have the ability to try lots of fun activities." << endl;
   cout << "This program includes information for 3 different activities that might be cool to try." << endl;
-  cout << "Check out the information that we have!" << endl;
-  cout << "Don't forget to check back later as more information is continuosly added." << endl;
+  cout << "Check out the information that is here!" << endl;
+  cout << "Don't forget to check back later as more information is continuosly added.\n" << endl;
   return 0;
 }
 

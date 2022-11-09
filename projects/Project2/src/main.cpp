@@ -3,9 +3,7 @@
 // October 2022
 // Program 2 CS302
 
-#include "activity.h"
 #include "client.h"
-#include "DLL.h"
 
 int test_ski();
 int test_shoe();

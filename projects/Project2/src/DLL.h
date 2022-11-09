@@ -5,6 +5,7 @@
 
 #ifndef DLL_H
 #define DLL_H
+#include "activity.h"
 
 template <typename T>
 class Node
