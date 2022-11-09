@@ -49,9 +49,9 @@ int test_node()
   node2.display();
   */
   DLL<Node<Skating>> d1;
+  d1.insert(s3);
   d1.insert(s1);
   d1.insert(s2);
-  d1.insert(s3);
 
   DLL<Node<Skating>> d2; //= DLL<Node<Skating>>();
   d2.copy(d1);// = d1;

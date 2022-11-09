@@ -61,7 +61,7 @@ void Node<T>::display() const
 }
 
 template <typename T>
-Node<T>& Node<T>::operator=(const Node<T> arg)
+Node<T>& Node<T>::operator=(const Node<T> & arg)
 {
   data = arg.data;
   prev = arg.prev;
@@ -88,10 +88,10 @@ bool Node<T>::less_than_or_equal(const T & new_data) const
 }
 
 template <typename T>
-bool Node<T>::greater_than(const T & new_data) const
+bool Node<T>::greater_than(const Node<T> & new_data) const
 {
   bool flag = false;
-  if (data > new_data)
+  if (data > new_data.data)
     flag = true;
   return flag;
 }
@@ -242,25 +242,25 @@ void DLL<T>::display(const ptr & curr) const
 }
 
 template <typename T>
-void DLL<T>::display_cheapest() const
+void DLL<T>::display_cheapest() 
 {
   if (!head)
     return;
-  T obj(head->get_data());
-  display_cheapest(obj, head->get_next());
+  Node<T> * temp = head;
+  display_cheapest(temp, head->get_next());
 }
 
 template <typename T>
-void DLL<T>::display_cheapest(T& obj, ptr & curr) const
+void DLL<T>::display_cheapest(ptr& temp, ptr & curr) 
 {
   if (!curr)
   {
-    cout << obj;
+    temp->display();
     return;
   }
-  if (obj > curr->get_data())
-    obj = curr->get_data();
-  display_cheapest(obj, curr->get_next());
+  if (temp->get_data().greater_than((curr->get_data())))
+    temp->set_data(curr->get_data());
+  display_cheapest(temp, curr->get_next());
 }
 
 #endif
