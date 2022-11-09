@@ -28,22 +28,22 @@ int run()
 int menu()
 {
    std::cout << "==================================================================\n";
-   std::cout << "                         MENU" << std::endl;
+   std::cout << "                         MAIN MENU" << std::endl;
    std::cout << "==================================================================\n";
   
    std::cout << "===============================\n";
    std::cout << "1) Skiing Menu.\n"; 
    std::cout << "2) Snowshoe Menu.\n"; 
    std::cout << "3) Ice Skating Menu.\n";
-   std::cout << "4) Display All options.\n";
-   std::cout << "5) .\n";
+   std::cout << "4) Display All Activity Options.\n";
+   std::cout << "5) Display Beginner Options For Each Sport.\n";
    std::cout << std::endl;
    std::cout << "0) Exit Program\n";
    std::cout << "Enter: ";
    return 0;
 }
 
-int ski_menu()
+void ski_menu()
 {
    std::cout << "==================================================================\n";
    std::cout << "                         SKI MENU" << std::endl;
@@ -56,12 +56,11 @@ int ski_menu()
    std::cout << "4) Add review.\n";
    std::cout << "5) Rate an activity at a given location.\n";
    std::cout << std::endl;
-   std::cout << "0) Exit Program\n";
+   std::cout << "0) Return to main menu.\n";
    std::cout << "Enter: ";
-   return 0;
 }
 
-int shoe_menu()
+void shoe_menu()
 {
    std::cout << "==================================================================\n";
    std::cout << "                         SNOWSHOE MENU" << std::endl;
@@ -74,12 +73,11 @@ int shoe_menu()
    std::cout << "4) Add review.\n";
    std::cout << "5) Rate an activity at a given location.\n";
    std::cout << std::endl;
-   std::cout << "0) Exit Program\n";
+   std::cout << "0) Return to main menu.\n";
    std::cout << "Enter: ";
-   return 0;
 }
 
-int skate_menu()
+void skate_menu()
 {
    std::cout << "==================================================================\n";
    std::cout << "                         ICE SKATING MENU" << std::endl;
@@ -92,9 +90,8 @@ int skate_menu()
    std::cout << "4) Add review.\n";
    std::cout << "5) Rate an activity at a given location.\n";
    std::cout << std::endl;
-   std::cout << "0) Exit Menu\n";
+   std::cout << "0) Return to main menu.\n";
    std::cout << "Enter: ";
-   return 0;
 }
 
 // Returns-> Integer value for the menu choice
@@ -128,63 +125,78 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
           break;
         }
  
-      // Display full graph 
+      // Ski submenu.
       case 1: 
         {
-          cout << "SKIING" << endl;
-          cout << "====================================" << endl;
-          ski.display();
+          int sub_flag = 1;
+          while (sub_flag)
+          {
+            ski_menu();
+            int choice = validate_menu_choice();
+            process_ski(sub_flag, choice, ski);
+          }
           break;
         }
 
-      // Insert Vertex
+      // Shoe submenu.
       case 2:
         {
-          cout << "SNOWSHOE" << endl;
-          cout << "====================================" << endl;
-          shoe.display();
+          int sub_flag = 1;
+          while (sub_flag)
+          {
+            shoe_menu();
+            int choice = validate_menu_choice();
+            process_shoe(sub_flag, choice, shoe);
+          }
           break;         
         }
 
-      // Insert edge
+      // Skating submenu.
       case 3: 
         {
-          cout << "SKATING" << endl;
-          cout << "====================================" << endl;
-          skate.display();
+          int sub_flag = 1;
+          while (sub_flag)
+          {
+            skate_menu();
+            int choice = validate_menu_choice();
+            process_skate(sub_flag, choice, skate);
+          }
           break;
         }
 
-      // Display adjacent
+      // Display all.
       case 4: 
         {
+          cout << "              SKIING" << endl;
+          cout << "----------------------------------------" << endl;
+          ski.display();
+
+          cout << "              SNOWSHOE" << endl;
+          cout << "----------------------------------------" << endl;
+          shoe.display();
+
+          cout << "              SKATING" << endl;
+          cout << "----------------------------------------" << endl;
+          skate.display();
           break;
         }
 
       // Display adjacent
       case 5: 
         {
+          cout << "              SKIING" << endl;
+          cout << "----------------------------------------" << endl;
+          ski.display_cheapest();
+
+          cout << "              SNOWSHOE" << endl;
+          cout << "----------------------------------------" << endl;
+          shoe.display_cheapest();
+
+          cout << "              SKATING" << endl;
+          cout << "----------------------------------------" << endl;
+          skate.display_cheapest();
           break;
         }
-
-      // Display adjacent
-      case 6: 
-        {
-          break;
-        }
-
-      // Display adjacent
-      case 7: 
-        {
-          break;
-        }
-
-      // Display adjacent
-      case 8: 
-        {
-          break;
-        }
-
 
       // Provide a backstop for out of bounds menu choices.
       default:
@@ -199,6 +211,144 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
       cin.ignore(100, '\n');
     }
 }
+
+// Provides option processing for the menu 
+void process_ski(int& flag, int menu_choice, DLL<Node<Skiing>>& ski)
+{
+  // Takes in user input for menu choice and calls the appropriate function.
+  int no = 0;
+  switch(menu_choice)
+    {
+      case 0:
+        {
+          flag = no;
+          break;
+        }
+ 
+      case 1: 
+        {
+          break;
+        }
+
+      case 2:
+        {
+          break;         
+        }
+
+      case 3: 
+        {
+          break;
+        }
+
+      case 4: 
+        {
+          break;
+        }
+
+      case 5: 
+        {
+          break;
+        }
+
+      // Provide a backstop for out of bounds menu choices.
+      default:
+          break;
+    }
+}
+
+// Provides option processing for the menu 
+void process_shoe(int& flag, int menu_choice, DLL<Node<Snowshoe>>& shoe)
+{
+  // Takes in user input for menu choice and calls the appropriate function.
+  int no = 0;
+  switch(menu_choice)
+    {
+      case 0:
+        {
+          flag = no;
+          break;
+        }
+ 
+      // Ski submenu.
+      case 1: 
+        {
+          break;
+        }
+
+      // Shoe submenu.
+      case 2:
+        {
+          break;         
+        }
+
+      // Skating submenu.
+      case 3: 
+        {
+          break;
+        }
+
+      // Display all.
+      case 4: 
+        {
+          break;
+        }
+
+      // Display adjacent
+      case 5: 
+        {
+          break;
+        }
+
+      // Provide a backstop for out of bounds menu choices.
+      default:
+          break;
+    }
+}
+
+// Provides option processing for the menu 
+void process_skate(int& flag, int menu_choice, DLL<Node<Skating>>& skate)
+{
+  // Takes in user input for menu choice and calls the appropriate function.
+  int no = 0;
+  switch(menu_choice)
+    {
+      case 0:
+        {
+          flag = no;
+          break;
+        }
+ 
+      case 1: 
+        {
+          break;
+        }
+
+      case 2:
+        {
+          break;         
+        }
+
+      case 3: 
+        {
+          break;
+        }
+
+      case 4: 
+        {
+          break;
+        }
+
+      case 5: 
+        {
+          break;
+        }
+
+      // Provide a backstop for out of bounds menu choices.
+      default:
+          break;
+    }
+}
+
 
 int fill_ski(DLL<Node<Skiing>> & dll)
 {
