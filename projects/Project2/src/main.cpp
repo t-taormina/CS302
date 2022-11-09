@@ -29,8 +29,9 @@ int main()
 int test_node()
 {
   Skating s1 = Skating(15.99, 20.99, false, "Sherwood Ice Arena", "Sherwood"); 
-  /*
   Skating s2 = Skating(19.99, 24.99, true, "Winterhawks Skating Center", "Beaverton"); 
+  Skating s3 = Skating(13.99, 19.99, false, "Lloyd Center Ice Rink", "Portland"); 
+  /*
   Snowshoe s3 = Snowshoe(1.5, 3, "Short trail", "Mt. Hood"); 
   Snowshoe s4 = Snowshoe(5.5, 5, "Long trail", "Timberline"); 
   Snowshoe s5 = Snowshoe(3.0, 4, "Medium trail", "Bend"); 
@@ -38,10 +39,15 @@ int test_node()
   Skiing s7 = Skiing(90.0, 80.0, 10, 20, "Mt hood"); 
   */
 
-  Node<Skating> node = Node<Skating>(s1);
-  node.display();
-  DLL<Node<Skating>> d1 = DLL<Node<Skating>>();
-  d1.insert(node);
+  //Node<Skating> node = Node<Skating>(s1);
+  //node.display();
+  DLL<Node<Skating>> d1;//= DLL<Node<Skating>>();
+  d1.insert(s1);
+  d1.insert(s2);
+  d1.insert(s3);
+  cout << "SKATING" << endl;
+  cout << "====================================" << endl;
+  d1.display();
   return 0;
 }
 

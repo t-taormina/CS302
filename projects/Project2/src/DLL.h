@@ -12,14 +12,15 @@ class Node
 {
   public: 
     typedef Node<T> * ptr;
+
     Node<T>();
     Node<T>(const T& source);
     Node<T>(const Node<T>& source);
+    Node<T> & operator=(const Node<T> arg);
+    void set_next(const ptr & source);
+    void set_prev(const ptr & source);
     ptr & get_next();
     ptr & get_previous();
-    Node<T> & operator=(const Node<T> arg);
-    void set_next(const Node<T>& source);
-    void set_prev(const Node<T>& source);
     bool less_than(const T & new_data) const;
     bool greater_than(const T & new_data) const;
     bool less_than_or_equal(const T & new_data) const;

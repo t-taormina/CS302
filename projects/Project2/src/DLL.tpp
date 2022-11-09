@@ -30,13 +30,13 @@ typename Node<T>::ptr & Node<T>::get_previous()
 }
 
 template <typename T>
-void Node<T>::set_next(const Node<T>& source)
+void Node<T>::set_next(const ptr & source)
 {
   next = source;
 }
 
 template <typename T>
-void Node<T>::set_prev(const Node<T>& source)
+void Node<T>::set_prev(const ptr & source)
 {
   prev = source;
 }
@@ -44,10 +44,8 @@ void Node<T>::set_prev(const Node<T>& source)
 template <typename T>
 void Node<T>::display() const
 {
-  cout << "Data:" << endl;
-  cout << this->data << endl;
+  this->data.display();
 }
-
 
 template <typename T>
 Node<T>& Node<T>::operator=(const Node<T> arg)
@@ -109,52 +107,11 @@ bool Node<T>::not_equal_to(const T & new_data) const
 }
 
 
-/*
-template <typename T>
-int operator<(Node& l_arg, Node& r_arg)
-{
-  int flag = 0;
-  if (l_arg.data < r_arg.data)
-    flag = 1;
-  return flag;
-}
-
-template <typename T>
-istream & operator >> (istream & in, const Node& arg)
-{
-  return in;
-}
+//========================================================
 
 
-template <typename T>
-int operator<=(Node& l_arg, Node& r_arg)
-{
-  int flag = 0;
-  if (l_arg.data <= r_arg.data)
-    flag = 1;
-  return flag;
-}
 
-template <typename T>
-int operator>(Node& l_arg, Node& r_arg)
-{
-  int flag = 0;
-  if (l_arg.data > r_arg.data)
-    flag = 1;
-  return flag;
-
-}
-
-template <typename T>
-int operator>=(Node& l_arg, Node& r_arg)
-{
-  int flag = 0;
-  if (l_arg.data >= r_arg.data)
-    flag = 1;
-  return flag;
-}
-*/
-
+// DLL CLASS
 //========================================================
 
 template <typename T>
@@ -191,8 +148,8 @@ void DLL<T>::insert(const T & obj)
   }
   Node<T> * temp = head;
   head = node;
-  head->set_next(&temp);
-  temp->set_prev(&head);
+  head->set_next(temp);
+  temp->set_prev(head);
 }
    
 template <typename T>
@@ -206,8 +163,20 @@ void DLL<T>::insert(ptr & tail, const T & data)
 }
 
 template <typename T>
+void DLL<T>::display() const
+{
+  if (!head)
+    return;
+  return display(head);
+}
+
+template <typename T>
 void DLL<T>::display(const ptr & head) const
 {
+  if (!head)
+    return;
+  head->display();
+  return display(head->get_next());
 }
 
 template <typename T>

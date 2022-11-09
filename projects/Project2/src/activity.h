@@ -30,7 +30,7 @@ class Activity
     Activity operator ++ ();
     bool operator == (const Activity& arg) const;
     bool operator != (const Activity& arg) const;
-    friend ostream & operator << (ostream & out, Activity& arg);
+    friend ostream & operator << (ostream & out, const Activity& arg);
     /*
     friend istream & operator >> (istream & in, Activity& arg);
     friend int operator<(const Activity&, const Activity&); 
@@ -39,8 +39,8 @@ class Activity
     friend int operator>=(const Activity&, const Activity&);
     */
 
-    int display();
-    int avg_rating();
+    int display() const;
+    int avg_rating() const;
     int add_rating(int arg);
     int rate();
 
@@ -72,7 +72,7 @@ class Skiing: public Activity
     friend int operator>(Skiing&, Skiing&); 
     friend int operator>=(Skiing&, Skiing&);
 
-    int display();
+    int display() const;
     
     int calculate_max_cost();
     int calculate_min_cost();
@@ -106,7 +106,7 @@ class Snowshoe: public Activity
     friend int operator>(const Snowshoe&, const Snowshoe&); 
     friend int operator>=(const Snowshoe&, const Snowshoe&);
 
-    int display();
+    int display() const;
     void add_rating(int arg);
     void rate();
 
@@ -135,7 +135,7 @@ class Skating: public Activity
     friend int operator>(const Skating&, const Skating&); 
     friend int operator>=(const Skating&, const Skating&);
 
-    int display();
+    int display() const;
     void add_rating(int arg);
     void rate();
 

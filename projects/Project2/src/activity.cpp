@@ -88,30 +88,20 @@ bool Activity::operator != (const Activity& arg) const
   return success;
 }
 
-ostream & operator << (ostream & out, Activity& arg)
+ostream & operator << (ostream & out, const Activity& arg) 
 {
   int rating = arg.avg_rating();
   out << "Season: " << arg.season << "\n" << "Location: " << arg.location << "\n" << "Level: " << arg.level <<  "\n" << "Average rating: " << rating;
   return out;
 }
 
-/*
-istream & operator >> (istream & in, Activity& arg)
-{
-  int num; 
-  in >> num;
-  arg.add_rating(num);
-  return in;
-}
-*/
-
-int Activity::display()
+int Activity::display() const
 {
   cout << *this << endl;
   return 0;
 }
 
-int Activity::avg_rating()
+int Activity::avg_rating() const
 {
   if (ratings.empty())
     return 0;
@@ -285,7 +275,7 @@ void Skiing::rate()
   Activity::rate();
 }
 
-int Skiing::display()
+int Skiing::display() const
 {
   Activity::display();
   cout << *this << endl;
@@ -403,8 +393,9 @@ int operator>=(const Snowshoe& l_arg, const Snowshoe& r_arg)
   return flag;
 }
 
-int Snowshoe::display()
+int Snowshoe::display() const
 {
+  Activity::display();
   cout << *this << endl;
   return 0;
 }
@@ -520,8 +511,9 @@ int operator>=(const Skating& l_arg, const Skating& r_arg)
   return flag;
 }
 
-int Skating::display()
+int Skating::display() const
 {
+  Activity::display();
   cout << *this << endl;
   return 0;
 }
