@@ -67,15 +67,15 @@ class Skiing: public Activity
     bool operator == (const Skiing& arg) const;
     bool operator != (const Skiing& arg) const;
     friend ostream & operator << (ostream & out, const Skiing& arg);
-    friend int operator<(Skiing&, Skiing&); 
-    friend int operator<=(Skiing&, Skiing&); 
-    friend int operator>(Skiing&, Skiing&); 
-    friend int operator>=(Skiing&, Skiing&);
+    friend int operator<(const Skiing&, const Skiing&); 
+    friend int operator<=(const Skiing&, const Skiing&); 
+    friend int operator>(const Skiing&, const Skiing&); 
+    friend int operator>=(const Skiing&, const Skiing&);
 
     int display() const;
     
-    int calculate_max_cost();
-    int calculate_min_cost();
+    int calculate_max_cost() const;
+    int calculate_min_cost() const;
     void add_rating(int arg);
     void rate();
 

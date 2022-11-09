@@ -5,7 +5,6 @@
 
 #ifndef DLL_H
 #define DLL_H
-#include <memory>
 
 template <typename T>
 class Node
@@ -31,7 +30,6 @@ class Node
     bool not_equal_to(const T & new_data) const;
     void display() const;
 
-    //template <typename U>
     /*
     friend ostream & operator << (ostream & out, const Node<T>& obj);
     Node operator + (const int& op2);

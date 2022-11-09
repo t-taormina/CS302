@@ -221,7 +221,7 @@ ostream & operator << (ostream & out, const Skiing& arg)
   out << "Lift cost: " << arg.lift_cost << endl;
   out << "Rental cost: " << arg.rental_cost << endl;
   out << "Easy runs: " << arg.easy_runs << endl;
-  out << "Hard runs: " << arg.hard_runs;
+  out << "Hard runs: " << arg.hard_runs << endl;
   return out;
 }
 
@@ -230,7 +230,7 @@ istream & operator >> (istream & in, const Skiing& arg)
   return in;
 }
 
-int operator<(Skiing& l_ski, Skiing& r_ski)
+int operator<(const Skiing& l_ski, const Skiing& r_ski)
 {
   int flag = 0;
   if (l_ski.calculate_max_cost() < r_ski.calculate_max_cost())
@@ -238,7 +238,7 @@ int operator<(Skiing& l_ski, Skiing& r_ski)
   return flag;
 }
 
-int operator<=(Skiing& l_ski, Skiing& r_ski)
+int operator<=(const Skiing& l_ski, const Skiing& r_ski)
 {
   int flag = 0;
   if (l_ski.calculate_max_cost() <= r_ski.calculate_max_cost())
@@ -247,7 +247,7 @@ int operator<=(Skiing& l_ski, Skiing& r_ski)
 
 }
 
-int operator>(Skiing& l_ski, Skiing& r_ski)
+int operator>(const Skiing& l_ski, const Skiing& r_ski)
 {
   int flag = 0;
   if (l_ski.calculate_max_cost() > r_ski.calculate_max_cost())
@@ -256,7 +256,7 @@ int operator>(Skiing& l_ski, Skiing& r_ski)
 
 }
 
-int operator>=(Skiing& l_ski, Skiing& r_ski)
+int operator>=(const Skiing& l_ski, const Skiing& r_ski)
 {
   int flag = 0;
   if (l_ski.calculate_max_cost() >= r_ski.calculate_max_cost())
@@ -284,12 +284,12 @@ int Skiing::display() const
   return 0;
 }
 
-int Skiing::calculate_max_cost()
+int Skiing::calculate_max_cost() const
 {
   return lift_cost + rental_cost;
 }
 
-int Skiing::calculate_min_cost()
+int Skiing::calculate_min_cost() const
 {
   return lift_cost;
 }
