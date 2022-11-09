@@ -39,14 +39,22 @@ int test_node()
   Skiing s7 = Skiing(90.0, 80.0, 10, 20, "Mt hood"); 
   */
 
-  //Node<Skating> node = Node<Skating>(s1);
-  //node.display();
-  DLL<Node<Skating>> d1;//= DLL<Node<Skating>>();
+  /*
+  Node<Skating> node = Node<Skating>(s1);
+  Node<Skating> n1 = Node<Skating>(s2);
+  Node<Skating> node2 = node; //= Node<Skating>(s1);
+  node.display();
+  node2.display();
+  node2.set_data(n1.get_data());
+  node2.display();
+  */
+  DLL<Node<Skating>> d1;
   d1.insert(s1);
   d1.insert(s2);
   d1.insert(s3);
 
-  DLL<Node<Skating>> d2(d1); //= DLL<Node<Skating>>();
+  DLL<Node<Skating>> d2; //= DLL<Node<Skating>>();
+  d2.copy(d1);// = d1;
 
   
 
@@ -57,8 +65,6 @@ int test_node()
   cout << "SKATING" << endl;
   cout << "====================================" << endl;
   d2.display();
-
-
   return 0;
 }
 

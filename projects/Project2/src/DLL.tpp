@@ -18,6 +18,19 @@ template <typename T>
 Node<T>::Node(const Node<T>& source): data(source.data), prev(source.prev), next(source.next){}
 
 template <typename T>
+T& Node<T>::get_data()
+{
+  return data;
+}
+
+template <typename T>
+void Node<T>::set_data(const T& source)
+{
+  data = source;
+}
+    
+
+template <typename T>
 typename Node<T>::ptr & Node<T>::get_next()
 {
   return next;
@@ -50,9 +63,9 @@ void Node<T>::display() const
 template <typename T>
 Node<T>& Node<T>::operator=(const Node<T> arg)
 {
-  if (*this == arg)
-    return *this;
   data = arg.data;
+  prev = arg.prev;
+  next = arg.next;
   return *this;
 }
 
@@ -95,15 +108,20 @@ bool Node<T>::greater_than_or_equal(const T & new_data) const
 template <typename T>
 bool Node<T>::equal_to(const T & new_data) const
 {
-  return true;
+  bool flag = false;
+  if (data == new_data)
+    flag = true;
+  return flag;
 }
 
 template <typename T>
 bool Node<T>::not_equal_to(const T & new_data) const
 {
-  return true;
+  bool flag = false;
+  if (data != new_data)
+    flag = true;
+  return flag;
 }
-
 
 //========================================================
 
@@ -124,6 +142,17 @@ DLL<T>::~DLL()
 }
 
 template <typename T>
+void DLL<T>::remove_all(ptr & head)
+{
+  if (!head)
+    return;
+  Node<T> * temp = head->get_next();
+  delete head;
+  head = nullptr;
+  return remove_all(temp);
+}
+
+template <typename T>
 DLL<T>::DLL(const DLL<T>& source)
 {
   if (!source.head)
@@ -131,47 +160,53 @@ DLL<T>::DLL(const DLL<T>& source)
   else
   {
     head = new Node<T>();
-    head = source.head;
-    Node<T> * curr = new Node<T>();
-    curr->set_prev(head);
-    head->set_next(curr);
-    copy(curr, source.head->get_next());
+    head->set_data(source.head->get_data());
+    copy(head->get_next(), head, source.head->get_next());
   }
 }
 
 template <typename T>
 DLL<T> & DLL<T>::operator=(const DLL<T> & arg)
 {
-  if (*this == arg)
+  if (!arg.head)
     return *this;
-  copy(this->head, arg->head);
+  else 
+  {
+    remove_all(head);
+    head = new Node<T>();
+    head->set_data(arg.head->get_data());
+    copy(head->get_next(), head, arg.head->get_next());
+  }
   return *this;
 }
 
 template <typename T>
 void DLL<T>::copy(const DLL<T> & arg)
 {
-  if (!arg->get_next())
+  if (!arg.head)
+    return;
+  else 
   {
-    
+    remove_all(head);
+    head = new Node<T>();
+    head->set_data(arg.head->get_data());
+    copy(head->get_next(), head, arg.head->get_next());
   }
-  
 }
   
 template <typename T>
-void DLL<T>::copy(ptr & dest, const ptr & source)
+void DLL<T>::copy(ptr & curr, ptr & prev, const ptr & source)
 {
-  if (!source->get_next())
+  if (!source)
   {
-    dest = source;
-    tail = dest;
+    tail = prev;
     return;
   }
-  dest = source;
-  Node<T> * curr = new Node<T>();
-  curr->set_prev(dest);
-  dest->set_next(curr);
-  return copy(curr, source->get_next());
+  curr = new Node<T>();
+  curr->set_data(source->get_data());
+  curr->set_prev(prev);
+  prev->set_next(curr);
+  return copy(curr->get_next(), curr, source->get_next());
 }
 
 template <typename T>
@@ -198,23 +233,11 @@ void DLL<T>::display() const
 }
 
 template <typename T>
-void DLL<T>::display(const ptr & head) const
+void DLL<T>::display(const ptr & curr) const
 {
-  if (!head)
+  if (!curr)
     return;
-  head->display();
-  return display(head->get_next());
+  curr->display();
+  return display(curr->get_next());
 }
-
-template <typename T>
-void DLL<T>::remove_all(ptr & head)
-{
-  if (!head)
-    return;
-  Node<T> * temp = head->get_next();
-  delete head;
-  head = nullptr;
-  return remove_all(temp);
-}
-
 #endif
