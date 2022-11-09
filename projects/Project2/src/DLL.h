@@ -59,8 +59,8 @@ class DLL
     ~DLL();
     DLL(const DLL<T>& source);
     DLL<T> & operator=(const DLL<T> & arg);
+    void copy(const DLL<T> & arg);
     void insert(const T & obj);
-    void copy();
     void display() const;
 
   private: 
@@ -69,7 +69,6 @@ class DLL
     
     void remove_all(ptr & head);
     void copy(ptr & dest, const ptr & source);
-    void insert(ptr & tail, const T & data);
     void display(const ptr & head) const;
 };
 

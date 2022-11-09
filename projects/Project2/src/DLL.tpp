@@ -53,8 +53,6 @@ Node<T>& Node<T>::operator=(const Node<T> arg)
   if (*this == arg)
     return *this;
   data = arg.data;
-  next = arg.get_next();
-  prev = arg.get_prev();
   return *this;
 }
 
@@ -129,12 +127,51 @@ template <typename T>
 DLL<T>::DLL(const DLL<T>& source)
 {
   if (!source.head)
-    return;
+    head = tail = nullptr;
+  else
+  {
+    head = new Node<T>();
+    head = source.head;
+    Node<T> * curr = new Node<T>();
+    curr->set_prev(head);
+    head->set_next(curr);
+    copy(curr, source.head->get_next());
+  }
 }
 
 template <typename T>
 DLL<T> & DLL<T>::operator=(const DLL<T> & arg)
 {
+  if (*this == arg)
+    return *this;
+  copy(this->head, arg->head);
+  return *this;
+}
+
+template <typename T>
+void DLL<T>::copy(const DLL<T> & arg)
+{
+  if (!arg->get_next())
+  {
+    
+  }
+  
+}
+  
+template <typename T>
+void DLL<T>::copy(ptr & dest, const ptr & source)
+{
+  if (!source->get_next())
+  {
+    dest = source;
+    tail = dest;
+    return;
+  }
+  dest = source;
+  Node<T> * curr = new Node<T>();
+  curr->set_prev(dest);
+  dest->set_next(curr);
+  return copy(curr, source->get_next());
 }
 
 template <typename T>
@@ -150,16 +187,6 @@ void DLL<T>::insert(const T & obj)
   head = node;
   head->set_next(temp);
   temp->set_prev(head);
-}
-   
-template <typename T>
-void DLL<T>::copy(ptr & dest, const ptr & source)
-{
-}
-
-template <typename T>
-void DLL<T>::insert(ptr & tail, const T & data)
-{
 }
 
 template <typename T>

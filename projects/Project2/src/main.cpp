@@ -45,9 +45,20 @@ int test_node()
   d1.insert(s1);
   d1.insert(s2);
   d1.insert(s3);
+
+  DLL<Node<Skating>> d2(d1); //= DLL<Node<Skating>>();
+
+  
+
   cout << "SKATING" << endl;
   cout << "====================================" << endl;
   d1.display();
+
+  cout << "SKATING" << endl;
+  cout << "====================================" << endl;
+  d2.display();
+
+
   return 0;
 }
 
