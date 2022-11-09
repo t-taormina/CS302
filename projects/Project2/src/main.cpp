@@ -10,10 +10,7 @@
 int test_ski();
 int test_shoe();
 int test_skate();
-
 int test_node();
-
-int make_class();
 
 int main()
 {
@@ -33,7 +30,6 @@ int test_node()
   Skiing s1 = Skiing(50.0, 40.0, 20, 10, "Timberline" ); 
   Skiing s2 = Skiing(90.0, 80.0, 10, 20, "Mt hood"); 
   Skiing s3 = Skiing(100.0, 70.0, 10, 20, "Bend"); 
-
   
   /*
   Node<Skating> node = Node<Skating>(s1);
@@ -51,8 +47,6 @@ int test_node()
 
   DLL<Node<Skiing>> d2; //= DLL<Node<Skating>>();
   d2.copy(d1);// = d1;
-
-  
 
   //cout << "SKATING" << endl;
   //cout << "SNOWSHOE" << endl;
@@ -163,11 +157,6 @@ int test_skate()
   cout << s4 << endl;
   avg = s4.avg_rating();
   cout << "Average rating: " << avg << endl;
-  return 0;
-}
-
-int make_class()
-{
   return 0;
 }
 
