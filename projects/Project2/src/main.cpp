@@ -62,9 +62,10 @@ int test_node()
   cout << "====================================" << endl;
   d1.display();
 
-  cout << "SKATING" << endl;
+  cout << "CHEAPEST SKATING" << endl;
   cout << "====================================" << endl;
-  d2.display();
+
+  d2.display_cheapest();
   return 0;
 }
 

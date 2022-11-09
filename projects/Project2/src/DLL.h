@@ -17,7 +17,7 @@ class Node
     Node<T>(const T& source);
     Node<T>(const Node<T>& source);
     Node<T> & operator=(const Node<T> arg);
-    T& get_data();
+    const T& get_data();
     void set_data(const T& source);
     void set_next(const ptr & source);
     void set_prev(const ptr & source);
@@ -64,7 +64,7 @@ class DLL
     void copy(const DLL<T> & arg);
     void insert(const T & obj);
     void display() const;
-    void display_cheapest(T& obj);
+    void display_cheapest() const;
 
   private: 
     ptr head;
@@ -74,7 +74,7 @@ class DLL
     void copy(ptr & dest, const ptr & source);
     void copy(ptr & curr, ptr & prev, const ptr & source);
     void display(const ptr & curr) const;
-    void display_cheapest(T& obj, ptr & head);
+    void display_cheapest(T& obj, ptr & curr) const;
 };
 
 #include "DLL.tpp"

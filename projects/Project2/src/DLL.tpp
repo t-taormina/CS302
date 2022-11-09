@@ -18,7 +18,7 @@ template <typename T>
 Node<T>::Node(const Node<T>& source): data(source.data), prev(source.prev), next(source.next){}
 
 template <typename T>
-T& Node<T>::get_data()
+const T& Node<T>::get_data()
 {
   return data;
 }
@@ -240,4 +240,27 @@ void DLL<T>::display(const ptr & curr) const
   curr->display();
   return display(curr->get_next());
 }
+
+template <typename T>
+void DLL<T>::display_cheapest() const
+{
+  if (!head)
+    return;
+  T obj(head->get_data());
+  display_cheapest(obj, head->get_next());
+}
+
+template <typename T>
+void DLL<T>::display_cheapest(T& obj, ptr & curr) const
+{
+  if (!curr)
+  {
+    cout << obj;
+    return;
+  }
+  if (obj > curr->get_data())
+    obj = curr->get_data();
+  display_cheapest(obj, curr->get_next());
+}
+
 #endif
