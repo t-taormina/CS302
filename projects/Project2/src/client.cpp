@@ -43,73 +43,6 @@ int menu()
    return 0;
 }
 
-void ski_menu()
-{
-   std::cout << "==================================================================\n";
-   std::cout << "                         SKI MENU" << std::endl;
-   std::cout << "==================================================================\n";
-  
-   std::cout << "===============================\n";
-   std::cout << "1) .\n"; 
-   std::cout << "2) .\n"; 
-   std::cout << "3) .\n";
-   std::cout << "4) Add review.\n";
-   std::cout << "5) Rate an activity at a given location.\n";
-   std::cout << std::endl;
-   std::cout << "0) Return to main menu.\n";
-   std::cout << "Enter: ";
-}
-
-void shoe_menu()
-{
-   std::cout << "==================================================================\n";
-   std::cout << "                         SNOWSHOE MENU" << std::endl;
-   std::cout << "==================================================================\n";
-  
-   std::cout << "===============================\n";
-   std::cout << "1) .\n"; 
-   std::cout << "2) .\n"; 
-   std::cout << "3) .\n";
-   std::cout << "4) Add review.\n";
-   std::cout << "5) Rate an activity at a given location.\n";
-   std::cout << std::endl;
-   std::cout << "0) Return to main menu.\n";
-   std::cout << "Enter: ";
-}
-
-void skate_menu()
-{
-   std::cout << "==================================================================\n";
-   std::cout << "                         ICE SKATING MENU" << std::endl;
-   std::cout << "==================================================================\n";
-  
-   std::cout << "===============================\n";
-   std::cout << "1) .\n"; 
-   std::cout << "2) .\n"; 
-   std::cout << "3) .\n";
-   std::cout << "4) Add review.\n";
-   std::cout << "5) Rate an activity at a given location.\n";
-   std::cout << std::endl;
-   std::cout << "0) Return to main menu.\n";
-   std::cout << "Enter: ";
-}
-
-// Returns-> Integer value for the menu choice
-int validate_menu_choice()
-{
-  int menu_choice_int = 0;
-  cin >> menu_choice_int;
-  std::cin.ignore(100, '\n');
- 
-  while (menu_choice_int > 5 || menu_choice_int < 0) 
-  {
-    cout << "Please select a valid menu item." << endl;
-    cin >> menu_choice_int;
-    std::cin.ignore(100, '\n');
-  }
-  return menu_choice_int;
-}
-
 // Provides option processing for the menu 
 void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<Snowshoe>>& shoe, DLL<Node<Skating>>& skate)
 {
@@ -212,6 +145,23 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
     }
 }
 
+void ski_menu()
+{
+   std::cout << "==================================================================\n";
+   std::cout << "                         SKI MENU" << std::endl;
+   std::cout << "==================================================================\n";
+  
+   std::cout << "===============================\n";
+   std::cout << "1) Display all options.\n"; 
+   std::cout << "2) Display most affordable option.\n"; 
+   std::cout << "3) Display highest rated option.\n";
+   std::cout << "4) Add review.\n";
+   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << std::endl;
+   std::cout << "0) Return to main menu.\n";
+   std::cout << "Enter: ";
+}
+
 // Provides option processing for the menu 
 void process_ski(int& flag, int menu_choice, DLL<Node<Skiing>>& ski)
 {
@@ -254,6 +204,23 @@ void process_ski(int& flag, int menu_choice, DLL<Node<Skiing>>& ski)
       default:
           break;
     }
+}
+
+void shoe_menu()
+{
+   std::cout << "==================================================================\n";
+   std::cout << "                         SNOWSHOE MENU" << std::endl;
+   std::cout << "==================================================================\n";
+  
+   std::cout << "===============================\n";
+   std::cout << "1) Display easiest route.\n"; 
+   std::cout << "2) Display hardest route.\n"; 
+   std::cout << "3) Display the highest rated route.\n";
+   std::cout << "4) Add review at a given location.\n";
+   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << std::endl;
+   std::cout << "0) Return to main menu.\n";
+   std::cout << "Enter: ";
 }
 
 // Provides option processing for the menu 
@@ -303,6 +270,23 @@ void process_shoe(int& flag, int menu_choice, DLL<Node<Snowshoe>>& shoe)
       default:
           break;
     }
+}
+
+void skate_menu()
+{
+   std::cout << "==================================================================\n";
+   std::cout << "                         ICE SKATING MENU" << std::endl;
+   std::cout << "==================================================================\n";
+  
+   std::cout << "===============================\n";
+   std::cout << "1) Display all options.\n"; 
+   std::cout << "2) Display most affordable option.\n"; 
+   std::cout << "3) Display highest rated option.\n";
+   std::cout << "4) Add review.\n";
+   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << std::endl;
+   std::cout << "0) Return to main menu.\n";
+   std::cout << "Enter: ";
 }
 
 // Provides option processing for the menu 
@@ -381,6 +365,22 @@ int fill_skate(DLL<Node<Skating>> & dll)
   dll.insert(s2);
   dll.insert(s3);
   return 0;
+}
+
+// Returns-> Integer value for the menu choice
+int validate_menu_choice()
+{
+  int menu_choice_int = 0;
+  cin >> menu_choice_int;
+  std::cin.ignore(100, '\n');
+ 
+  while (menu_choice_int > 5 || menu_choice_int < 0) 
+  {
+    cout << "Please select a valid menu item." << endl;
+    cin >> menu_choice_int;
+    std::cin.ignore(100, '\n');
+  }
+  return menu_choice_int;
 }
 
 int welcome()
