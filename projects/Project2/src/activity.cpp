@@ -64,7 +64,8 @@ Activity::~Activity()
 // Args - Object by reference.
 // Returns - Pointer to lvalue.
 Activity& Activity::operator=(const Activity& arg)
-  i(*thi== arg)
+{
+  if(*this == arg)
     return *this; 
   if (season)
     delete [] season;
@@ -416,7 +417,7 @@ Snowshoe& Snowshoe::operator=(const Snowshoe& obj)
 // @Dev - Overloaded + operator increases the lift cost member by integer provided.
 // Args - Integer to add to lift cost.
 // Return - Pointer to lvalue.
-Snowshoe Snowshoe::operator + (const Snowshoe& op2) const
+Snowshoe Snowshoe::operator + (const int& op2)
 {
   difficulty += op2;
   return *this;

@@ -100,7 +100,7 @@ class Snowshoe: public Activity
     ~Snowshoe();
 
     Snowshoe& operator=(const Snowshoe& arg);
-    Snowshoe operator + (const Snowshoe& op2) const;
+    Snowshoe operator + (const int& op2);
     bool operator == (const Snowshoe& arg) const;
     bool operator != (const Snowshoe& arg) const;
     friend ostream & operator << (ostream & out, const Snowshoe& arg);

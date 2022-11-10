@@ -3,6 +3,18 @@
 // October 2022
 // Program 2 CS302
 
+// This file contains the headers for the data structure used in this program. The data
+// structure is a doubly linked list using templates. The node does not inherit from the
+// derived classes in the hierarchy. This was a design decision based on having
+// implemented the first program such that the node did derive from the hierarchy. I did
+// this because I wanted to experience a different relationship between my objects and my
+// data structure. For the most part, the code is similar. If I were to go back and
+// reimplement, I would probably choose to have my node inherit from the derived objects
+// as it seemed more intuitive and may have prevented some of the errors that I encountered.
+// This was my first time programming with templates so please leave feedback anywhere you
+// see room for improvement!
+// ==========================================================================================
+
 #ifndef DLL_H
 #define DLL_H
 #include "activity.h"
@@ -30,18 +42,6 @@ class Node
     bool equal_to(const Node<T> & new_data) const;
     bool not_equal_to(const Node<T> & new_data) const;
     void display() const;
-
-    /*
-    friend ostream & operator << (ostream & out, const Node<T>& obj);
-    Node operator + (const int& op2);
-    bool operator == (const Node& arg) const;
-    bool operator != (const Node& arg) const;
-    friend ostream & operator << (ostream & out, const Node& arg);
-    friend int operator<(Node&, Node&); 
-    friend int operator<=(Node&, Node&); 
-    friend int operator>(Node&, Node&); 
-    friend int operator>=(Node&, Node&);
-    */
 
   private: 
     T data;
@@ -71,6 +71,7 @@ class DLL
     ptr head;
     ptr tail;
     
+    // Recursive functions requiring private data members.
     void remove_all(ptr & head);
     void copy(ptr & dest, const ptr & source);
     void copy(ptr & curr, ptr & prev, const ptr & source);
