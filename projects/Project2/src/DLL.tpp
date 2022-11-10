@@ -28,7 +28,6 @@ void Node<T>::set_data(const T& source)
 {
   data = source;
 }
-    
 
 template <typename T>
 typename Node<T>::ptr & Node<T>::get_next()
@@ -70,16 +69,16 @@ Node<T>& Node<T>::operator=(const Node<T> & arg)
 }
 
 template <typename T>
-bool Node<T>::less_than(const T & new_data) const
+bool Node<T>::less_than(const Node<T> & new_data) const
 {
   bool flag = false;
-  if (data < new_data)
+  if (data < new_data.data)
     flag = true;
   return flag;
 }
 
 template <typename T>
-bool Node<T>::less_than_or_equal(const T & new_data) const
+bool Node<T>::less_than_or_equal(const Node<T> & new_data) const
 {
   bool flag = false;
   if (data <= new_data)
@@ -97,28 +96,28 @@ bool Node<T>::greater_than(const Node<T> & new_data) const
 }
 
 template <typename T>
-bool Node<T>::greater_than_or_equal(const T & new_data) const
+bool Node<T>::greater_than_or_equal(const Node<T> & new_data) const
 {
   bool flag = false;
-  if (data >= new_data)
+  if (data >= new_data.data)
     flag = true;
   return flag;
 }
 
 template <typename T>
-bool Node<T>::equal_to(const T & new_data) const
+bool Node<T>::equal_to(const Node<T> & new_data) const
 {
   bool flag = false;
-  if (data == new_data)
+  if (data == new_data.data)
     flag = true;
   return flag;
 }
 
 template <typename T>
-bool Node<T>::not_equal_to(const T & new_data) const
+bool Node<T>::not_equal_to(const Node<T> & new_data) const
 {
   bool flag = false;
-  if (data != new_data)
+  if (data != new_data.data)
     flag = true;
   return flag;
 }
@@ -263,4 +262,25 @@ void DLL<T>::display_cheapest(ptr& temp, ptr & curr)
   display_cheapest(temp, curr->get_next());
 }
 
+template <typename T>
+void DLL<T>::display_highest()
+{
+  if (!head)
+    return;
+  Node<T> * temp = head;
+  display_highest(temp, head->get_next());
+}
+
+template <typename T>
+void DLL<T>::display_highest(ptr & temp, ptr & curr)
+{
+  if (!curr)
+  {
+    temp->display();
+    return;
+  }
+  if (temp->get_data().less_than((curr->get_data())))
+    temp->set_data(curr->get_data());
+  display_highest(temp, curr->get_next());
+}
 #endif

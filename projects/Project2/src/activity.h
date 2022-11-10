@@ -3,6 +3,17 @@
 // October 2022
 // Program 2 CS302
 
+// This file contains the headers for the hierarchy used in this program. The activity
+// class is the root. The skiing, snowshoe, and skating class all publicly inherit from
+// the activity class. In this case, these objects are used inside of a single
+// implementation of a doubly linked list using templates. Thus, we have necessary
+// operator overloading for functionality when using algorithms inside the linked list
+// class. I have made use of most of the operators, but not all of them. With more time 
+// I would have liked to write more algorithms and eventually find a use for all operators.
+// See the implemenation file (activity.cpp) for descriptions and intended uses for each function.
+// =================================================================================================
+
+
 #include <iostream>
 #include <cstring>
 #include <string>
@@ -31,14 +42,6 @@ class Activity
     bool operator == (const Activity& arg) const;
     bool operator != (const Activity& arg) const;
     friend ostream & operator << (ostream & out, const Activity& arg);
-    /*
-    friend istream & operator >> (istream & in, Activity& arg);
-    friend int operator<(const Activity&, const Activity&); 
-    friend int operator<=(const Activity&, const Activity&); 
-    friend int operator>(const Activity&, const Activity&); 
-    friend int operator>=(const Activity&, const Activity&);
-    */
-
     int display() const;
     int avg_rating() const;
     int add_rating(int arg);

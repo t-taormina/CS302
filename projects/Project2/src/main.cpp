@@ -5,16 +5,20 @@
 
 #include "client.h"
 
+// Test functions
 int test_ski();
 int test_shoe();
 int test_skate();
 int test_node();
 
+// Program driver
 int main()
 {
     return run();
 }
 
+// Testing functions
+// ==================================================================================
 int test_node()
 {
   /*

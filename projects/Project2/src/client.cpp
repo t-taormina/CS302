@@ -5,7 +5,12 @@
 
 #include "client.h"
 
+// This file contains a simple menu interface that could be implemented by the client. All
+// functionality included in this portion is functioning. However, not all functions that
+// are written are included. With more time I would like to take make use all code that is
+// written but unfortunately with a heavy course load time has not permitted.
 
+// Program driver.
 int run()
 {
   DLL<Node<Skiing>> ski;
@@ -25,6 +30,7 @@ int run()
   return 0;
 }
 
+// Displays main menu.
 int menu()
 {
    std::cout << "==================================================================\n";
@@ -65,7 +71,7 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
           while (sub_flag)
           {
             ski_menu();
-            int choice = validate_menu_choice();
+            int choice = validate_submenu_choice();
             process_ski(sub_flag, choice, ski);
           }
           break;
@@ -78,7 +84,7 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
           while (sub_flag)
           {
             shoe_menu();
-            int choice = validate_menu_choice();
+            int choice = validate_submenu_choice();
             process_shoe(sub_flag, choice, shoe);
           }
           break;         
@@ -91,7 +97,7 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
           while (sub_flag)
           {
             skate_menu();
-            int choice = validate_menu_choice();
+            int choice = validate_submenu_choice();
             process_skate(sub_flag, choice, skate);
           }
           break;
@@ -114,7 +120,7 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
           break;
         }
 
-      // Display adjacent
+      // Display affordable. 
       case 5: 
         {
           cout << "              SKIING" << endl;
@@ -145,6 +151,7 @@ void process_main (int& flag, int menu_choice, DLL<Node<Skiing>>& ski, DLL<Node<
     }
 }
 
+// Display submenu for skiing objects. 
 void ski_menu()
 {
    std::cout << "==================================================================\n";
@@ -154,15 +161,15 @@ void ski_menu()
    std::cout << "===============================\n";
    std::cout << "1) Display all options.\n"; 
    std::cout << "2) Display most affordable option.\n"; 
-   std::cout << "3) Display highest rated option.\n";
-   std::cout << "4) Add review.\n";
-   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << "3) Display most expensive option.\n";
+   //std::cout << "4) Add review.\n";
+   //std::cout << "5) Rate an activity at a given location.\n";
    std::cout << std::endl;
    std::cout << "0) Return to main menu.\n";
    std::cout << "Enter: ";
 }
 
-// Provides option processing for the menu 
+// Provides option processing for the skiing submenu.
 void process_ski(int& flag, int menu_choice, DLL<Node<Skiing>>& ski)
 {
   // Takes in user input for menu choice and calls the appropriate function.
@@ -177,26 +184,19 @@ void process_ski(int& flag, int menu_choice, DLL<Node<Skiing>>& ski)
  
       case 1: 
         {
+          ski.display();
           break;
         }
 
       case 2:
         {
+          ski.display_cheapest();
           break;         
         }
 
       case 3: 
         {
-          break;
-        }
-
-      case 4: 
-        {
-          break;
-        }
-
-      case 5: 
-        {
+          ski.display_highest();
           break;
         }
 
@@ -206,6 +206,7 @@ void process_ski(int& flag, int menu_choice, DLL<Node<Skiing>>& ski)
     }
 }
 
+// Display sub menu for shoe objects.
 void shoe_menu()
 {
    std::cout << "==================================================================\n";
@@ -213,17 +214,17 @@ void shoe_menu()
    std::cout << "==================================================================\n";
   
    std::cout << "===============================\n";
-   std::cout << "1) Display easiest route.\n"; 
-   std::cout << "2) Display hardest route.\n"; 
-   std::cout << "3) Display the highest rated route.\n";
-   std::cout << "4) Add review at a given location.\n";
-   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << "1) Display all.\n"; 
+   std::cout << "2) Display easiest route.\n"; 
+   std::cout << "3) Display hardest route.\n"; 
+   //std::cout << "4) Add review at a given location.\n";
+   //std::cout << "5) Rate an activity at a given location.\n";
    std::cout << std::endl;
    std::cout << "0) Return to main menu.\n";
    std::cout << "Enter: ";
 }
 
-// Provides option processing for the menu 
+// Provides option processing for the shoe submenu.
 void process_shoe(int& flag, int menu_choice, DLL<Node<Snowshoe>>& shoe)
 {
   // Takes in user input for menu choice and calls the appropriate function.
@@ -239,39 +240,30 @@ void process_shoe(int& flag, int menu_choice, DLL<Node<Snowshoe>>& shoe)
       // Ski submenu.
       case 1: 
         {
+          shoe.display();
           break;
         }
 
       // Shoe submenu.
       case 2:
         {
+          shoe.display_cheapest();
           break;         
         }
 
       // Skating submenu.
       case 3: 
         {
+          shoe.display_highest();
           break;
         }
-
-      // Display all.
-      case 4: 
-        {
-          break;
-        }
-
-      // Display adjacent
-      case 5: 
-        {
-          break;
-        }
-
       // Provide a backstop for out of bounds menu choices.
       default:
           break;
     }
 }
 
+// Displays submenu for skating objects.
 void skate_menu()
 {
    std::cout << "==================================================================\n";
@@ -281,15 +273,15 @@ void skate_menu()
    std::cout << "===============================\n";
    std::cout << "1) Display all options.\n"; 
    std::cout << "2) Display most affordable option.\n"; 
-   std::cout << "3) Display highest rated option.\n";
-   std::cout << "4) Add review.\n";
-   std::cout << "5) Rate an activity at a given location.\n";
+   std::cout << "3) Display most expensive option.\n";
+   //std::cout << "4) Add review.\n";
+   //std::cout << "5) Rate an activity at a given location.\n";
    std::cout << std::endl;
    std::cout << "0) Return to main menu.\n";
    std::cout << "Enter: ";
 }
 
-// Provides option processing for the menu 
+// Provides option processing for the shoe submenu.
 void process_skate(int& flag, int menu_choice, DLL<Node<Skating>>& skate)
 {
   // Takes in user input for menu choice and calls the appropriate function.
@@ -304,36 +296,29 @@ void process_skate(int& flag, int menu_choice, DLL<Node<Skating>>& skate)
  
       case 1: 
         {
+          skate.display();
           break;
         }
 
       case 2:
         {
+          skate.display_cheapest();
           break;         
         }
 
       case 3: 
         {
+          skate.display_highest();
           break;
         }
 
-      case 4: 
-        {
-          break;
-        }
-
-      case 5: 
-        {
-          break;
-        }
-
-      // Provide a backstop for out of bounds menu choices.
+       // Provide a backstop for out of bounds menu choices.
       default:
           break;
     }
 }
 
-
+// Fills DLL with skiing objects. Small for testing purposes.
 int fill_ski(DLL<Node<Skiing>> & dll)
 {
   Skiing s1 = Skiing(50.0, 40.0, 20, 10, "Timberline" ); 
@@ -345,6 +330,7 @@ int fill_ski(DLL<Node<Skiing>> & dll)
   return 0;
 }
 
+// Fills DLL with snowshoe objects. Small for testing purposes.
 int fill_shoe(DLL<Node<Snowshoe>> & dll)
 {
   Snowshoe s1 = Snowshoe(1.5, 3, "Short trail", "Mt. Hood"); 
@@ -356,6 +342,7 @@ int fill_shoe(DLL<Node<Snowshoe>> & dll)
   return 0;
 }
 
+// Fills DLL with skating objects. Small for testing purposes.
 int fill_skate(DLL<Node<Skating>> & dll)
 {
   Skating s1 = Skating(15.99, 20.99, false, "Sherwood Ice Arena", "Sherwood"); 
@@ -367,7 +354,7 @@ int fill_skate(DLL<Node<Skating>> & dll)
   return 0;
 }
 
-// Returns-> Integer value for the menu choice
+// Validates main menu choice. 
 int validate_menu_choice()
 {
   int menu_choice_int = 0;
@@ -383,6 +370,23 @@ int validate_menu_choice()
   return menu_choice_int;
 }
 
+// Validates submenu choice. 
+int validate_submenu_choice()
+{
+  int menu_choice_int = 0;
+  cin >> menu_choice_int;
+  std::cin.ignore(100, '\n');
+ 
+  while (menu_choice_int > 3 || menu_choice_int < 0) 
+  {
+    cout << "Please select a valid menu item." << endl;
+    cin >> menu_choice_int;
+    std::cin.ignore(100, '\n');
+  }
+  return menu_choice_int;
+}
+
+// Displays welcome message.
 int welcome()
 {
   cout << "IT IS WINTER TIME!\n" << endl;

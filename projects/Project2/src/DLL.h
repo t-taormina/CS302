@@ -23,12 +23,12 @@ class Node
     void set_prev(const ptr & source);
     ptr & get_next();
     ptr & get_previous();
-    bool less_than(const T & new_data) const;
+    bool less_than(const Node<T> & new_data) const;
     bool greater_than(const Node<T> & new_data) const;
-    bool less_than_or_equal(const T & new_data) const;
-    bool greater_than_or_equal(const T & new_data) const;
-    bool equal_to(const T & new_data) const;
-    bool not_equal_to(const T & new_data) const;
+    bool less_than_or_equal(const Node<T> & new_data) const;
+    bool greater_than_or_equal(const Node<T> & new_data) const;
+    bool equal_to(const Node<T> & new_data) const;
+    bool not_equal_to(const Node<T> & new_data) const;
     void display() const;
 
     /*
@@ -64,6 +64,8 @@ class DLL
     void insert(const T & obj);
     void display() const;
     void display_cheapest();
+    void display_highest();
+    void rate(string& loc);
 
   private: 
     ptr head;
@@ -74,6 +76,8 @@ class DLL
     void copy(ptr & curr, ptr & prev, const ptr & source);
     void display(const ptr & curr) const;
     void display_cheapest(ptr & temp, ptr & curr);
+    void display_highest(ptr & temp, ptr & curr);
+    void rate(string& loc, ptr & curr);
 };
 
 #include "DLL.tpp"
