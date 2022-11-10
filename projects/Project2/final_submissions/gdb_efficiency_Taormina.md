@@ -41,4 +41,23 @@ list. Overall, I think this project was a good exercise in getting familiar with
 templates, operator overloading, and exception handling.
 
 ### GDB Writeup
+ As with my previous project, I made extensive use of valgrind in testing my program at
+each compilation. I make this a habit because it makes memory leak detection so much
+easier if you have a specific block of code that you can correlate with your memory loss.
+If you program away and forget to test for leaks, I find that it just adds more work later
+on finding those segments of code in which you are leaking bytes. GDB on the other hand
+did not get used quite as much with this program. I tried to use it during my recursive
+functions even if they were working in order to keep practicing the process. However, the
+algorithms were fairly straight forward in this project and didn't prove to be so
+difficult as to need trouble shooting with GDB. What I did make extensive use of in this
+program was the compiler errors. This is something everyone does (or should do) with every
+program, but with the amount of syntax errors that I encountered during working with
+templates for the first time... The compiler errors were all I had to reference. Reading
+the errors at times can be daunting but I found that with practice this became much
+easier. A lot of the errors that I was making was not being consistent with ``` const ```
+keywords in my hierarchy. This would throw mismatched type errors. At first they were hard
+to make sense of, but after fixing the first few they were familiar enough and easy to
+spot and correct. Overall, I would say that I became much more comfortable with the
+debugging tools GDB and Valgrind. In addition, I would say that my relationship with the
+gnu compiler is improving as well! 
  
