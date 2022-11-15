@@ -9,7 +9,25 @@ string get_language();
 
 int main()
 {
-   return 0;
+  Advanced i1;
+  i1.read_in();
+  //i1.display();
+  Advanced i2;
+  i2 = i1;
+  Advanced i3(i2);
+  if (i3.match(i2.get_name()))
+    cout << "Match!" << endl;
+  else 
+    cout << "No match." << endl;
+
+  //i2.display();
+  i3.display();
+  for (int i = 0; i < 3; i++)
+    i3.add_language(get_language());
+  i3.display();
+  i3.remove_language(get_language());
+  i3.display();
+  return 0;
 }
 
 
