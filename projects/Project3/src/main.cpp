@@ -18,7 +18,7 @@ int main()
   if (i3.match(i2.get_name()))
     cout << "Match!" << endl;
   else 
-    cout << "No match" << endl;
+    cout << "No match!" << endl;
 
   //i2.display();
   i3.display();
