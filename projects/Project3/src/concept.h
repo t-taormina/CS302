@@ -7,11 +7,12 @@
 #ifndef CONCEPT_H
 #define CONCEPT_H
 #include <iostream>
-#include <memory>
+#include <string>
 #include <list>
 #include <iterator>
-using std::memory;
+using std::string;
 using std::cout;
+using std::cin;
 using std::endl;
 using std::list;
 
@@ -22,13 +23,15 @@ class Concept
     Concept();
     Concept(string & arg_name);
     Concept(const Concept & to_copy);
+    Concept& operator= (const Concept& src);
     virtual ~Concept();
 
     // Self similar functions.
     virtual void display() const;
     virtual void read_in();
     virtual void edit();
-    virtual bool match(string & to_match);
+    virtual bool match(const string & to_match);
+    virtual string get_name();
 
   protected:
     string name;
@@ -39,7 +42,7 @@ class Intro: public Concept
 {
   public:
     Intro();
-    Intro(string arg_example, bool arg_lower_division);
+    Intro(string arg_example, bool arg_lower_division, string arg_name);
     Intro(const Intro & to_copy);
     ~Intro();
     Intro & operator= (const Intro & src);
@@ -49,6 +52,7 @@ class Intro: public Concept
     void read_in();
     void edit();
     bool match(string & to_match);
+    string get_name();
 
   private: 
     string example;
@@ -56,12 +60,13 @@ class Intro: public Concept
 };
 
 
+/*
 class Intermediate: public Concept
 {
   public:
     Intermediate();
     Intermediate(const Intermediate & to_copy);
-    Intermediate(string arg_definition, string arg_syntax);
+    Intermediate(string arg_definition, string arg_syntax, string arg_name);
     ~Intermediate();
     Intermediate & operator= (const Intermediate & src);
 
@@ -70,6 +75,7 @@ class Intermediate: public Concept
     void read_in();
     void edit();
     bool match(string & to_match);
+    string get_name();
 
   private: 
     string definition;
@@ -82,7 +88,7 @@ class Advanced: public concept
   public: 
     Advanced();
     Advanced(const Advanced & to_copy);
-    Advanced(string & arg_syntax);
+    Advanced(string & arg_syntax, string arg_name);
     ~Advanced();
     Advanced & operator= (const Advanced & src);
 
@@ -91,6 +97,7 @@ class Advanced: public concept
     void read_in();
     void edit();
     bool match(string & to_match);
+    string get_name();
 
     // Unique functions.
     void add_language(string & to_add);
@@ -100,5 +107,6 @@ class Advanced: public concept
     string syntax;
     list<string> language_list;
 };
+*/
 
 #endif
