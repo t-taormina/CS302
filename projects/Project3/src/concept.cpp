@@ -37,14 +37,16 @@ void Concept::read_in()
 {
   string temp;
   cout << "Enter the name of the concept: ";
-  cin >> temp;
+  getline(cin, temp);
   name = temp;
 }
 
 void Concept::edit()
 {
+  string temp;
   cout << "Enter the name of the concept: ";
-  cin >> name;
+  getline(cin, temp);
+  name = temp;
 }
 
 bool Concept::match(const string & to_match)
@@ -63,9 +65,9 @@ string Concept::get_name()
 // Intro Class
 // ==========================================================
 
-Intro::Intro(): Concept(), example(""), lower_division(true) {}
+Intro::Intro(): Concept(), example(""), lower_division(1) {}
 
-Intro::Intro(string arg_example, bool arg_lower_division, string arg_name): Concept(arg_name), example(arg_example), lower_division(arg_lower_division){}
+Intro::Intro(string arg_example, string arg_name): Concept(arg_name), example(arg_example), lower_division(1){}
 
 Intro::Intro(const Intro & to_copy): Concept(to_copy), example(to_copy.example), lower_division(to_copy.lower_division){}
 
@@ -85,11 +87,130 @@ Intro & Intro::operator= (const Intro & src)
 void Intro::display() const
 {
   Concept::display();
-
+  cout << "Example: " << example << endl;
+  if (lower_division)
+    cout << "This concept is covered in lower division classes. Refer to your lower division course work for more information." << endl;
+  else 
+    cout << "This is not covered in lower division courses. Ask a teacher or tutor where to find more information regarding this concept." << endl;
 }
-void read_in();
-void edit();
-bool match(string & to_match);
-string get_name();
+
+void Intro::read_in()
+{
+  Concept::read_in();
+  string temp;
+  cout << "Enter an example of the concept: ";
+  getline(cin, temp);
+  example = temp;
+}
+
+void Intro::edit()
+{
+  string temp;
+  cout << "Enter an example of the concept: ";
+  getline(cin, temp);
+  example = temp;
+}
+
+bool Intro::match(const string & to_match)
+{
+  return Concept::match(to_match);
+}
+
+string Intro::get_name()
+{
+  return Concept::get_name();
+}
+
+
+// Intermediate Class
+// ==========================================================
+
+Intermediate::Intermediate(): Concept(), definition(""), syntax(""){}
+
+Intermediate::Intermediate(const Intermediate & to_copy): Concept(to_copy), definition(to_copy.definition), syntax(to_copy.syntax){}
+
+Intermediate::Intermediate(string arg_definition, string arg_syntax, string arg_name): Concept(arg_name), definition(arg_definition), syntax(arg_syntax){}
+
+Intermediate::~Intermediate(){}
+
+Intermediate & Intermediate::operator= (const Intermediate & src)
+{
+  if (this == &src)
+    return *this;
+  Concept::operator=(src);
+  definition = src.definition;
+  syntax = src.syntax;
+  return *this;
+}
+
+// Self similar functions.
+void Intermediate::display() const
+{
+  Concept::display();
+  cout << "Definition: " << definition << endl;
+  cout << "Syntax: " << syntax << endl;
+}
+
+void Intermediate::read_in()
+{
+  Concept::read_in();
+  cout << "Enter the definition of the concept: ";
+  string temp_def;
+  getline(cin, temp_def);
+  definition = temp_def;
+  cout << "Enter the syntax of the concept: ";
+  string temp_syn;
+  getline(cin, temp_syn);
+  syntax = temp_syn;
+}
+
+void Intermediate::edit()
+{
+  cout << "Enter the definition of the concept: ";
+  string temp_def;
+  getline(cin, temp_def);
+  definition = temp_def;
+  cout << "Enter the syntax of the concept: ";
+  string temp_syn;
+  getline(cin, temp_syn);
+  syntax = temp_syn;
+}
+
+bool Intermediate::match(const string & to_match)
+{
+  return Concept::match(to_match);
+}
+
+string Intermediate::get_name()
+{
+  return Concept::get_name();
+}
+
+
+// Advanced Class
+// ==========================================================
+
+Advanced::Advanced(): Concept(){}
+
+Advanced::Advanced(const Advanced & to_copy): Concept(to_copy), syntax(to_copy.syntax)
+{
+}
+
+Advanced::Advanced(string & arg_syntax, string arg_name);
+Advanced::~Advanced();
+Advanced & Advanced::operator= (const Advanced & src);
+
+// Self similar functions.
+void Advanced::display() const;
+void Advanced::read_in();
+void Advanced::edit();
+bool Advanced::match(string & to_match);
+string Advanced::get_name();
+
+// Unique functions.
+void Advanced::add_language(string & to_add);
+void Advanced::remove_language(string & to_remove);
+
+
 
 

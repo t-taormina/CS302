@@ -42,7 +42,7 @@ class Intro: public Concept
 {
   public:
     Intro();
-    Intro(string arg_example, bool arg_lower_division, string arg_name);
+    Intro(string arg_example, string arg_name);
     Intro(const Intro & to_copy);
     ~Intro();
     Intro & operator= (const Intro & src);
@@ -51,16 +51,15 @@ class Intro: public Concept
     void display() const;
     void read_in();
     void edit();
-    bool match(string & to_match);
+    bool match(const string & to_match);
     string get_name();
 
   private: 
     string example;
-    bool lower_division;
+    int lower_division; // used as a bool. Value is evaluated based on being 1 or 0.
 };
 
 
-/*
 class Intermediate: public Concept
 {
   public:
@@ -74,7 +73,7 @@ class Intermediate: public Concept
     void display() const;
     void read_in();
     void edit();
-    bool match(string & to_match);
+    bool match(const string & to_match);
     string get_name();
 
   private: 
@@ -107,6 +106,5 @@ class Advanced: public concept
     string syntax;
     list<string> language_list;
 };
-*/
 
 #endif
