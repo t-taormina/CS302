@@ -194,22 +194,83 @@ Advanced::Advanced(): Concept(){}
 
 Advanced::Advanced(const Advanced & to_copy): Concept(to_copy), syntax(to_copy.syntax)
 {
+  if (!to_copy.language_list.empty())
+  {
+    for (auto it = to_copy.language_list.begin(); it != to_copy.language_list.end(); ++it)
+      language_list.push_front(*it);
+  }
 }
 
-Advanced::Advanced(string & arg_syntax, string arg_name);
-Advanced::~Advanced();
-Advanced & Advanced::operator= (const Advanced & src);
+Advanced::Advanced(string & arg_syntax, string arg_name): Concept(arg_name), syntax(arg_syntax){}
+
+Advanced::~Advanced(){}
+
+Advanced & Advanced::operator= (const Advanced & src)
+{
+  if (this == &src)
+    return *this;
+  Concept::operator=(src);
+  syntax = src.syntax;
+  if (!src.language_list.empty())
+  {
+    for (auto it = src.language_list.begin(); it != src.language_list.end(); ++it)
+      language_list.push_front(*it);
+  }
+  return *this;
+}
 
 // Self similar functions.
-void Advanced::display() const;
-void Advanced::read_in();
-void Advanced::edit();
-bool Advanced::match(string & to_match);
-string Advanced::get_name();
+void Advanced::display() const
+{
+  Concept::display();
+  cout << "Syntax: " << syntax << endl;
+  cout << "Languages that suppor this concept: ";
+  if (!language_list.empty())
+  {
+    cout << *language_list.begin();
+    for (auto it = ++language_list.begin(); it != language_list.end(); ++it)
+      cout << ", " << *it;
+  }
+  cout << endl;
+}
+
+void Advanced::read_in()
+{
+  Concept::read_in();
+  cout << "Enter the syntax of the concept: ";
+  string temp_syn;
+  getline(cin, temp_syn);
+  syntax = temp_syn;
+}
+
+void Advanced::edit()
+{
+  cout << "Enter the syntax of the concept: ";
+  string temp_syn;
+  getline(cin, temp_syn);
+  syntax = temp_syn;
+}
+
+bool Advanced::match(const string & to_match)
+{
+  return Concept::match(to_match);
+}
+
+string Advanced::get_name()
+{
+  return Concept::get_name();
+}
 
 // Unique functions.
-void Advanced::add_language(string & to_add);
-void Advanced::remove_language(string & to_remove);
+void Advanced::add_language(const string & to_add)
+{
+  language_list.push_front(to_add);
+}
+
+void Advanced::remove_language(const string & to_remove)
+{
+  language_list.remove(to_remove);
+}
 
 
 

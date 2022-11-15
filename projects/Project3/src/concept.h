@@ -82,7 +82,7 @@ class Intermediate: public Concept
 };
 
 
-class Advanced: public concept
+class Advanced: public Concept
 {
   public: 
     Advanced();
@@ -95,12 +95,12 @@ class Advanced: public concept
     void display() const;
     void read_in();
     void edit();
-    bool match(string & to_match);
+    bool match(const string & to_match);
     string get_name();
 
     // Unique functions.
-    void add_language(string & to_add);
-    void remove_language(string & to_remove);
+    void add_language(const string & to_add);
+    void remove_language(const string & to_remove);
 
   private: 
     string syntax;
