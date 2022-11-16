@@ -1,6 +1,5 @@
 #Operator overloading in Python
 
-
 class Point:
     #note: don't need to overload =, ==, != 
     def __init__(self, x=0, y=0):
@@ -46,7 +45,6 @@ class Shape:
         temp = Shape(0, 0, self.color)
         temp.center = self.center + second
         return temp
-
 
     #shape += point, remains shape
     def __iadd__(self, other):
@@ -148,9 +146,6 @@ def test_circle():
     print("circle1", circle1, "; circle2:", circle2)
     print("result is", c)
     print(type(c))
-
-
-
 
 print("What class would you like to test?")
 choice = int(input("1: Point, 2: Shape, 3: Circle "))
