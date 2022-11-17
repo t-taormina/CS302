@@ -136,11 +136,27 @@ virtual void statement()=0; // pure virtual function for abstract base class
 ```
 
 ### Syntax for Dynamic binding
-- Show how to create a virtual function: 
-- Show how to cause dynamic binding to take place: 
-- Syntax of upcasting: 
-- Syntax of downcasting: 
-- Syntax of an abstract base class: 
+```c++
+student s;
+account* pa = &s; // Up Casting
+student* ps;
+ps = dynamic_cast<student*>(pa); // Down casting
+
+// Abstract base class
+class base
+{
+    protected: 
+        base();
+        base(const base& to_copy);
+        // etc...
+    // or...
+    virtual int display()=0; // pure virtual
+}
+
+virtual int statement(); // just virtual
+
+```
+
 
 ### Python Programming
 - How to put together a program
