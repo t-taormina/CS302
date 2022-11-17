@@ -51,9 +51,10 @@ class Node
 
 };
 ```
-    - Why would we want to do this?
-        - It would allow us to create nodes that hold can hold any number of abstract data types. 
-        - This is nice since we would only have to write one node class to be used with many data types
+
+- Why would we want to do this?
+    - It would allow us to create nodes that hold can hold any number of abstract data types. 
+    - This is nice since we would only have to write one node class to be used with many data types
 
 ### Operator overloading
 - What are they and why are they useful?
