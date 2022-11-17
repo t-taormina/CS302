@@ -114,9 +114,26 @@ virtual int match();
     - Assigning pointers to derived class objects to point to base class objects.
     - Can also use derived class objects to initialize references to base class objects.
 - What is downcasting?
-    - 
+    - when a pointer to a direct or indirect base class is converted to a pointer to a derived class
+```
+student s;
+account* pa = &s;
+student* ps;
+ps = dynamic_cast<student*>(pa); //result is valid 
+savings i;
+pa = &i;
+ps = dynamic_cast<student*>(pa); //result is a zero
+```
 - What is RTTI and why would we use it?
+    - Run time type identification 
+    - uses type information storde in objects by the compiler to determine at run time the actual type of an object pointed or referred to
 - What is an abstract base class and why would we use them?
+    - an abstract base class is a base class that can only be derived from, no objects can be instantiated from it
+    - a base class becomes abstact when its constructors are protected or by declaring a virtual function "pure"
+    - derived classes must implement all  pure virtual functions or they become abstract themselves
+```
+virtual void statement()=0; // pure virtual function for abstract base class
+```
 
 ### Syntax for Dynamic binding
 - Show how to create a virtual function: 
