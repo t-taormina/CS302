@@ -8,7 +8,7 @@ Templates
     - shifts the burden of creating duplicate classes to handle various data types to the compiler.
 - Where does the template keyword belong?
     - the template keyword belongs on the line preceding the class declaration
-```
+```c++
 template<class TYPE, TYPE VALUE>
 class Node
 {
@@ -23,7 +23,7 @@ class Node
     - scope of the formal arguments is that of the class template itself
 - How do you create an object of class template?
     - You call the templated class specifying the data type between the <>
-```
+```c++
 Node<Skiing> ski_node;
 ```
 
@@ -34,7 +34,7 @@ Node<Skiing> ski_node;
     - What happens if an expected operator is not overloaded?
         - the compiler will complain about incompatible data types
 - Can you create a template for a node class?
-```
+```c++
 template <typename T>
 class Node
 {
@@ -61,7 +61,7 @@ class Node
     - It allows programmers to complete the process of data abstaction
     - Essential when working with templates so that our classes work with already existing classes using operators
 - What is the syntax?
-```
+```c++
 derived& operator=(const derived& arg);
 friend ostream& operator<<(ostream& out, const derived& arg);
 friend int operator<(const derived& arg1, const derived& arg2);
@@ -71,7 +71,7 @@ friend int operator<(const derived& arg1, const derived& arg2);
         - return by value
     - Lvalue 
         - return by reference
-```
+```c++
 Derived & operator++(); // Lvalue return by reference.
 Derived operator++(int); // Rvalue return by value.
 ```
@@ -92,7 +92,7 @@ Derived operator++(int); // Rvalue return by value.
     - dynamic type of an object is the type of the object actually pointed or reffered to rather than the static type of is pointer or reference.
 - Where does the virtual keyword belong?
     - preceding the function name in the base class public member functions
-```
+```c++
 virtual int display();
 virtual int match();
 ```
@@ -115,7 +115,7 @@ virtual int match();
     - Can also use derived class objects to initialize references to base class objects.
 - What is downcasting?
     - when a pointer to a direct or indirect base class is converted to a pointer to a derived class
-```
+```c++
 student s;
 account* pa = &s;
 student* ps;
@@ -131,7 +131,7 @@ ps = dynamic_cast<student*>(pa); //result is a zero
     - an abstract base class is a base class that can only be derived from, no objects can be instantiated from it
     - a base class becomes abstact when its constructors are protected or by declaring a virtual function "pure"
     - derived classes must implement all  pure virtual functions or they become abstract themselves
-```
+```c++
 virtual void statement()=0; // pure virtual function for abstract base class
 ```
 
@@ -159,6 +159,11 @@ virtual int statement(); // just virtual
 
 
 ### Python Programming
+```python
+def main:
+    print('hello world'
+    return None
+```
 - How to put together a program
 - Use of strings
 - Use of arrays and lists
