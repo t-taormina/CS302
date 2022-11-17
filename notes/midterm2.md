@@ -117,16 +117,16 @@ virtual int match();
     - when a pointer to a direct or indirect base class is converted to a pointer to a derived class
 ```c++
 student s;
-account* pa = &s;
+account* pa = &s; // Up cast
 student* ps;
-ps = dynamic_cast<student*>(pa); //result is valid 
+ps = dynamic_cast<student*>(pa); //Down cast
 savings i;
 pa = &i;
 ps = dynamic_cast<student*>(pa); //result is a zero
 ```
 - What is RTTI and why would we use it?
     - Run time type identification 
-    - uses type information storde in objects by the compiler to determine at run time the actual type of an object pointed or referred to
+    - uses type information stored in objects by the compiler to determine at run time the actual type of an object pointed or referred to
 - What is an abstract base class and why would we use them?
     - an abstract base class is a base class that can only be derived from, no objects can be instantiated from it
     - a base class becomes abstact when its constructors are protected or by declaring a virtual function "pure"
