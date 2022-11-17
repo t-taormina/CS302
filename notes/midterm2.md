@@ -111,8 +111,7 @@ virtual int match();
     - the keyword virtual is only within the base class
 
 - What is upcasting?
-    - Assigning pointers to derived class objects to point to base class objects.
-    - Can also use derived class objects to initialize references to base class objects.
+    - a base class reference or pointer that is pointing or reffering to a derived object
 - What is downcasting?
     - when a pointer to a direct or indirect base class is converted to a pointer to a derived class
 ```c++
