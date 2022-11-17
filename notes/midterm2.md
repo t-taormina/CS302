@@ -58,23 +58,63 @@ class Node
 
 ### Operator overloading
 - What are they and why are they useful?
+    - It allows programmers to complete the process of data abstaction
+    - Essential when working with templates so that our classes work with already existing classes using operators
 - What is the syntax?
+```
+derived& operator=(const derived& arg);
+friend ostream& operator<<(ostream& out, const derived& arg);
+friend int operator<(const derived& arg1, const derived& arg2);
+```
 - How do we handle lvalue vs rvalue operators? 
+    - Rvalue
+        - return by value
+    - Lvalue 
+        - return by reference
+```
+Derived & operator++(); // Lvalue return by reference.
+Derived operator++(int); // Rvalue return by value.
+```
 - Why is it important to have the const keyword?
     - for member functions
     - for arguments
 - What happens if we don't supply an assignment operator?
     - What is self assignment?
+        - when you assign an object to itself.
     - What does the = operator return?
+        - Lvalue, object by reference
 
 
 ### Dynamic Binding
 - What is it and why is it useful?
+    - occurs when a pointer or reference is associated with a member function based on the dynamic type of the object.
+    - also known as runtime binding
+    - dynamic type of an object is the type of the object actually pointed or reffered to rather than the static type of is pointer or reference.
 - Where does the virtual keyword belong?
+    - preceding the function name in the base class public member functions
+```
+virtual int display();
+virtual int match();
+```
 - What does it mean to build a self similar interface?
+    - To have virtual functions with the same signature and return types.
+- Rules for overridding?
+    - inheritance using public derivation
+    - public member function must be virtual in either direct or indirect base class
+    - derived member function must have same signature and return type
+    - overridden function must be accessed through a direct or indirect base class reference or pointer
+
 - Rules of dynamic binding?
+    - virtual functions cannot be static member functions
+    - signature and return type must be the same for all implementations of the virtual function
+    - while the function must be defined as virtual in the base class, it does not need to be defined in those derived classes where the inherited behavior does not need to differ
+    - the keyword virtual is only within the base class
+
 - What is upcasting?
+    - Assigning pointers to derived class objects to point to base class objects.
+    - Can also use derived class objects to initialize references to base class objects.
 - What is downcasting?
+    - 
 - What is RTTI and why would we use it?
 - What is an abstract base class and why would we use them?
 
