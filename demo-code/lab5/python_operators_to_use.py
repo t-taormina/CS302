@@ -63,7 +63,7 @@ class Circle(Shape):
         
     # <<
     def __str__(self):
-        pass
+        return super().__str__() + ', ' + (f'r: {self.r}')
 
     # *
     def __mul__(self, second):
@@ -75,7 +75,19 @@ class Circle(Shape):
 
     # + 
     def __add__(self, other):
-        pass
+        super().__add__()
+        temp = self
+        return temp
+
+
+def test_circle():
+    circle1 = Circle(1,1,2,"blue")
+    circle2 = Circle(1,1,2,"red")
+    c = circle1 + circle2
+    print("test circle + circle:")
+    print("circle1", circle1, "; circle2:", circle2)
+    print("result is", c)
+    print(type(c))
 
 
 def test_point():
@@ -136,16 +148,6 @@ def test_shape():
     s2 += p2
     print("result is", s2)
     print()
-
-
-def test_circle():
-    circle1 = Circle(1,1,2,"blue")
-    circle2 = Circle(1,1,2,"red")
-    c = circle1 + circle2
-    print("test circle + circle:")
-    print("circle1", circle1, "; circle2:", circle2)
-    print("result is", c)
-    print(type(c))
 
 print("What class would you like to test?")
 choice = int(input("1: Point, 2: Shape, 3: Circle "))

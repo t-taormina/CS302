@@ -154,20 +154,65 @@ class base
 }
 
 virtual int statement(); // just virtual
-
 ```
 
 
 ### Python Programming
 ```python
-def main:
-    print('hello world'
-    return None
+class Point:
+    #constructor
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+
+    # + 
+    def __add__(self,second):
+        temp = Point(self.x + second.x, self.y + second.y)
+        return temp
+
+    # +=
+    def __iadd__(self, second):
+        self.x += second.x
+        self.y += second.y
+        return self
+
+    # << 
+    def __str__(self):
+        return (f'x: {self.x}, y: {self.y}')
+
+    # *
+    def __mul__(self, second):
+        temp = Point(self.x * second.x, self.y * second.y)
+        return temp
+
+    # *=
+    def __imul__(self,other):
+        self.x *= other.x
+        self.y *= other.y
+        return self
+
+
+
+        
+# Python program to demonstrate
+# slicing of elements in a Array
+ 
+# importing array module
+import array as arr
+ 
+# creating a list
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ 
+a = arr.array('i', l)
+print("Initial Array: ")
+for i in (a):
+    print(i, end =" ")
+print('\n')
+
+for i in range(len(l)):
+    print(l[i], end = " ")
+print('\n')
 ```
-- How to put together a program
-- Use of strings
-- Use of arrays and lists
-- Creating abstractions in python
 
 ### Data structures 
 - Linear linked list and doubly linked lists
