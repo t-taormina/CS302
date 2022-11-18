@@ -89,7 +89,7 @@ Derived operator++(int); // Rvalue return by value.
 - What is it and why is it useful?
     - occurs when a pointer or reference is associated with a member function based on the dynamic type of the object.
     - also known as runtime binding
-    - dynamic type of an object is the type of the object actually pointed or reffered to rather than the static type of is pointer or reference.
+    - dynamic type of an object is the type of the object actually pointed or reffered to rather than the static type of its pointer or reference.
 - Where does the virtual keyword belong?
     - preceding the function name in the base class public member functions
 ```c++
