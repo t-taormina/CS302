@@ -7,7 +7,6 @@
 #define NODE_H
 #include "concept.h"
 #include <memory>
-#include <string>
 using std::shared_ptr;
 
 class Node
@@ -20,10 +19,10 @@ class Node
         ~Node();
 
         int display();
-        int display_left();
-        shared_ptr<Node> get_left();
+        int compare(shared_ptr<Concept> Cptr);
+        shared_ptr<Node>& get_left();
         int set_left(shared_ptr<Concept> ptr);
-        shared_ptr<Node> get_right();
+        shared_ptr<Node>& get_right();
         int set_right(shared_ptr<Concept> ptr);
         shared_ptr<Concept> get_base();
 
@@ -42,15 +41,15 @@ class Tree
         Tree & operator=(const Tree & src);
         ~Tree();
 
-        insert(shared_ptr<Concept> Cptr);
-        remove(shared_ptr<Concept> ptr);
-        remove_all();
-        display();
-
-
+        int insert(shared_ptr<Concept> Cptr);
+        int display();
+        int remove(shared_ptr<Concept> ptr);
+        int remove_all();
 
     private:
-        insert(shared_ptr<Concept> Cptr, shared_ptr<Node> curr);
+        int insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr);
+        int display(shared_ptr<Node> curr);
+        int remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr);
         shared_ptr<Node> root;
 };
 

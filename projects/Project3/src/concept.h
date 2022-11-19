@@ -21,7 +21,7 @@ class Concept
 {
   public: 
     Concept();
-    Concept(string & arg_name);
+    Concept(const string & arg_name);
     Concept(const Concept & to_copy);
     Concept& operator= (const Concept& src);
     virtual ~Concept();
@@ -30,7 +30,7 @@ class Concept
     virtual void display() const;
     virtual void read_in();
     virtual void edit();
-    virtual bool match(const string & to_match);
+    virtual int match(const string & to_match);
     virtual string get_name();
 
   protected:
@@ -51,7 +51,7 @@ class Intro: public Concept
     void display() const;
     void read_in();
     void edit();
-    bool match(const string & to_match);
+    int match(const string & to_match);
     string get_name();
 
   private: 
@@ -73,7 +73,7 @@ class Intermediate: public Concept
     void display() const;
     void read_in();
     void edit();
-    bool match(const string & to_match);
+    int match(const string & to_match);
     string get_name();
 
   private: 
@@ -95,7 +95,7 @@ class Advanced: public Concept
     void display() const;
     void read_in();
     void edit();
-    bool match(const string & to_match);
+    int match(const string & to_match);
     string get_name();
 
     // Unique functions.

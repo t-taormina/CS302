@@ -7,35 +7,73 @@
 
 string get_language();
 int test_node();
+int test_tree();
 
 int main()
 {
-    return test_node();
-    //return 0;
+    return test_tree();
 }
 
 int test_tree()
 {
+    Concept c1("tyler");
+    Concept c2("tyler");
+    Concept c3("bob");
+    Concept c4("zeek");
+    Concept c5("tommy");
+    Concept c6("charles");
+    Concept c7("bruno");
+    Concept c8("kam");
+    shared_ptr<Concept> c_ptr = std::make_shared<Concept>(c1);
+    shared_ptr<Concept> c_ptr2 = std::make_shared<Concept>(c2);
+    shared_ptr<Concept> c_ptr3 = std::make_shared<Concept>(c3);
+    shared_ptr<Concept> c_ptr4 = std::make_shared<Concept>(c4);
+    shared_ptr<Concept> c_ptr5 = std::make_shared<Concept>(c5);
+    shared_ptr<Concept> c_ptr6 = std::make_shared<Concept>(c6);
+    shared_ptr<Concept> c_ptr7 = std::make_shared<Concept>(c7);
+    shared_ptr<Concept> c_ptr8 = std::make_shared<Concept>(c8);
+    
     Tree t1;
+    t1.insert(c_ptr);
+    t1.insert(c_ptr2);
+    t1.insert(c_ptr3);
+    t1.insert(c_ptr4);
+    t1.insert(c_ptr5);
+    t1.insert(c_ptr6);
+    t1.insert(c_ptr7);
+    t1.insert(c_ptr8);
+    int count = t1.display();
+    cout << "Number of nodes: " << count << endl;
+    return 0;
 }
 
 int test_node()
 {
-    Concept c1;
-    c1.read_in();
-    Concept c2(c1);
+    Concept c1("tyler");
+    Concept c2("aaron");
+    Concept c3("bob");
+    Concept c4("zeek");
+    Concept c5("tommy");
+    Concept c6("charles");
+    Concept c7("bruno");
+    Concept c8("kam");
     shared_ptr<Concept> c_ptr = std::make_shared<Concept>(c1);
     shared_ptr<Concept> c_ptr2 = std::make_shared<Concept>(c2);
+    shared_ptr<Concept> c_ptr3 = std::make_shared<Concept>(c3);
+    shared_ptr<Concept> c_ptr4 = std::make_shared<Concept>(c4);
+    shared_ptr<Concept> c_ptr5 = std::make_shared<Concept>(c5);
+    shared_ptr<Concept> c_ptr6 = std::make_shared<Concept>(c6);
+    shared_ptr<Concept> c_ptr7 = std::make_shared<Concept>(c7);
+    shared_ptr<Concept> c_ptr8 = std::make_shared<Concept>(c8);
     Node n1(c_ptr);
-    n1.set_left(n1.get_base());
-
-    if (n1.get_left())
-        cout << "Not Nullptr" << endl;
-    else 
-        cout << "Nullptr" << endl;
-    n1.display();
-    n1.display_left();
-    
+    int test = n1.compare(c_ptr2);
+    cout << test << endl;
+    //
+    // if (n1.get_left())
+    //     cout << "Not Nullptr" << endl;
+    // else 
+    //     cout << "Nullptr" << endl;
+    // n1.display();
     return 0;
 }
 

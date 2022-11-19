@@ -10,7 +10,7 @@
 
 Concept::Concept(): name(""){}
 
-Concept::Concept(string & arg_name): name(arg_name){}
+Concept::Concept(const string & arg_name): name(arg_name){}
 
 Concept::Concept(const Concept & to_copy)
 {
@@ -49,12 +49,9 @@ void Concept::edit()
   name = temp;
 }
 
-bool Concept::match(const string & to_match)
+int Concept::match(const string & to_match)
 {
-  bool success = false;
-  if (!to_match.compare(name))
-    success = true;
-  return success;
+  return to_match.compare(name);
 }
 
 string Concept::get_name()
@@ -111,7 +108,7 @@ void Intro::edit()
   example = temp;
 }
 
-bool Intro::match(const string & to_match)
+int Intro::match(const string & to_match)
 {
   return Concept::match(to_match);
 }
@@ -176,7 +173,7 @@ void Intermediate::edit()
   syntax = temp_syn;
 }
 
-bool Intermediate::match(const string & to_match)
+int Intermediate::match(const string & to_match)
 {
   return Concept::match(to_match);
 }
@@ -251,7 +248,7 @@ void Advanced::edit()
   syntax = temp_syn;
 }
 
-bool Advanced::match(const string & to_match)
+int Advanced::match(const string & to_match)
 {
   return Concept::match(to_match);
 }

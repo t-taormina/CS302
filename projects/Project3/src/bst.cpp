@@ -34,14 +34,12 @@ int Node::display()
     return 0;
 }
 
-int Node::display_left()
+int Node::compare(shared_ptr<Concept> Cptr)
 {
-    if (left)
-        left->display();
-    return 0;
+    return base_ptr->match(Cptr->get_name());
 }
 
-shared_ptr<Node> Node::get_left()
+shared_ptr<Node>& Node::get_left()
 {
     return left;
 }
@@ -52,7 +50,7 @@ int Node::set_left(shared_ptr<Concept> ptr)
     return 0;
 }
 
-shared_ptr<Node> Node::get_right()
+shared_ptr<Node>& Node::get_right()
 {
     return right;
 }
@@ -83,22 +81,57 @@ Tree & Tree::operator=(const Tree & src){}
 
 Tree::~Tree(){}
 
-Tree::insert(shared_ptr<Concept> Cptr){}
+//WRAPPER FOR RECURSIVE METHOD
+int Tree::insert(shared_ptr<Concept> Cptr)
+{
+    return insert(Cptr, root);
+}
 
 //PRIVATE RECURSIVE METHOD
-Tree::insert(shared_ptr<Concept> Cptr, shared_ptr<Node> curr)
+int Tree::insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr)
+{
+    if (!curr)
+    {
+        curr = std::make_shared<Node>( Node(Cptr) );
+        return 0;
+    }
+    if (curr->compare(Cptr) < 0)
+        return insert(Cptr, curr->get_left()); 
+    if (curr->compare(Cptr) > 0)
+        return insert(Cptr, curr->get_right());
+    else
+        return 1;
+}
+
+//WRAPPER FOR RECURSIVE METHOD
+int Tree::display()
+{
+    return display(root);
+}
+
+//PRIVATE RECURSIVE METHOD
+int Tree::display(shared_ptr<Node> curr)
+{
+    if (!curr)
+        return 0;
+    int count = 0;
+    count = display(curr->get_left());
+    curr->display();
+    count++;
+    return count += display(curr->get_right());
+}
+
+//WRAPPER FOR RECURSIVE METHOD
+int Tree::remove(shared_ptr<Concept> ptr)
+{
+    if (!root)
+        return 0;
+    return remove(ptr, root);
+}
+
+int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
 {
 }
 
-Tree::remove(shared_ptr<Concept> ptr){}
-
-Tree::remove_all(){}
-
-Tree::display()
-{}
-
-//PRIVATE RECURSIVE METHOD
-Tree::display(shared_ptr<Node> curr)
-{}
-
+int Tree::remove_all(){}
 
