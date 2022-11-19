@@ -29,8 +29,13 @@ Node::~Node()
 
 int Node::display()
 {
-    if (base_ptr)
-        base_ptr->display();
+    if (shared_ptr<Intro> i = std::dynamic_pointer_cast<Intro>( base_ptr ))
+        i->display();
+    if (shared_ptr<Intermediate> inter = std::dynamic_pointer_cast<Intermediate>( base_ptr ))
+        inter->display();
+    if (shared_ptr<Advanced> a = std::dynamic_pointer_cast<Advanced>( base_ptr ))
+        a->display();
+
     cout << endl;
     return 0;
 }

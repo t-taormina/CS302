@@ -17,17 +17,17 @@ int main()
 int test_tree()
 {   
     Intro i1("int x = 0; // x is the variable", "variable");
-    shared_ptr<Concept> c1 = std::make_shared<Intro>(i1);
+    shared_ptr<Concept> c1 = std::make_shared<Concept>(i1);
 
     Intermediate in1("A linked list is a collection of nodes that are connect by pointers.", "LL list1;", "linked list");
-    shared_ptr<Concept> c3 = std::make_shared<Intermediate>(in1);
+    shared_ptr<Concept> c3 = std::make_shared<Concept>(in1);
  
 
     Advanced a1("Node * ptr; // This would make a pointer to a node object.", "pointer");
-    shared_ptr<Concept> c2 = std::make_shared<Advanced>(a1);
+    shared_ptr<Concept> c2 = std::make_shared<Concept>(a1);
  
-    Concept crem("pointer");
-    shared_ptr<Concept> c4 = std::make_shared<Concept>(crem);
+    Concept cremove("pointer");
+    shared_ptr<Concept> c4 = std::make_shared<Concept>(cremove);
 
     Tree t1;
     t1.insert(c1);
