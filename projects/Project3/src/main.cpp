@@ -3,13 +3,52 @@
 // November 2022
 // CS302 Program 3
 
-#include "concept.h"
+#include "bst.h"
 
 string get_language();
+int test_node();
 
 int main()
 {
-  Advanced i1;
+    return test_node();
+    //return 0;
+}
+
+int test_tree()
+{
+    Tree t1;
+}
+
+int test_node()
+{
+    Concept c1;
+    c1.read_in();
+    Concept c2(c1);
+    shared_ptr<Concept> c_ptr = std::make_shared<Concept>(c1);
+    shared_ptr<Concept> c_ptr2 = std::make_shared<Concept>(c2);
+    Node n1(c_ptr);
+    n1.set_left(n1.get_base());
+
+    if (n1.get_left())
+        cout << "Not Nullptr" << endl;
+    else 
+        cout << "Nullptr" << endl;
+    n1.display();
+    n1.display_left();
+    
+    return 0;
+}
+
+string get_language()
+{
+  cout << "Please enter the name of a programming language: ";
+  string temp;
+  getline(cin, temp);
+  return temp;
+}
+
+/*
+    Advanced i1;
   i1.read_in();
   //i1.display();
   Advanced i2;
@@ -27,17 +66,8 @@ int main()
   i3.display();
   i3.remove_language(get_language());
   i3.display();
-  return 0;
-}
+*/
 
-
-string get_language()
-{
-  cout << "Please enter the name of a programming language: ";
-  string temp;
-  getline(cin, temp);
-  return temp;
-}
 
 // Concept testing code
 /*
