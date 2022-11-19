@@ -131,6 +131,40 @@ int Tree::remove(shared_ptr<Concept> ptr)
 
 int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
 {
+    if (!curr)
+        return 0;
+    int result = 0;
+    result = remove(ptr, curr->get_left());
+    result = remove(ptr, curr->get_right());
+    if (!curr->compare(ptr))
+    {
+        // Case with no children.
+        if (!curr->get_left() && !curr->get_right())
+        {
+            curr.reset();
+            return 1;
+        }
+
+        // Case with one child left.
+        else if (curr->get_left() && !curr->get_right())
+        {
+            curr = std::move( curr->get_left() );
+            return 1;
+        }
+
+        // Case with one child right.
+        else if (!curr->get_left() && curr->get_right())
+        {
+            curr = std::move( curr->get_right() );
+            return 1;
+        }
+
+        // Case with two children.
+        else
+        {
+            return 1;
+        }
+    }
 }
 
 int Tree::remove_all(){}
