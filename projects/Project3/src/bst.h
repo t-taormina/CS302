@@ -13,6 +13,7 @@ class Node
 {
     public:
         Node();
+        Node(const Concept& obj);
         Node(shared_ptr<Concept> concept_ptr);
         //Node(const Node & to_copy);
         //Node & operator=(const Node & src);
