@@ -64,7 +64,7 @@ string Concept::get_name()
 
 Intro::Intro(): Concept(), example(""), lower_division(1) {}
 
-Intro::Intro(string arg_example, string arg_name): Concept(arg_name), example(arg_example), lower_division(1){}
+Intro::Intro(const string& arg_example, const string& arg_name): Concept(arg_name), example(arg_example), lower_division(1){}
 
 Intro::Intro(const Intro & to_copy): Concept(to_copy), example(to_copy.example), lower_division(to_copy.lower_division){}
 
@@ -126,7 +126,7 @@ Intermediate::Intermediate(): Concept(), definition(""), syntax(""){}
 
 Intermediate::Intermediate(const Intermediate & to_copy): Concept(to_copy), definition(to_copy.definition), syntax(to_copy.syntax){}
 
-Intermediate::Intermediate(string arg_definition, string arg_syntax, string arg_name): Concept(arg_name), definition(arg_definition), syntax(arg_syntax){}
+Intermediate::Intermediate(const string& arg_definition, const string& arg_syntax, const string& arg_name): Concept(arg_name), definition(arg_definition), syntax(arg_syntax){}
 
 Intermediate::~Intermediate(){}
 
@@ -198,7 +198,7 @@ Advanced::Advanced(const Advanced & to_copy): Concept(to_copy), syntax(to_copy.s
   }
 }
 
-Advanced::Advanced(string & arg_syntax, string arg_name): Concept(arg_name), syntax(arg_syntax){}
+Advanced::Advanced(const string & arg_syntax, const string& arg_name): Concept(arg_name), syntax(arg_syntax){}
 
 Advanced::~Advanced(){}
 

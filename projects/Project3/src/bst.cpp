@@ -31,6 +31,7 @@ int Node::display()
 {
     if (base_ptr)
         base_ptr->display();
+    cout << endl;
     return 0;
 }
 

@@ -42,7 +42,7 @@ class Intro: public Concept
 {
   public:
     Intro();
-    Intro(string arg_example, string arg_name);
+    Intro(const string& arg_example, const string& arg_name);
     Intro(const Intro & to_copy);
     ~Intro();
     Intro & operator= (const Intro & src);
@@ -65,7 +65,7 @@ class Intermediate: public Concept
   public:
     Intermediate();
     Intermediate(const Intermediate & to_copy);
-    Intermediate(string arg_definition, string arg_syntax, string arg_name);
+    Intermediate(const string& arg_definition, const string& arg_syntax, const string& arg_name);
     ~Intermediate();
     Intermediate & operator= (const Intermediate & src);
 
@@ -87,7 +87,7 @@ class Advanced: public Concept
   public: 
     Advanced();
     Advanced(const Advanced & to_copy);
-    Advanced(string & arg_syntax, string arg_name);
+    Advanced(const string& arg_syntax, const string& arg_name);
     ~Advanced();
     Advanced & operator= (const Advanced & src);
 
