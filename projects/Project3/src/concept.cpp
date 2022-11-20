@@ -221,7 +221,7 @@ void Advanced::display() const
 {
   Concept::display();
   cout << "Syntax: " << syntax << endl;
-  cout << "Languages that suppor this concept: ";
+  cout << "Languages that support this concept: ";
   if (!language_list.empty())
   {
     cout << *language_list.begin();
@@ -268,7 +268,4 @@ void Advanced::remove_language(const string & to_remove)
 {
   language_list.remove(to_remove);
 }
-
-
-
 

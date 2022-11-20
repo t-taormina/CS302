@@ -5,7 +5,6 @@
 
 #include "bst.h"
 
-
 // Node class
 // ================================================================
 
@@ -16,10 +15,6 @@ Node::Node(shared_ptr<Concept> concept_ptr): left(nullptr), right(nullptr)
     base_ptr = std::move( concept_ptr );
 }
 
-//Node::Node(const Node & to_copy){}
-
-//Node & Node::operator=(const Node & src){}
-
 Node::~Node()
 {
     base_ptr.reset();
@@ -29,13 +24,8 @@ Node::~Node()
 
 int Node::display()
 {
-    if (shared_ptr<Intro> i = std::dynamic_pointer_cast<Intro>( base_ptr ))
-        i->display();
-    if (shared_ptr<Intermediate> inter = std::dynamic_pointer_cast<Intermediate>( base_ptr ))
-        inter->display();
-    if (shared_ptr<Advanced> a = std::dynamic_pointer_cast<Advanced>( base_ptr ))
-        a->display();
-
+    if (base_ptr)
+        base_ptr->display();
     cout << endl;
     return 0;
 }
@@ -72,7 +62,12 @@ shared_ptr<Concept> Node::get_base()
     return base_ptr;
 }
 
-
+int Node::set_base(shared_ptr<Concept> ptr)
+{
+    base_ptr.reset();
+    base_ptr = std::move( ptr );
+    return 0;
+}
 // ================================================================
 
 
@@ -80,10 +75,6 @@ shared_ptr<Concept> Node::get_base()
 // ================================================================
 
 Tree::Tree(): root(nullptr){}
-
-Tree::Tree(const Tree & to_copy){}
-
-Tree & Tree::operator=(const Tree & src){}
 
 Tree::~Tree(){}
 
@@ -146,32 +137,50 @@ int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
     {
         // Case with no children.
         if (!curr->get_left() && !curr->get_right())
-        {
             curr.reset();
-            return 1;
-        }
 
         // Case with one child left.
         else if (curr->get_left() && !curr->get_right())
-        {
             curr = std::move( curr->get_left() );
-            return 1;
-        }
 
         // Case with one child right.
         else if (!curr->get_left() && curr->get_right())
-        {
             curr = std::move( curr->get_right() );
-            return 1;
-        }
+
 
         // Case with two children.
         else
         {
+            shared_ptr<Node> temp =  curr->get_right() ;
+            if ( !temp->get_left() )
+            {
+                shared_ptr<Node> hold = std::move( temp->get_right() );
+                curr->set_base( temp->get_base() );  
+                temp = hold; 
+            }
+
+            else 
+                in_order_successor(curr, temp); 
             return 1;
         }
     }
+    return 0;
 }
 
-int Tree::remove_all(){}
+
+int Tree::in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& curr)
+{
+    if (!curr->get_left())
+    {
+        cout << "Calling IOS" << endl;
+        to_replace->set_base( curr->get_base() );
+        curr = std::move( curr->get_right() );
+        return 1;
+    }
+    else return in_order_successor(to_replace, curr->get_left());
+}
+
+int Tree::remove_all()
+{
+}
 
