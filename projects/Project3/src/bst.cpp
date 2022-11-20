@@ -15,6 +15,18 @@ Node::Node(shared_ptr<Concept> concept_ptr): left(nullptr), right(nullptr)
     base_ptr = std::move( concept_ptr );
 }
 
+Node::Node(const Node& to_copy):base_ptr(to_copy.base_ptr), left(to_copy.left), right(to_copy.right)
+{}
+
+
+Node& Node::operator=(const Node& arg)
+{
+    base_ptr = arg.base_ptr;
+    left = arg.left;
+    right = arg.right;
+    return *this;
+}
+
 Node::~Node()
 {
     base_ptr.reset();
@@ -147,22 +159,9 @@ int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
         else if (!curr->get_left() && curr->get_right())
             curr = std::move( curr->get_right() );
 
-
         // Case with two children.
         else
-        {
-            shared_ptr<Node> temp =  curr->get_right() ;
-            if ( !temp->get_left() )
-            {
-                shared_ptr<Node> hold = std::move( temp->get_right() );
-                curr->set_base( temp->get_base() );  
-                temp = hold; 
-            }
-
-            else 
-                in_order_successor(curr, temp); 
-            return 1;
-        }
+            in_order_successor(curr, curr->get_right()); 
     }
     return 0;
 }
@@ -172,7 +171,6 @@ int Tree::in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& cur
 {
     if (!curr->get_left())
     {
-        cout << "Calling IOS" << endl;
         to_replace->set_base( curr->get_base() );
         curr = std::move( curr->get_right() );
         return 1;
@@ -180,7 +178,21 @@ int Tree::in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& cur
     else return in_order_successor(to_replace, curr->get_left());
 }
 
+//WRAPPER FOR RECURSIVE METHOD
 int Tree::remove_all()
 {
+    return remove_all(root);
 }
 
+//PRIVATE RECURSIVE METHOD
+int Tree::remove_all(shared_ptr<Node> & curr)
+{
+    if (!curr)
+        return 1;
+    int count = 0;
+    count = 1 + remove_all(curr->get_left());
+    count = 1 + remove_all(curr->get_right());
+    curr->display();
+    curr.reset();
+    return count;
+}

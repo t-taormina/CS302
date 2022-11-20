@@ -14,6 +14,8 @@ class Node
     public:
         Node();
         Node(const Concept& obj);
+        Node(const Node& to_copy);
+        Node& operator=(const Node& arg);
         Node(shared_ptr<Concept> concept_ptr);
         ~Node();
 
@@ -48,6 +50,7 @@ class Tree
         int insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr);
         int display(shared_ptr<Node> curr);
         int remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr);
+        int remove_all(shared_ptr<Node> & curr);
         int in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& curr);
         shared_ptr<Node> root;
 };

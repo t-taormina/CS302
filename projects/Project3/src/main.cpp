@@ -65,9 +65,15 @@ int test_tree()
     int count = t1.display();
     cout << "Number of nodes: " << count << endl;
 
+    cout << "Removing ";
+    rem->display();
+    cout << endl;
     t1.remove(rem);
     cout << "DISPLAY" << endl;
     count = t1.display();
+    cout << "Number of nodes: " << count << endl;
+    cout << "Remove all count" << endl;
+    count = t1.remove_all();
     cout << "Number of nodes: " << count << endl;
     return 0;
 }
