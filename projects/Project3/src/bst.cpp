@@ -142,9 +142,8 @@ int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
 {
     if (!curr)
         return 0;
-    int result = 0;
-    result = remove(ptr, curr->get_left());
-    result = remove(ptr, curr->get_right());
+    remove(ptr, curr->get_left());
+    remove(ptr, curr->get_right());
     if (!curr->compare(ptr))
     {
         // Case with no children.
