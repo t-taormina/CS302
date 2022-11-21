@@ -160,12 +160,11 @@ int test_node()
     return 0;
 }
 
-string get_language()
+int get_string(string& arg)
 {
-  cout << "Please enter the name of a programming language: ";
-  string temp;
-  getline(cin, temp);
-  return temp;
+    arg = "";
+    getline(cin, arg);
+    return 0;
 }
 
 /*

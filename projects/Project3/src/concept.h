@@ -4,6 +4,18 @@
 // CS302 Program 3
 
 
+// This file contains the signatures for the hierarchy used in my program. This 
+// hierarchy is intended to represent terms commonly used in computer science. The 
+// base class is "Concept" and publicly deriving from this class are the classes
+// "Intro", "Intermediate", and "Advanced". These classes represent concepts based 
+// on their level difficulty. This program was built to explore dynamic binding
+// and as such there are virtual functions in the base class. These functions
+// are the self similar functions that are implemented throughout the hierarchy. 
+// The unique functions and the required STL container are both parts of the 
+// "Advanced" class. 
+// =============================================================================
+
+
 #ifndef CONCEPT_H
 #define CONCEPT_H
 #include <iostream>
