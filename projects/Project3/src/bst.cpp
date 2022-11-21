@@ -18,7 +18,6 @@ Node::Node(shared_ptr<Concept> concept_ptr): left(nullptr), right(nullptr)
 Node::Node(const Node& to_copy):base_ptr(to_copy.base_ptr), left(to_copy.left), right(to_copy.right)
 {}
 
-
 Node& Node::operator=(const Node& arg)
 {
     base_ptr = arg.base_ptr;
@@ -138,6 +137,7 @@ int Tree::remove(shared_ptr<Concept> ptr)
     return remove(ptr, root);
 }
 
+//PRIVATE RECURSIVE METHOD
 int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
 {
     if (!curr)
@@ -191,7 +191,6 @@ int Tree::remove_all(shared_ptr<Node> & curr)
     int count = 0;
     count = 1 + remove_all(curr->get_left());
     count = 1 + remove_all(curr->get_right());
-    curr->display();
     curr.reset();
     return count;
 }

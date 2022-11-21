@@ -20,15 +20,9 @@ int test_tree()
     shared_ptr<Intro> ptr1 = std::make_shared<Intro>(i1);
     shared_ptr<Concept> c1 = ptr1;
 
-    Intro i2("int q = 0; // q is the variable", "query");
-    shared_ptr<Intro> ptr6 = std::make_shared<Intro>(i2);
-    shared_ptr<Concept> c6 = ptr6;
-
-
     Intermediate in1("A linked list is a collection of nodes that are connect by pointers.", "LL list1;", "linked list");
     shared_ptr<Intermediate> ptr2 = std::make_shared<Intermediate>(in1);
     shared_ptr<Concept> c2 = ptr2;
- 
 
     Advanced a1("Node * ptr; // This would make a pointer to a node object.", "pointer");
     shared_ptr<Advanced> ptr3 = std::make_shared<Advanced>(a1);
@@ -41,7 +35,17 @@ int test_tree()
     Advanced a3("Node& ref; // This would make a reference to a Node object.", "zff");
     shared_ptr<Advanced> ptr5 = std::make_shared<Advanced>(a3);
     shared_ptr<Concept> c5 = ptr5;
-    
+ 
+    Intro i2("int q = 0; // q is the variable", "query");
+    shared_ptr<Intro> ptr6 = std::make_shared<Intro>(i2);
+    shared_ptr<Concept> c6 = ptr6;
+ 
+    Intermediate in2("A value that cannot store data. Belongs on the right hand side of an operator.", "int x = 4 + 2; // (4 + 2) is the rvalue", "rvalue");
+    shared_ptr<Intermediate> ptr7 = std::make_shared<Intermediate>(in2);
+    shared_ptr<Concept> c7 = ptr7;
+
+
+   
     /*
     c2->display();
     auto ptr = std::dynamic_pointer_cast<Advanced>(c2);
@@ -49,8 +53,8 @@ int test_tree()
     ptr->display();
     */
  
-    Concept cremove("pointer");
-    shared_ptr<Concept> rem = std::make_shared<Concept>(cremove);
+    Concept remove_me("pointer");
+    shared_ptr<Concept> rem = std::make_shared<Concept>(remove_me);
 
     
     Tree t1;
@@ -59,12 +63,14 @@ int test_tree()
     t1.insert(c1);//var goes right
     t1.insert(c4);//zee goes right and then right 
     t1.insert(c5);//zff goes right and then right and then right
-    //t1.insert(c6);// query goes right, left, left and  should be root
+    // t1.insert(c6);// rvalue goes right
+    // t1.insert(c7);// rvalue goes right
     cout << endl;
     cout << "DISPLAY" << endl;
     int count = t1.display();
     cout << "Number of nodes: " << count << endl;
 
+    cout << endl;
     cout << "Removing ";
     rem->display();
     cout << endl;
@@ -72,11 +78,15 @@ int test_tree()
     cout << "DISPLAY" << endl;
     count = t1.display();
     cout << "Number of nodes: " << count << endl;
+
+    cout << endl;
     cout << "Remove all count" << endl;
-    count = t1.remove_all();
+    t1.remove_all();
+    count = t1.display();
     cout << "Number of nodes: " << count << endl;
     return 0;
 }
+
 
  // 
  //    Concept c1("tyler");
