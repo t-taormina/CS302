@@ -18,78 +18,82 @@ int main()
 
 // Testing Code.
 // ====================================================================================================================
+//return test_tree(); // put this in main to test
+
 int test_tree()
 {   
     Intro i1("int x = 0; // x is the variable", "variable");
     shared_ptr<Intro> ptr1 = std::make_shared<Intro>(i1);
     shared_ptr<Concept> c1 = ptr1;
 
-    Intermediate in1("A linked list is a collection of nodes that are connect by pointers.", "LL list1;", "linked list");
-    shared_ptr<Intermediate> ptr2 = std::make_shared<Intermediate>(in1);
-    shared_ptr<Concept> c2 = ptr2;
-
-    Advanced a1("Node * ptr; // This would make a pointer to a node object.", "pointer");
-    shared_ptr<Advanced> ptr3 = std::make_shared<Advanced>(a1);
-    shared_ptr<Concept> c3 = ptr3;
-
-    Advanced a2("Node& ref; // This would make a reference to a Node object.", "zee");
-    shared_ptr<Advanced> ptr4 = std::make_shared<Advanced>(a2);
-    shared_ptr<Concept> c4 = ptr4;
-
     Advanced a3("Node& ref; // This would make a reference to a Node object.", "zff");
     shared_ptr<Advanced> ptr5 = std::make_shared<Advanced>(a3);
     shared_ptr<Concept> c5 = ptr5;
- 
-    Intro i2("int q = 0; // q is the variable", "query");
-    shared_ptr<Intro> ptr6 = std::make_shared<Intro>(i2);
-    shared_ptr<Concept> c6 = ptr6;
- 
-    Intermediate in2("A value that cannot store data. Belongs on the right hand side of an operator.", "int x = 4 + 2; // (4 + 2) is the rvalue", "rvalue");
-    shared_ptr<Intermediate> ptr7 = std::make_shared<Intermediate>(in2);
-    shared_ptr<Concept> c7 = ptr7;
 
-
-   
-    /*
-    c2->display();
-    auto ptr = std::dynamic_pointer_cast<Advanced>(c2);
-    ptr->add_language("python");
-    ptr->display();
-    */
+    shared_ptr<Advanced> ptr = std::dynamic_pointer_cast<Advanced>(c1);
+    if (!ptr)
+        cout << "Nullptr" << endl;
+    if (ptr)
+    {
+        ptr->add_language("python");
+        ptr->display();
+    }
  
-    Concept remove_me("pointer");
-    shared_ptr<Concept> rem = std::make_shared<Concept>(remove_me);
+    // Concept remove_me("pointer");
+    // shared_ptr<Concept> rem = std::make_shared<Concept>(remove_me);
 
-    
-    Tree t1;
-    t1.insert(c3);// pointer
-    t1.insert(c2);// LL goes left
-    t1.insert(c1);//var goes right
-    t1.insert(c4);//zee goes right and then right 
-    t1.insert(c5);//zff goes right and then right and then right
+    // 
+    // Tree t1;
+    // t1.insert(c3);// pointer
+    // t1.insert(c2);// LL goes left
+    // t1.insert(c1);//var goes right
+    // t1.insert(c4);//zee goes right and then right 
+    // t1.insert(c5);//zff goes right and then right and then right
     // t1.insert(c6);// rvalue goes right
     // t1.insert(c7);// rvalue goes right
-    cout << endl;
-    cout << "DISPLAY" << endl;
-    int count = t1.display();
-    cout << "Number of nodes: " << count << endl;
-
-    cout << endl;
-    cout << "Removing ";
-    rem->display();
-    cout << endl;
-    t1.remove(rem);
-    cout << "DISPLAY" << endl;
-    count = t1.display();
-    cout << "Number of nodes: " << count << endl;
-
-    cout << endl;
-    cout << "Remove all count" << endl;
-    t1.remove_all();
-    count = t1.display();
-    cout << "Number of nodes: " << count << endl;
+    // cout << endl;
+    // cout << "DISPLAY" << endl;
+    // int count = t1.display();
+    // cout << "Number of nodes: " << count << endl;
+    //
+    // cout << endl;
+    // cout << "Removing ";
+    // rem->display();
+    // cout << endl;
+    // t1.remove(rem);
+    // cout << "DISPLAY" << endl;
+    // count = t1.display();
+    // cout << "Number of nodes: " << count << endl;
+    //
+    // cout << endl;
+    // cout << "Remove all count" << endl;
+    // t1.remove_all();
+    // count = t1.display();
+    // cout << "Number of nodes: " << count << endl;
     return 0;
 }
+
+    //
+    // Intermediate in1("A linked list is a collection of nodes that are connect by pointers.", "LL list1;", "linked list");
+    // shared_ptr<Intermediate> ptr2 = std::make_shared<Intermediate>(in1);
+    // shared_ptr<Concept> c2 = ptr2;
+    //
+    // Advanced a1("Node * ptr; // This would make a pointer to a node object.", "pointer");
+    // shared_ptr<Advanced> ptr3 = std::make_shared<Advanced>(a1);
+    // shared_ptr<Concept> c3 = ptr3;
+    //
+    // Advanced a2("Node& ref; // This would make a reference to a Node object.", "zee");
+    // shared_ptr<Advanced> ptr4 = std::make_shared<Advanced>(a2);
+    // shared_ptr<Concept> c4 = ptr4;
+    //
+ // 
+ //    Intro i2("int q = 0; // q is the variable", "query");
+ //    shared_ptr<Intro> ptr6 = std::make_shared<Intro>(i2);
+ //    shared_ptr<Concept> c6 = ptr6;
+ // 
+ //    Intermediate in2("A value that cannot store data. Belongs on the right hand side of an operator.", "int x = 4 + 2; // (4 + 2) is the rvalue", "rvalue");
+ //    shared_ptr<Intermediate> ptr7 = std::make_shared<Intermediate>(in2);
+ //    shared_ptr<Concept> c7 = ptr7;
 
 
  // 

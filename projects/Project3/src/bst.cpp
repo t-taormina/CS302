@@ -114,6 +114,7 @@ int Tree::insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr)
 //WRAPPER FOR RECURSIVE METHOD
 int Tree::display()
 {
+    if (!root) return 0;
     return display(root);
 }
 
@@ -198,3 +199,32 @@ int Tree::remove_all(shared_ptr<Node> & curr)
     curr.reset();
     return count;
 }
+
+//WRAPPER FOR RECURSIVE METHOD
+int Tree::add_language(shared_ptr<Concept> ptr, string& to_add)
+{
+    if (!root)
+        return 0;
+    return add_language(ptr, root, to_add);
+}
+
+//PRIVATE RECURSIVE METHOD
+int Tree::add_language(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, string& to_add)
+{
+    if (!curr)
+        return 0;
+    int count = 0;
+    count = add_language(ptr, curr->get_left(), to_add);
+    if (!curr->compare(ptr)) //Down cast.
+    {
+        shared_ptr<Advanced> ptr = std::dynamic_pointer_cast<Advanced>(curr->get_base());
+        if(ptr)
+        {
+            ptr->add_language(to_add);
+            count++;
+            return count;
+        }
+    }
+    return count += add_language(ptr, curr->get_right(), to_add);
+}
+

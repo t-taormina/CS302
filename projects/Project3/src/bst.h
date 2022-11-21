@@ -44,12 +44,14 @@ class Tree
         int insert(shared_ptr<Concept> Cptr);
         int display();
         int remove(shared_ptr<Concept> ptr);
+        int add_language(shared_ptr<Concept> ptr, string& to_add);
         int remove_all();
 
     private:
         int insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr);
         int display(shared_ptr<Node> curr);
         int remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, int& flag);
+        int add_language(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, string& to_add);
         int remove_all(shared_ptr<Node> & curr);
         int in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& curr);
         shared_ptr<Node> root;
