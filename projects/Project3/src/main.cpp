@@ -3,17 +3,21 @@
 // November 2022
 // CS302 Program 3
 
-#include "bst.h"
+#include "client.h" // Provides the run() function used in main.
 
+//Testing functions...|
 string get_language();
 int test_node();
 int test_tree();
+// ...................|
 
 int main()
 {
-    return test_tree();
+    return run();
 }
 
+// Testing Code.
+// ====================================================================================================================
 int test_tree()
 {   
     Intro i1("int x = 0; // x is the variable", "variable");

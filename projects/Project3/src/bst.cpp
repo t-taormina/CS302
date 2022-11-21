@@ -134,18 +134,21 @@ int Tree::remove(shared_ptr<Concept> ptr)
 {
     if (!root)
         return 0;
-    return remove(ptr, root);
+    int flag = 0;
+    remove(ptr, root, flag);
+    return flag;
 }
 
 //PRIVATE RECURSIVE METHOD
-int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
+int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, int& flag)
 {
     if (!curr)
         return 0;
-    remove(ptr, curr->get_left());
-    remove(ptr, curr->get_right());
+    remove(ptr, curr->get_left(), flag);
+    remove(ptr, curr->get_right(), flag);
     if (!curr->compare(ptr))
     {
+        flag = 1;
         // Case with no children.
         if (!curr->get_left() && !curr->get_right())
             curr.reset();
@@ -161,8 +164,9 @@ int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr)
         // Case with two children.
         else
             in_order_successor(curr, curr->get_right()); 
+        return 1;
     }
-    return 0;
+    else return 0;
 }
 
 

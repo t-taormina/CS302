@@ -49,7 +49,7 @@ class Tree
     private:
         int insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr);
         int display(shared_ptr<Node> curr);
-        int remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr);
+        int remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, int& flag);
         int remove_all(shared_ptr<Node> & curr);
         int in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& curr);
         shared_ptr<Node> root;
