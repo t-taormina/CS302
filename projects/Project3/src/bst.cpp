@@ -12,6 +12,8 @@
 // stl::list "languages" found in the Advanced concept objects. 
 // =============================================================================
 
+// Node: line 19
+// BST: line 130
 
 #include "bst.h"
 
@@ -128,18 +130,26 @@ int Node::set_base(const shared_ptr<Concept>& ptr)
 // Tree Class
 // ================================================================
 
+// Default constructor.
 Tree::Tree(): root(nullptr){}
 
+// Parameterized constructor.
 Tree::~Tree(){}
 
-//WRAPPER FOR RECURSIVE METHOD
-int Tree::insert(shared_ptr<Concept> Cptr)
+// @Dev    - wrapper for recursive function call. Inserts argument alphabetically. 
+// Args    - Concept pointer.
+// Returns - None.
+int Tree::insert(const shared_ptr<Concept>& Cptr)
 {
     return insert(Cptr, root);
 }
 
-//PRIVATE RECURSIVE METHOD
-int Tree::insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr)
+// @Dev    - recursive function call. Inserts argument alphabetically. 
+// Args    - Concept pointer and a node pointer used for traversal.
+// Returns - integer success.
+//           0 for successful add.
+//           1 if the arg is already in the tree (no duplicates).
+int Tree::insert(const shared_ptr<Concept>& Cptr, shared_ptr<Node>& curr)
 {
     if (!curr)
     {
@@ -154,14 +164,18 @@ int Tree::insert(shared_ptr<Concept> Cptr, shared_ptr<Node>& curr)
         return 1;
 }
 
-//WRAPPER FOR RECURSIVE METHOD
+// @Dev    - wrapper for recursive function call to alphabetically display tree. 
+// Args    - None.
+// Returns - Integer count of all nodes in tree.
 int Tree::display()
 {
     if (!root) return 0;
     return display(root);
 }
 
-//PRIVATE RECURSIVE METHOD
+// @Dev    - recursive function call to alphabetically display tree. 
+// Args    - Node pointer used for traversal and display function call.
+// Returns - Integer count of all nodes in tree.
 int Tree::display(shared_ptr<Node> curr)
 {
     if (!curr)
@@ -173,18 +187,28 @@ int Tree::display(shared_ptr<Node> curr)
     return count += display(curr->get_right());
 }
 
-//WRAPPER FOR RECURSIVE METHOD
-int Tree::remove(shared_ptr<Concept> ptr)
+// @Dev    - wrapper for recursive function to remove node matching argument passed. 
+// Args    - Concept pointer to remove.
+// Returns - Integer success.
+//           0 for successful removal.
+//           1 for no matching node.
+int Tree::remove(const shared_ptr<Concept>&  ptr)
 {
     if (!root)
         return 0;
-    int flag = 0;
+    int flag = 1;
     remove(ptr, root, flag);
     return flag;
 }
 
-//PRIVATE RECURSIVE METHOD
-int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, int& flag)
+// @Dev    - recursive function to remove node matching argument passed. Uses
+//           in_order_successor(...) recursive function. 
+// Args    - Concept pointer to remove, node pointer for traversal, and integer 
+//           flag for success/fail.
+// Returns - Integer success.
+//           0 for successful removal.
+//           1 for no matching node.
+int Tree::remove(const shared_ptr<Concept>& ptr, shared_ptr<Node>& curr, int& flag)
 {
     if (!curr)
         return 0;
@@ -192,7 +216,7 @@ int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, int& flag)
     remove(ptr, curr->get_right(), flag);
     if (!curr->compare(ptr))
     {
-        flag = 1;
+        flag = 0;
         // Case with no children.
         if (!curr->get_left() && !curr->get_right())
             curr.reset();
@@ -213,7 +237,10 @@ int Tree::remove(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, int& flag)
     else return 0;
 }
 
-
+// @Dev    - replaces to_replace node pointer with in order successor data.
+// Args    - node pointer that is getting replaced and a node pointer for traversal
+//           that will be replacing the to_replace node.
+// Returns - Integer success.
 int Tree::in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& curr)
 {
     if (!curr->get_left())
@@ -225,13 +252,17 @@ int Tree::in_order_successor(shared_ptr<Node>& to_replace, shared_ptr<Node>& cur
     else return in_order_successor(to_replace, curr->get_left());
 }
 
-//WRAPPER FOR RECURSIVE METHOD
+// @Dev    - wrapper function to call recursive function to remove all nodes.
+// Args    - None.
+// Returns - Integer success.
 int Tree::remove_all()
 {
     return remove_all(root);
 }
 
-//PRIVATE RECURSIVE METHOD
+// @Dev    - recursive function to remove all nodes.
+// Args    - Node pointer for traversal.
+// Returns - Integer success.
 int Tree::remove_all(shared_ptr<Node> & curr)
 {
     if (!curr)
@@ -243,7 +274,10 @@ int Tree::remove_all(shared_ptr<Node> & curr)
     return count;
 }
 
-//WRAPPER FOR RECURSIVE METHOD
+// @Dev    - wrapper function to call recursive function to remove add string data 
+//           to node that matches the concept pointer argument.
+// Args    - concept pointer to match and string to add.
+// Returns - integer success.
 int Tree::add_language(shared_ptr<Concept> ptr, string& to_add)
 {
     if (!root)
@@ -251,7 +285,15 @@ int Tree::add_language(shared_ptr<Concept> ptr, string& to_add)
     return add_language(ptr, root, to_add);
 }
 
-//PRIVATE RECURSIVE METHOD
+// @Dev    - function to remove add string data to node that matches the concept
+//           pointer argument. This function uses dynamic casting to call the 
+//           unique function "add_language" in Advanced class. If the object 
+//           that is matched the variable "ptr" will be set to nullptr and no 
+//           function call wii be made. This will leave data structure unchanged.  
+// Args    - concept pointer to match, node pointer for traversal, and string to add.
+// Returns - integer success.
+//           0 unsuccessful 
+//           1 success
 int Tree::add_language(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, string& to_add)
 {
     if (!curr)
