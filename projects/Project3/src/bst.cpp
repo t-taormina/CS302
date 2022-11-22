@@ -3,10 +3,20 @@
 // November 2022
 // CS302 Program 3
 
+
+// This file contains the implementation for the data structure and nodes used 
+// for this program. The data structure is a binary search tree using the 
+// shared_ptr smart pointer. This tree supports insertion alphabetically, 
+// removal by matching name (case sensitive as of now), full removal, full 
+// display, and a "add_language()" function that will add an argument to the 
+// stl::list "languages" found in the Advanced concept objects. 
+// =============================================================================
+
+
 #include "bst.h"
 
 // Node class
-// ================================================================
+// =============================================================================
 
 Node::Node(): base_ptr(nullptr), left(nullptr), right(nullptr){}
 

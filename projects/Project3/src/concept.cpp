@@ -9,6 +9,7 @@
 // is the base class and all other classes inherit publicly from the Concept class.
 // There are three self similar functions in the hierarchy are: read_in(), edit(), 
 // and match(). 
+// =============================================================================
 //
 // Concept: line 8
 // Intro: line 98
@@ -19,7 +20,7 @@
 #include "concept.h"
 
 // Concept Class 
-// ==========================================================
+// =============================================================================
 //
 
 // Default constructor.
@@ -96,7 +97,7 @@ string Concept::get_name()
 }
 
 // Intro Class
-// ==========================================================
+// =============================================================================
 
 // Default constructor.
 Intro::Intro(): Concept(), example(""), lower_division(1) {}
@@ -179,7 +180,7 @@ string Intro::get_name()
 
 
 // Intermediate Class
-// ==========================================================
+// =============================================================================
 
 // Default constructor.
 Intermediate::Intermediate(): Concept(), definition(""), syntax(""){}
@@ -267,7 +268,7 @@ string Intermediate::get_name()
 
 
 // Advanced Class
-// ==========================================================
+// =============================================================================
 
 // Default constructor.
 Advanced::Advanced(): Concept(){}
