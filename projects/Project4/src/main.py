@@ -22,7 +22,8 @@ def test_classes():
             '1) Edit Title \n' +
             '2) Edit Location \n' +
             '3) Edit Date\nInput:'))
-    event.edit(choice)
+    arg = input('Enter the new data:')
+    event.edit(choice, arg)
     print(event)
     print(repr(event))
 
