@@ -18,16 +18,28 @@
 // Node class
 // =============================================================================
 
+// Default constructor.
 Node::Node(): base_ptr(nullptr), left(nullptr), right(nullptr){}
 
+// Parameterized constructor.
 Node::Node(shared_ptr<Concept> concept_ptr): left(nullptr), right(nullptr)
 {
     base_ptr = std::move( concept_ptr );
 }
 
+// Copy constructor.
 Node::Node(const Node& to_copy):base_ptr(to_copy.base_ptr), left(to_copy.left), right(to_copy.right)
 {}
 
+// Destructor.
+Node::~Node()
+{
+    base_ptr.reset();
+    left.reset();
+    right.reset();
+}
+
+// Assignment operator. 
 Node& Node::operator=(const Node& arg)
 {
     base_ptr = arg.base_ptr;
@@ -36,13 +48,9 @@ Node& Node::operator=(const Node& arg)
     return *this;
 }
 
-Node::~Node()
-{
-    base_ptr.reset();
-    left.reset();
-    right.reset();
-}
-
+// @Dev    - displays all items stored in the node data member. 
+// Args    - None.
+// Returns - Integer success.
 int Node::display()
 {
     if (base_ptr)
@@ -51,39 +59,64 @@ int Node::display()
     return 0;
 }
 
-int Node::compare(shared_ptr<Concept> Cptr)
+// @Dev    - function determine if a argument name matches 
+//           the name stored in node data. 
+// Args    - constant Concept pointer by reference.
+// Returns - integer success.
+//           0 for a match 
+//           + number for post alphabetically
+//           - number for pre alphabetically
+int Node::compare(const shared_ptr<Concept>& Cptr)
 {
     return base_ptr->match(Cptr->get_name());
 }
 
+// @Dev    - returns left child node
+// Args    - None.
+// Returns - Reference to node pointer.
 shared_ptr<Node>& Node::get_left()
 {
     return left;
 }
 
-int Node::set_left(shared_ptr<Concept> ptr)
+// @Dev    - sets left child node to argument passed.
+// Args    - constant Concept pointer by reference.
+// Returns - Integer success.
+int Node::set_left(const shared_ptr<Concept>& ptr)
 {
     left = std::make_shared<Node>( Node(ptr) );
     return 0;
 }
 
+// @Dev    - returns right child node
+// Args    - None.
+// Returns - Reference to node pointer.
 shared_ptr<Node>& Node::get_right()
 {
     return right;
 }
 
-int Node::set_right(shared_ptr<Concept> ptr)
+// @Dev    - sets left child node to argument passed.
+// Args    - constant Concept pointer by reference.
+// Returns - Integer success.
+int Node::set_right(const shared_ptr<Concept>& ptr)
 {
     right = std::make_shared<Node>( Node(ptr) );
     return 0;
 }
 
+// @Dev    - returns concept pointer to the private data member. 
+// Args    - None.
+// Returns - Reference to Concept pointer.
 shared_ptr<Concept> Node::get_base()
 {
     return base_ptr;
 }
 
-int Node::set_base(shared_ptr<Concept> ptr)
+// @Dev    - sets data pointer to argument passed.
+// Args    - constant Concept pointer by reference.
+// Returns - Integer success.
+int Node::set_base(const shared_ptr<Concept>& ptr)
 {
     base_ptr.reset();
     base_ptr = std::move( ptr );

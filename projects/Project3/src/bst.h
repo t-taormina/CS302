@@ -29,18 +29,18 @@ class Node
         Node();
         Node(const Concept& obj);
         Node(const Node& to_copy);
+        ~Node();
         Node& operator=(const Node& arg);
         Node(shared_ptr<Concept> concept_ptr);
-        ~Node();
 
         int display();
-        int compare(shared_ptr<Concept> Cptr);
+        int compare(const shared_ptr<Concept>& Cptr);
         shared_ptr<Node>& get_left();
-        int set_left(shared_ptr<Concept> ptr);
+        int set_left(const shared_ptr<Concept>& ptr);
         shared_ptr<Node>& get_right();
-        int set_right(shared_ptr<Concept> ptr);
+        int set_right(const shared_ptr<Concept>&  ptr);
         shared_ptr<Concept> get_base();
-        int set_base(shared_ptr<Concept> ptr);
+        int set_base(const shared_ptr<Concept>& ptr);
 
     private:
         shared_ptr<Concept> base_ptr;
