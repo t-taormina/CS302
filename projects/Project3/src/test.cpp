@@ -3,7 +3,7 @@
 // November 2022
 // CS302 Program 3
 
-// TEST CODE PLEASE IGNORE
+// TEST CODE PLEASE IGNORE THIS FILE. IT IS NOT USED IN THE PROGRAM.
 
 //Testing functions...|
 string get_language();
@@ -215,4 +215,5 @@ Advanced i1;
   i3.display();
   i3.remove_language(get_language());
   i3.display();
-*
+*/
+
