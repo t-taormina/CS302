@@ -36,5 +36,22 @@ possible. Recursion was used in all repetitive portions of functions. Please let
 me know how you think I did! 
 
 ### GDB Experience
-
+With this program, I had a harder time than usual using the debugger. This was 
+due to the smart pointers. For a handful of errors that I experienced when I would
+try to step into a function that made use of a smart pointer, the debugger would 
+jump straight to the smart pointer implementations. This was confusing at first, 
+but I eventually found my through it and into my implementations. The most 
+exhausting bug that I ran into was a logic error in my removal function. Specifically, 
+it was the case with two children where the in order successor was needed to 
+replace the specified node. My code resulted in the proper node getting replaced
+with the in order successor, but where the in order successor should have been 
+replaced by its right node, it was not. That and I was loosing any subtrees that 
+came off the IOS subtree. The cause? Well, part of it was forgetfulness. I never 
+implemented a copy constructor or assignment operator for my node class. I was 
+making shallow copies which was the cause the lost subtrees. The other problem I 
+had was that I was passing a copy of a node into my in order successor function. 
+I needed to pass a reference. After many runs through the code in question using 
+GDB, I was able to see my problem and make the appropriate changes. Overall, 
+I continued gaining comfort in the use of GDB and am looking forward to getting 
+better with future programs. 
 
