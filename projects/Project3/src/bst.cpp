@@ -312,4 +312,3 @@ int Tree::add_language(shared_ptr<Concept> ptr, shared_ptr<Node>& curr, string& 
     }
     return count += add_language(ptr, curr->get_right(), to_add);
 }
-
