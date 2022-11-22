@@ -1,10 +1,5 @@
-~$L Diagram.docx
-Design_writeup_Taormina.txt
-UML Diagram.docx
 a.out
-run.sh
-push.sh
-build.sh
+*.sh
 *.tar
 *.tar.gz
 
