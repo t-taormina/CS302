@@ -160,13 +160,6 @@ int test_node()
     return 0;
 }
 
-int get_string(string& arg)
-{
-    arg = "";
-    getline(cin, arg);
-    return 0;
-}
-
 /*
     Advanced i1;
   i1.read_in();
