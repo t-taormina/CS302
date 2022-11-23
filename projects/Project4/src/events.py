@@ -19,30 +19,21 @@ class Event:
         self._title = title
         self._location = location
         self._date = date
+        self.edit_date(date)
 
     def __str__(self):
         """Format _date and returns a formatted string for all data members."""
-        try:
-            converted_date_format = date(
-                    year=int(self._date[0:4]),
-                    month=int(self._date[4:6]),
-                    day=int(self._date[6:8]))
-            return (
-                    f'Title: {self._title}\n' +
-                    f'Location: {self._location}\n' +
-                    f'Date: {converted_date_format}\n')
-        except ValueError:
-            print('Invalid date. Format is: yyyymmdd.\n' + 
-                  'Please try again.')
-            return (
-                    f'Title: {self._title}\n' +
-                    f'Location: {self._location}\n' +
-                    f'Date: {self._date}\n')
+        converted_date_format = date(
+                year=int(self._date[0:4]),
+                month=int(self._date[4:6]),
+                day=int(self._date[6:8]))
+        return (f'Title: {self._title}\n' +
+                f'Location: {self._location}\n' +
+                f'Date: {converted_date_format}\n')
 
     def __repr__(self):
         """Returns string repr of Event object."""
-        return (
-                f"Event(title='{self._title}', " +
+        return (f"Event(title='{self._title}', " +
                 f"location='{self._location}', " +
                 f"date='{self._date}')")
 
@@ -76,7 +67,15 @@ class Event:
     def edit_date(self, arg: str):
         """
         """
-        self._date = arg[0:8]
+        try:
+            date(year=int(arg[0:4]),
+                 month=int(arg[4:6]),
+                 day=int(arg[6:8]))
+
+            self._date = arg[0:8]
+        except ValueError:
+            print('Invalid date. Format: yyyymmdd')
+            self._date = "00000000"
 
 
 class Vacation(Event):
@@ -85,6 +84,7 @@ class Vacation(Event):
     def __init__(self, end_date: str, title: str, location: str, date: str):
         """Initializes Vacation object."""
         self._end_date = end_date
+        self.edit_end_date(end_date)
         self._packing_list = []
         Event.__init__(self, title, location, date)
 
@@ -92,22 +92,13 @@ class Vacation(Event):
         """Format _end_date and returns a formatted string for all data
         members in base and current class.
         """
-        try:
-            converted_date_format = date(
-                    year=int(self._end_date[0:4]),
-                    month=int(self._end_date[4:6]),
-                    day=int(self._end_date[6:8]))
-            return (
-                    Event.__str__(self) +
-                    f'End Date: {converted_date_format}\n')
-
-        except ValueError:
-            print('Invalid date. Format is: yyyymmdd\n' +
-                  'Please try again.')
-            return (
-                    Event.__str__(self) +
-                    f'End Date: {self._end_date}\n')
-
+        converted_date_format = date(
+                year=int(self._end_date[0:4]),
+                month=int(self._end_date[4:6]),
+                day=int(self._end_date[6:8]))
+        return (
+                Event.__str__(self) +
+                f'End Date: {converted_date_format}\n')
 
     def __repr__(self):
         """Formats the data members to mimic the function call made to
@@ -134,10 +125,16 @@ class Vacation(Event):
             return 1
 
     def edit_end_date(self, arg: str):
-        """Edits member _end_date. Will slice string to fit date 
-        formatting of yyyymmdd. The first 8 characters will be
-        used. 
         """
-        self._end_date = arg[0:8];
+        """
+        try:
+            date(year=int(arg[0:4]),
+                 month=int(arg[4:6]),
+                 day=int(arg[6:8]))
+
+            self._date = arg[0:8]
+        except ValueError:
+            print('Invalid date. Format: yyyymmdd')
+            self._date = "00000000"
 
 

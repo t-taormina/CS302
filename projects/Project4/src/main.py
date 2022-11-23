@@ -51,9 +51,11 @@ def test_event_class():
     print(repr(event))
     return None
 
+
 def date_format(arg: int):
     if (arg == 3 or arg == 4):
         print('Dates should be entered in format yyyymmdd.')
+
 
 if __name__ == '__main__':
     main()
