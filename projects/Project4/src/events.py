@@ -12,29 +12,36 @@ from datetime import date
 
 
 class Event:
+    """Base class for event hierarchy.
+    """
     def __init__(self, title: str, location: str, date: str):
-        self.title = title
-        self.location = location
-        self.date = date
+        """Initializes Event object."""
+        self._title = title
+        self._location = location
+        self._date = date
 
     def __str__(self):
+        """Format _date and returns a formatted string for all data members."""
         converted_date_format = date(
-                year=int(self.date[0:4]),
-                month=int(self.date[4:6]),
-                day=int(self.date[6:8]))
+                year=int(self._date[0:4]),
+                month=int(self._date[4:6]),
+                day=int(self._date[6:8]))
 
         return (
-                f'Title: {self.title}\n' +
-                f'Location: {self.location}\n' +
+                f'Title: {self._title}\n' +
+                f'Location: {self._location}\n' +
                 f'Date: {converted_date_format}\n')
 
     def __repr__(self):
+        """Returns string repr of Event object."""
         return (
-                f'Event(title={self.title}, ' +
-                f'location={self.location}, ' +
-                f'date={self.date})')
+                f"Event(title='{self._title}', " +
+                f"location='{self._location}', " +
+                f"date='{self._date}')")
 
     def edit(self, choice: int, arg: str):
+        """Edit the
+        """
         if (0 < choice < 4):
             # edit title: choice 1
             if (choice == 1):
@@ -50,10 +57,10 @@ class Event:
             return 1
 
     def edit_title(self, arg: str):
-        self.title = arg
+        self._title = arg
 
     def edit_location(self, arg: str):
-        self.location = arg
+        self._location = arg
 
     def edit_date(self, arg: str):
-        self.date = arg
+        self._date = arg
