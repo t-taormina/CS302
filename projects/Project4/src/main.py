@@ -29,7 +29,6 @@ def test_vacation_class():
     # event.edit(choice, arg)
     # print(event)
     # print(repr(event))
-
     return None
 
 
@@ -47,7 +46,6 @@ def test_event_class():
     event.edit(choice, arg)
     print(event)
     print(repr(event))
-
     return None
 
 
