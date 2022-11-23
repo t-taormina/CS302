@@ -64,3 +64,36 @@ class Event:
 
     def edit_date(self, arg: str):
         self._date = arg
+
+
+class Vacation(Event):
+    """Vacation class is publicly derived from the Event class.
+    """
+    def __init__(self, end_date: str, title: str, location: str, date: str):
+        """Initializes Vacation object."""
+        self._end_date = end_date
+        self._packing_list = []
+        Event.__init__(self, title, location, date)
+
+    def __str__(self):
+        """Format _end_date and returns a formatted string for all data
+        members in base and current class.
+        """
+        converted_date_format = date(
+                year=int(self._end_date[0:4]),
+                month=int(self._end_date[4:6]),
+                day=int(self._end_date[6:8]))
+
+        return (
+                Event.__str__(self) +
+                f'End Date: {converted_date_format}\n')
+
+    def __repr__(self):
+        """Formats the data members to mimic the function call made to
+        construct the object.
+        """
+        return (
+                f"Vacation(end_date='{self._end_date}', " +
+                f"title='{self._title}', " +
+                f"location='{self._location}', " +
+                f"date='{self._date}')")
