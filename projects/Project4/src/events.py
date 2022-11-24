@@ -9,6 +9,7 @@ This file contains the hierarchy used in this project.
 # cSpell:ignore Taormina
 
 from datetime import date
+DEFAULT_DATE = "19910420"
 
 
 class Event:
@@ -65,7 +66,11 @@ class Event:
         self._location = arg
 
     def edit_date(self, arg: str):
-        """
+        """Determines if the argument passed is a valid
+        date. If the date is valid, the data member is set.
+        Otherwise, a default date is used to set data
+        member. The default date is the day Python
+        0.9.0 was released.
         """
         try:
             date(year=int(arg[0:4]),
@@ -74,8 +79,9 @@ class Event:
 
             self._date = arg[0:8]
         except ValueError:
-            print('Invalid date. Format: yyyymmdd')
-            self._date = "00000000"
+            print('Invalid date. Format: yyyymmdd\n' +
+                  'Set date value to default: 1991-04-20 PLEASE CHANGE\n')
+            self._date = DEFAULT_DATE
 
 
 class Vacation(Event):
@@ -125,16 +131,19 @@ class Vacation(Event):
             return 1
 
     def edit_end_date(self, arg: str):
-        """
+        """Determines if the argument passed is a valid
+        date. If the date is valid, the data member is set.
+        Otherwise, a default date is used to set data
+        member. The default date is the day Python
+        0.9.0 was released.
         """
         try:
             date(year=int(arg[0:4]),
                  month=int(arg[4:6]),
                  day=int(arg[6:8]))
 
-            self._date = arg[0:8]
+            self._end_date = arg[0:8]
         except ValueError:
-            print('Invalid date. Format: yyyymmdd')
-            self._date = "00000000"
-
-
+            print('Invalid date. Format: yyyymmdd\n' +
+                  'Set date value to default: 1991-04-20 PLEASE CHANGE\n')
+            self._end_date = DEFAULT_DATE

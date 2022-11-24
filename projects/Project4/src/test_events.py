@@ -5,7 +5,7 @@ Test suite for Program 4 CS302
 """
 # cSpell:ignore Taormina
 
-from events import Event, Vacation
+from events import Event, Vacation, DEFAULT_DATE
 
 
 class TestEvent:
@@ -29,7 +29,7 @@ class TestEvent:
                      "date='20221114')")
         assert event.__repr__() == test_repr
 
-    def test_event_edit(self):
+    def test_event__edit(self):
         event = Event("lunch", "timberline", "20221114")
         event.edit(1, "cubs game")
         event.edit(2, "chicago")
@@ -38,14 +38,14 @@ class TestEvent:
         assert event._location == "chicago"
         assert event._date == "20220517"
 
-    def test_event_edit_empty_inserts(self):
+    def test_event_invalid_edit(self):
         event = Event("lunch", "timberline", "20221114")
         event.edit(1, "")
         event.edit(2, "")
         event.edit(3, "")
         assert event._title == ""
         assert event._location == ""
-        assert event._date == ""
+        assert event._date == DEFAULT_DATE
 
 
 class TestVacation:
@@ -81,9 +81,7 @@ class TestVacation:
                      "date='20221220')")
         assert vacation.__repr__() == test_repr
 
-
-"""
-    def test_vacation_edit(self):
+    def test_vacation_valid_edit(self):
         vacation = Vacation("20221225",
                             "Family Vacation",
                             "California",
@@ -91,19 +89,22 @@ class TestVacation:
         vacation.edit(1, "cubs game")
         vacation.edit(2, "chicago")
         vacation.edit(3, "20220517")
+        vacation.edit(4, "20220530")
         assert vacation._title == "cubs game"
         assert vacation._location == "chicago"
         assert vacation._date == "20220517"
+        assert vacation._end_date == "20220530"
 
-    def test_vacation_edit_empty_inserts(self):
+    def test_vacation_invalid_edit(self):
         vacation = Vacation("20221225",
                             "Family Vacation",
                             "California",
                             "20221220")
-        vacation.edit(1, "")
-        vacation.edit(2, "")
-        vacation.edit(3, "")
-        assert vacation._title == ""
-        assert vacation._location == ""
-        assert vacation._date == ""
-"""
+        vacation.edit(1, "Family trip")
+        vacation.edit(2, "New York")
+        vacation.edit(3, "123412341234")
+        vacation.edit(4, "000000000000000000000000000")
+        assert vacation._title == "Family trip"
+        assert vacation._location == "New York"
+        assert vacation._date == DEFAULT_DATE
+        assert vacation._end_date == DEFAULT_DATE

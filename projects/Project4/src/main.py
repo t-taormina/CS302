@@ -31,6 +31,10 @@ def test_vacation_class():
     vacation.edit(choice, arg)
     print(vacation)
     print(repr(vacation))
+
+    # Copy works for objects
+    copy_vacation = vacation
+    print('\n' + copy_vacation.__str__())
     return None
 
 
