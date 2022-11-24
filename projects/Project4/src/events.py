@@ -9,7 +9,7 @@ This file contains the hierarchy used in this project.
 # cSpell:ignore Taormina
 
 from datetime import date
-DEFAULT_DATE = "19910420"
+DEFAULT_DATE = "19910220"
 
 
 class Event:
@@ -80,7 +80,7 @@ class Event:
             self._date = arg[0:8]
         except ValueError:
             print('Invalid date. Format: yyyymmdd\n' +
-                  'Set date value to default: 1991-04-20 PLEASE CHANGE\n')
+                  'Set date value to default: 1991-02-20 PLEASE CHANGE\n')
             self._date = DEFAULT_DATE
 
 
@@ -145,7 +145,7 @@ class Vacation(Event):
             self._end_date = arg[0:8]
         except ValueError:
             print('Invalid date. Format: yyyymmdd\n' +
-                  'Set date value to default: 1991-04-20 PLEASE CHANGE\n')
+                  'Set date value to default: 1991-02-20 PLEASE CHANGE\n')
             self._end_date = DEFAULT_DATE
 
 
