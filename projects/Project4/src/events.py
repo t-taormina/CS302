@@ -147,3 +147,11 @@ class Vacation(Event):
             print('Invalid date. Format: yyyymmdd\n' +
                   'Set date value to default: 1991-04-20 PLEASE CHANGE\n')
             self._end_date = DEFAULT_DATE
+
+
+class Meal(Event):
+    """
+    """
+    def __init__(self):
+        """
+        """
