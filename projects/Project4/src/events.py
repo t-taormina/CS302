@@ -152,6 +152,63 @@ class Vacation(Event):
 class Meal(Event):
     """
     """
-    def __init__(self):
+    def __init__(self, dress_code: str, start_time: str, title: str,
+                 location: str, date: str):
+        Event.__init__(self, title, location, date)
+        self._dress_code = dress_code
+        self._start_time = start_time
+
+    def __str__(self):
+        """Format _end_date and returns a formatted string for all data
+        members in base and current class.
+        """
+        return (
+                Event.__str__(self) +
+                f'Dress Code: {self._dress_code}\n' +
+                f'Start Time: {self.convert_time()}\n')
+
+    def __repr__(self):
+        """Formats the data members to mimic the function call made to
+        construct the object.
+        """
+        return (
+                f"Meal(dress_code='{self._dress_code}', " +
+                f"start_time='{self._start_time}', " +
+                f"title='{self._title}', " +
+                f"location='{self._location}', " +
+                f"date='{self._date}')")
+
+    def convert_time(self):
         """
         """
+        return (f'{self._start_time[0:2]}:' +
+                f'{self._start_time[2:4]}' +
+                f'{self._start_time[4:6]}')
+
+    def edit(self, choice: int, arg: str):
+        """Edit the
+        """
+        if (0 < choice < 6):
+            # call parent choice 1 - 3
+            if 0 < choice < 4:
+                Event.edit(self, choice, arg)
+            # edit end date: choice 4
+            if (choice == 4):
+                self.edit_dress_code(arg)
+            if (choice == 5):
+                self.edit_start_time(arg)
+            return 0
+        else:
+            return 1
+
+    def edit_start_time(self, arg: str):
+        """
+        """
+        self._start_time = arg
+        return None
+
+    def edit_dress_code(self, arg: str):
+        """
+        """
+        self._dress_code = arg
+        return None
