@@ -4,11 +4,12 @@ taormina@pdx.edu
 """
 # cSpell:ignore Taormina
 
-from events import Event, Vacation, Meal
+from events import Event, Vacation, Meal, Other
 
 
 def main():
-    test_meal_class()
+    #test_meal_class()
+    test_other_class()
     return None
 
 
@@ -29,17 +30,56 @@ def menu_core():
             '3) Edit Date\n')
 
 
-def edit_meal_menu():
+def meal_menu():
     """
     """
-    choice = int(input(menu_core() +
-                       '4) Edit Dress Code\n' +
-                       '5) Edit Start Time\n->'))
-    if choice < 5:
+    return '4) Edit Dress Code\n5) Edit Start Time\n->'
+
+
+def vacation_menu():
+    """
+    """
+    return '4) Edit End Date\n->'
+
+
+def other_menu():
+    """
+    """
+    return '4) Edit Duration\n5) Edit Start Time\n->'
+
+
+def collect_argument(choice: int):
+    """
+    """
+    if choice == 3:
         date_format(choice)
         arg = input('Enter the new data:\n->')
     else:
         arg = get_time()
+    return arg
+
+
+def edit_meal_menu():
+    """
+    """
+    choice = int(input(menu_core() + meal_menu()))
+    arg = collect_argument(choice)
+    return choice, arg
+
+
+def edit_vacation_menu():
+    """
+    """
+    choice = int(input(menu_core() + vacation_menu()))
+    arg = collect_argument(choice)
+    return choice, arg
+
+
+def edit_other_menu():
+    """
+    """
+    choice = int(input(menu_core() + other_menu()))
+    arg = collect_argument(choice)
     return choice, arg
 
 
@@ -57,6 +97,22 @@ def test_meal_class():
     meal.edit(choice, arg)
     print(meal)
     print(repr(meal))
+
+
+def test_other_class():
+    """
+    """
+    other = Other("0500PM",
+                  "2",
+                  "Work Dinner",
+                  "Applebees",
+                  "20221224")
+    print(other)
+    print(repr(other))
+    choice, arg = edit_other_menu()
+    other.edit(choice, arg)
+    print(other)
+    print(repr(other))
 
 
 def test_vacation_class():
