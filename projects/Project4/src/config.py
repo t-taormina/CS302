@@ -1,5 +1,9 @@
-"""Configuration-
-This file contains constants used and other logistical code.
+"""
+Tyler Taormina
+taormina@pdx.edu
+
+Configuration-
+This file contains constants used and other logistical information.
 """
 # cSpell:ignore Taormina
 

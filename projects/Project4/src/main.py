@@ -3,14 +3,57 @@ Tyler Taormina
 taormina@pdx.edu
 """
 # cSpell:ignore Taormina
+# cSpell:ignore RBnode
 
 from events import Event, Vacation, Meal, Other
+from red_black import RBnode
+from aLL import Node
 
 
 def main():
+    """
     test_meal_class()
     test_other_class()
     test_vacation_class()
+    """
+    test_RBnode_class()
+    test_node_class()
+    return None
+
+
+def test_node_class():
+    meal = Meal("Casual",
+                "0500PM",
+                "Work Dinner",
+                "Applebees",
+                "20221224")
+    vacation = Vacation("20221225",
+                        "Family Vacation",
+                        "California",
+                        "20221220")
+    meal_node = Node(meal)
+    vacation_node = Node(vacation)
+    print(meal_node)
+    print(vacation_node)
+    return None
+
+
+def test_RBnode_class():
+    """
+    """
+    meal = Meal("Casual",
+                "0500PM",
+                "Work Dinner",
+                "Applebees",
+                "20221224")
+    vacation = Vacation("20221225",
+                        "Family Vacation",
+                        "California",
+                        "20221220")
+    meal_node = RBnode(meal)
+    vacation_node = RBnode(vacation)
+    print(meal_node)
+    print(vacation_node)
     return None
 
 
