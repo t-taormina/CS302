@@ -7,7 +7,7 @@ taormina@pdx.edu
 
 from events import Event, Vacation, Meal, Other
 from red_black import RBnode
-from aLL import Node
+from aLL import Node, LinkedList
 
 
 def main():
@@ -15,10 +15,39 @@ def main():
     test_meal_class()
     test_other_class()
     test_vacation_class()
-    """
     test_RBnode_class()
     test_node_class()
+    """
+    test_linked_list_class()
     return None
+
+
+def test_linked_list_class():
+    v1 = Vacation("20221225",
+                  "day trip",
+                  "oregon",
+                  "20221220")
+
+    v2 = Vacation("20221225",
+                  "Family Vacation",
+                  "California",
+                  "20221220")
+
+    v3 = Vacation("20221225",
+                  "holiday",
+                  "new york",
+                  "20221220")
+
+    v4 = Vacation("20221225",
+                  "beaches",
+                  "costa mesa",
+                  "20221220")
+
+    values = [v1, v2, v3, v4]
+    list = LinkedList(values)
+    list.insert(v1)
+    list.insert(v2)
+    list.display()
 
 
 def test_node_class():
