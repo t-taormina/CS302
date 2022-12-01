@@ -83,6 +83,11 @@ class Event:
                   'Set date value to default: 1991-02-20 PLEASE CHANGE\n')
             self._date = DEFAULT_DATE
 
+    def match(self, arg: str):
+        if arg.lower() == self._title.lower():
+            return True
+        return False
+
 
 class Vacation(Event):
     """Vacation class is publicly derived from the Event class.
@@ -147,6 +152,9 @@ class Vacation(Event):
             print('Invalid date. Format: yyyymmdd\n' +
                   'Set date value to default: 1991-02-20 PLEASE CHANGE\n')
             self._end_date = DEFAULT_DATE
+
+    def match(self, arg: str):
+        return super().match(arg)
 
 
 class Meal(Event):
@@ -213,6 +221,9 @@ class Meal(Event):
         self._dress_code = arg
         return None
 
+    def match(self, arg: str):
+        return super().match(arg)
+
 
 class Other(Event):
     """
@@ -277,3 +288,6 @@ class Other(Event):
         """
         self._duration = arg
         return None
+
+    def match(self, arg: str):
+        return super().match(arg)

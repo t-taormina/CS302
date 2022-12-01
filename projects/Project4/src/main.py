@@ -22,11 +22,79 @@ def main():
     test_RBnode_class()
     test_node_class()
     """
-    test_linked_list_class()
+    test_table_class()
     return None
 
 
-def test_linked_list_class():
+def test_table_class():
+    vacation_values = build_vacation_list()
+    meal_values = build_meal_list()
+    other_values = build_other_list()
+    """
+    list = LinkedList(other_values)
+    list.display()
+    list.remove_specific("SoCCEr")
+    list.display()
+    """
+    table = Table(TABLE_SIZE)
+    table.insert(vacation_values, VACATION)
+    table.insert(meal_values, MEAL)
+    table.insert(other_values, OTHER)
+    # table.display_specific_event(OTHER)
+    table.display_specific_event(VACATION)
+    table.remove_event("day TRIP")
+    table.display_specific_event(VACATION)
+
+
+def build_other_list():
+    o1 = Other("1200PM",
+               "2",
+               "Soccer",
+               "53 Ave Park",
+               "20221224")
+    o2 = Other("0500PM",
+               "3",
+               "Charity",
+               "Goodwill",
+               "20221224")
+    o3 = Other("0800AM",
+               "1",
+               "Run",
+               "Nike",
+               "20221224")
+    return [o1, o2, o3]
+
+
+def build_meal_list():
+    m1 = Meal("Casual",
+              "0500PM",
+              "Work Dinner",
+              "Applebees",
+              "20221224")
+    m2 = Meal("Formal",
+              "0600PM",
+              "Lunch",
+              "Mark's Bus",
+              "20221224")
+    m3 = Meal("Semi-Formal",
+              "0700PM",
+              "Cocktails",
+              "Kells",
+              "20221224")
+    m4 = Meal("Casual",
+              "0500PM",
+              "Dinner",
+              "Sushi Hanna",
+              "20221224")
+    m5 = Meal("Business Casual",
+              "0400PM",
+              "Work Dinner",
+              "Mah Now",
+              "20221224")
+    return [m1, m2, m3, m4, m5]
+
+
+def build_vacation_list():
     v1 = Vacation("20221225",
                   "day trip",
                   "oregon",
@@ -46,17 +114,7 @@ def test_linked_list_class():
                   "beaches",
                   "costa mesa",
                   "20221220")
-
-    values = [v1, v2, v3, v4]
-    """
-    list = LinkedList(values)
-    list.insert(v1)
-    list.insert(v2)
-    list.display()
-    """
-    table = Table(TABLE_SIZE)
-    table.insert(values, 0)
-    table.display_all()
+    return [v1, v2, v3, v4]
 
 
 def test_node_class():

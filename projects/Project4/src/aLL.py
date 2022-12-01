@@ -12,7 +12,7 @@ class Node:
 
     def __str__(self):
         return self._data.__str__()
-
+    
     def get_data(self):
         return self._data
 
@@ -27,12 +27,24 @@ class Node:
         self._next = new_next
         return None
 
+    def match(self, arg):
+        return self._data.match(arg)
+
 
 class LinkedList:
     def __init__(self, values=None):
         self._head = None
         if values is not None:
             self.insert_multiple(values)
+
+    def __str__(self):
+        return '\n'.join([str(node) for node in self])
+
+    def __iter__(self):
+        current = self._head
+        while current:
+            yield current
+            current = current.get_next()
 
     def get_head(self):
         return self._head
@@ -47,8 +59,7 @@ class LinkedList:
     def __insert(self, head, data):
         if head is None:
             return Node(data)
-        else:
-            head.set_next(self.__insert(head.get_next(), data))
+        head.set_next(self.__insert(head.get_next(), data))
         return head
 
     def display(self):
@@ -62,6 +73,31 @@ class LinkedList:
         print(node.get_data(), end="\n")
         self.__display(node.get_next())
 
+    def remove_specific(self, arg: str):
+        if self._head is None:
+            return
+        if self._head.match(arg):
+            temp = self._head.get_next()
+            del self._head
+            self._head = temp
+            return
+        self._head = self.__remove_specific(self._head,
+                                            self._head.get_next(),
+                                            arg)
+
+    def __remove_specific(self, prev, current, arg: str):
+        if current is None:
+            return
+        if current.match(arg):
+            temp = current.get_next()
+            del current
+            prev.set_next(temp)
+            return prev
+        prev.set_next(self.__remove_specific(prev.get_next(),
+                                             current.get_next(),
+                                             arg))
+        return prev
+
 
 class Table:
     def __init__(self, size: int):
@@ -74,8 +110,20 @@ class Table:
                 self._table[i].display()
         return None
 
+    def display_specific_event(self, indicator):
+        if self._table[indicator] is not None:
+            # self._table[indicator].display()
+            print(self._table[indicator])
+        return None
+
     def insert(self, data, indicator):
         if self._table[indicator].get_head() is None:
             self._table[indicator] = LinkedList()
         self._table[indicator].insert_multiple(data)
+        return None
+
+    def remove_event(self, arg: str):
+        for i in range(self._size):
+            if self._table[i].get_head() is not None:
+                self._table[i].remove_specific(arg)
         return None
