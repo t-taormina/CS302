@@ -12,7 +12,7 @@ class Node:
 
     def __str__(self):
         return self._data.__str__()
-    
+
     def get_data(self):
         return self._data
 
@@ -73,6 +73,20 @@ class LinkedList:
         print(node.get_data(), end="\n")
         self.__display(node.get_next())
 
+    def display_specific(self, arg: str):
+        """
+        """
+        if self._head is None:
+            return
+        self.__display_specific(self._head, arg)
+
+    def __display_specific(self, node, arg: str):
+        if node is None:
+            return
+        if node.match(arg):
+            print(node)
+        self.__display_specific(node.get_next(), arg)
+
     def remove_specific(self, arg: str):
         if self._head is None:
             return
@@ -104,16 +118,33 @@ class Table:
         self._size = size
         self._table = [LinkedList()] * self._size
 
+    def __str__(self):
+        return '\n'.join([str(list) for list in self])
+
+    def __iter__(self):
+        for list in self._table:
+            yield list
+
     def display_all(self):
         for i in range(self._size):
             if self._table[i].get_head() is not None:
                 self._table[i].display()
         return None
 
-    def display_specific_event(self, indicator):
+    def display_category(self, indicator):
         if self._table[indicator] is not None:
             # self._table[indicator].display()
             print(self._table[indicator])
+        return None
+
+    def display_specific_event(self, arg: str):
+        """
+        """
+        if len(arg) == 0:
+            return None
+        for i in range(self._size):
+            if self._table[i].get_head() is not None:
+                self._table[i].display_specific(arg)
         return None
 
     def insert(self, data, indicator):

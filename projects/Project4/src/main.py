@@ -7,7 +7,7 @@ taormina@pdx.edu
 
 from events import Event, Vacation, Meal, Other
 from red_black import RBnode
-from aLL import Node, LinkedList, Table
+from aLL import Table
 TABLE_SIZE = 3
 VACATION = 0
 MEAL = 1
@@ -40,10 +40,11 @@ def test_table_class():
     table.insert(vacation_values, VACATION)
     table.insert(meal_values, MEAL)
     table.insert(other_values, OTHER)
-    # table.display_specific_event(OTHER)
-    table.display_specific_event(VACATION)
-    table.remove_event("day TRIP")
-    table.display_specific_event(VACATION)
+    # table.display_specific_event("socCer")
+    print(table)
+    # table.display_category(VACATION)
+    # table.remove_event("day TRIP")
+    # table.display_category(VACATION)
 
 
 def build_other_list():
