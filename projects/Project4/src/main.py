@@ -7,7 +7,11 @@ taormina@pdx.edu
 
 from events import Event, Vacation, Meal, Other
 from red_black import RBnode
-from aLL import Node, LinkedList
+from aLL import Node, LinkedList, Table
+TABLE_SIZE = 3
+VACATION = 0
+MEAL = 1
+OTHER = 2
 
 
 def main():
@@ -44,10 +48,15 @@ def test_linked_list_class():
                   "20221220")
 
     values = [v1, v2, v3, v4]
+    """
     list = LinkedList(values)
     list.insert(v1)
     list.insert(v2)
     list.display()
+    """
+    table = Table(TABLE_SIZE)
+    table.insert(values, 0)
+    table.display_all()
 
 
 def test_node_class():
