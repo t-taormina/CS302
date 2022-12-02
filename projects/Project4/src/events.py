@@ -109,6 +109,10 @@ class Home(Event):
         """
         return super().edit_date(arg)
 
+    def add_guest(self, guest: str):
+        self._guest_list.append(guest)
+        return None
+
     def match(self, arg: str):
         return super().match(arg)
 
@@ -190,11 +194,11 @@ class Away(Event):
 class Vacation(Event):
     """
     """
-    def __init__(self, end_date: date, title: str,
+    def __init__(self, end_date: date, packing_list, title: str,
                  location: str, date: date):
         Event.__init__(self, title, location, date)
         self._end_date = end_date
-        self._packing_list = []
+        self._packing_list = packing_list
 
     def __str__(self):
         """Format _end_date and returns a formatted string for all data
@@ -204,7 +208,8 @@ class Vacation(Event):
                 Event.__str__(self) +
                 f'End date: {self._end_date}\n' +
                 'Packing List: ' +
-                ', '.join([str(item) for item in self._packing_list]))
+                ', '.join([str(item) for item in self._packing_list]) +
+                '\n')
 
     def __repr__(self):
         """Formats the data members to mimic the function call made to
@@ -236,6 +241,10 @@ class Vacation(Event):
         """
         """
         return super().edit_date(arg)
+
+    def add_item(self, item: str):
+        self._packing_list.append(item)
+        return None
 
     def match(self, arg: str):
         return super().match(arg)
