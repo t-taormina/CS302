@@ -32,6 +32,22 @@ class Event:
                 f"location='{self._location}', " +
                 f"date='{self._date}')")
 
+    def __lt__(self, other):
+        """
+        """
+        if self._title.lower() < other._title.lower():
+            return True
+        else:
+            return False
+
+    def __ge__(self, other):
+        """
+        """
+        if self._title.lower() >= other._title.lower():
+            return True
+        else:
+            return False
+
     def edit_title(self, arg: str):
         """
         """
@@ -54,6 +70,13 @@ class Event:
         """
         """
         if arg.lower() == self._title.lower():
+            return True
+        return False
+
+    def match_node(self, other):
+        """
+        """
+        if other._title.lower() == self._title.lower():
             return True
         return False
 
@@ -88,6 +111,16 @@ class Home(Event):
                 f"location='{self._location}', " +
                 f"date='{self._date}')")
 
+    def __lt__(self, other):
+        """
+        """
+        return super().__lt__(other)
+
+    def __ge__(self, other):
+        """
+        """
+        return super().__ge__(other)
+
     def edit_start_time(self, arg: str):
         """
         """
@@ -115,6 +148,11 @@ class Home(Event):
 
     def match(self, arg: str):
         return super().match(arg)
+
+    def match_node(self, other):
+        """
+        """
+        return super().match_node(other)
 
     def format_time(self):
         """
@@ -153,6 +191,16 @@ class Away(Event):
                 f"location='{self._location}', " +
                 f"date='{self._date}')")
 
+    def __lt__(self, other):
+        """
+        """
+        return super().__lt__(other)
+
+    def __ge__(self, other):
+        """
+        """
+        return super().__ge__(other)
+
     def edit_start_time(self, arg: str):
         """
         """
@@ -182,6 +230,11 @@ class Away(Event):
 
     def match(self, arg: str):
         return super().match(arg)
+
+    def match_node(self, other):
+        """
+        """
+        return super().match_node(other)
 
     def format_time(self):
         """
@@ -221,6 +274,16 @@ class Vacation(Event):
                 f"location='{self._location}', " +
                 f"date='{self._date}')")
 
+    def __lt__(self, other):
+        """
+        """
+        return super().__lt__(other)
+
+    def __ge__(self, other):
+        """
+        """
+        return super().__ge__(other)
+
     def edit_end_date(self, arg: date):
         """
         """
@@ -248,3 +311,8 @@ class Vacation(Event):
 
     def match(self, arg: str):
         return super().match(arg)
+
+    def match_node(self, other):
+        """
+        """
+        return super().match_node(other)

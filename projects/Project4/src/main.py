@@ -6,7 +6,7 @@ taormina@pdx.edu
 # cSpell:ignore RBnode
 
 from events import Event, Home, Away, Vacation, date
-from red_black import RBnode
+from red_black import RBnode, RBtree
 from aLL import Table
 TABLE_SIZE = 3
 HOME = 0
@@ -21,8 +21,25 @@ def main():
     test_vacation_class()
     test_RBnode_class()
     test_node_class()
-    """
     test_table_class()
+    """
+    test_RBtree_class()
+    return None
+
+
+def test_RBtree_class():
+    tree = RBtree()
+    homes = build_home_list()
+    away_list = build_away_list()
+    vacations = build_vacation_list()
+    for home in homes:
+        tree.insert(home)
+    for away in away_list:
+        tree.insert(away)
+    for vac in vacations:
+        tree.insert(vac)
+
+    tree.display()
     return None
 
 
