@@ -12,8 +12,7 @@ from datetime import date
 
 
 class Event:
-    """Base class for event hierarchy.
-    """
+    """Base class for event hierarchy."""
     def __init__(self, title: str, location: str, date: date):
         """Initializes Event object."""
         self._title = title
@@ -41,33 +40,29 @@ class Event:
             return False
 
     def __ge__(self, other):
-        """
-        """
+        """Compares two Event objects titles. Alphabetically determined."""
         if self._title.lower() >= other._title.lower():
             return True
         else:
             return False
 
     def edit_title(self, arg: str):
-        """
-        """
+        """Changes data member _title to argument passed in parameter."""
         self._title = arg
         return None
 
     def edit_location(self, arg: str):
-        """
-        """
+        """Changes data member _location to argument passed in parameter."""
         self._location = arg
         return None
 
     def edit_date(self, arg: date):
-        """
-        """
+        """Changes data member _date to argument passed in parameter."""
         self._date = date
         return None
 
     def match(self, arg: str):
-        """
+        """Determines if an object has a _title matching the argument passed.
         """
         if arg.lower() == self._title.lower():
             return True
