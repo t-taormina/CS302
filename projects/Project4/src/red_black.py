@@ -92,6 +92,8 @@ class RBnode:
 
 class RBtree:
     def __init__(self):
+        """
+        """
         self._root = None
 
     def insert(self, data):

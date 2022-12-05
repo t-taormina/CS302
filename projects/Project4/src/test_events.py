@@ -13,6 +13,8 @@ from red_black import RBnode, RBtree
 
 class TestEvent:
     def test_event_init(self):
+        """
+        """
         event = Event("lunch", "timberline", "20221114")
         assert event._title == "lunch"
         assert event._location == "timberline"

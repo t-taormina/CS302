@@ -138,10 +138,14 @@ class Home(Event):
         return super().edit_date(arg)
 
     def add_guest(self, guest: str):
+        """
+        """
         self._guest_list.append(guest)
         return None
 
     def match(self, arg: str):
+        """
+        """
         return super().match(arg)
 
     def match_node(self, other):
@@ -224,6 +228,8 @@ class Away(Event):
         return super().edit_date(arg)
 
     def match(self, arg: str):
+        """
+        """
         return super().match(arg)
 
     def match_node(self, other):
@@ -301,10 +307,14 @@ class Vacation(Event):
         return super().edit_date(arg)
 
     def add_item(self, item: str):
+        """
+        """
         self._packing_list.append(item)
         return None
 
     def match(self, arg: str):
+        """
+        """
         return super().match(arg)
 
     def match_node(self, other):
