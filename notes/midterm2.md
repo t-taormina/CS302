@@ -58,7 +58,7 @@ class Node
 
 ### Operator overloading
 - What are they and why are they useful?
-    - It allows programmers to complete the process of data abstaction
+    - It allows programmers to complete the process of data abstraction
     - Essential when working with templates so that our classes work with already existing classes using operators
 - What is the syntax?
 ```c++

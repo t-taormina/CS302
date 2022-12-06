@@ -10,7 +10,7 @@
   - harder to maintain
   - generally ends up being more code
   - passes responsibility of a classes data to another class
-  - does the class recieving the data know what to do with it? why?
+  - does the class receiving the data know what to do with it? why?
 - what does it mean for an object to change spontaneously?
 - what advantages do we have from a hierarchy?
   - everything in the base class flows through to the derived
@@ -31,7 +31,7 @@
   - would have to use the parents name and "::" to access (ParentName::memberName)
 
 ### Copy Constructors
-- what is a copy constuctor?
+- what is a copy constructor?
   - performs a deep copy of an object
 - why is it important?
   - needs to be done when working with dynamic memory or when using pointers in your data members

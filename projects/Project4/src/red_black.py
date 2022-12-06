@@ -93,7 +93,6 @@ class RBtree:
         self._nil.set_right(self._nil)
         self._root = self._nil
 
-
     def __repr__(self):
         lines = []
         self.print_tree(lines)
@@ -112,10 +111,11 @@ class RBtree:
             self._root.set_parent(self._nil)
             return
         self._root = self.__insert(self._root, self._root, data, review)
+        self._root.black()
 
     def __insert(self, root, parent, data, review: str):
         """Private recursive insert that enters data alphabetically."""
-        if root == self._nil:
+        if root == self._nil or root is None:
             node = RBnode(data)
             node.add_review(review)
             node.red()
@@ -127,11 +127,12 @@ class RBtree:
             if root._data.match_object(data):
                 return root
             elif root._data < data:
-                root.set_right(self.__insert(root.get_right(),
-                                             root, data, review))
+                root = root.set_right(self.__insert(root.get_right(),
+                                                    root, data, review))
             else:
-                root.set_left(self.__insert(root.get_left(),
-                                            root, data, review))
+                root = root.set_left(self.__insert(root.get_left(),
+                                                   root, data, review))
+        self.fix_insert(root)
         return root
 
     def fix_insert(self, node):
@@ -148,10 +149,11 @@ class RBtree:
                 else:
                     if node is node.get_parent().get_left():
                         node = node.get_parent()
-                        self.rotate_right(node)
+                        node = self.rotate_right(node)
                     node.get_parent().black()
                     node.get_parent().get_parent().red()
-                    self.rotate_left(node.get_parent().get_parent())
+                    node.get_parent().set_parent(self.rotate_left(
+                                             node.get_parent().get_parent()))
             else:
                 uncle = node.get_parent().get_parent().get_right()
                 if uncle.is_red():
@@ -162,10 +164,11 @@ class RBtree:
                 else:
                     if node is node.get_parent().get_right():
                         node = node.get_parent()
-                        self.rotate_left(node)
+                        node = self.rotate_left(node)
                     node.get_parent().black()
                     node.get_parent().get_parent().red()
-                    self.rotate_right(node.get_parent().get_parent())
+                    node.get_parent().set_parent(self.rotate_right(
+                                             node.get_parent().get_parent()))
         self._root.black()
 
     def rotate_left(self, node):
@@ -183,6 +186,7 @@ class RBtree:
             node.get_parent().set_right(temp)
         temp.set_left(node)
         node.set_parent(temp)
+        return node
 
     def rotate_right(self, node):
         """Rotates the tree right at the node passed as an argument."""
@@ -199,6 +203,7 @@ class RBtree:
             node.get_parent().set_left(temp)
         temp.set_right(node)
         node.set_parent(temp)
+        return node
 
     def print_tree(self, lines, level=0):
         if self._root == self._nil:
