@@ -169,12 +169,31 @@ class base
 virtual int statement(); // just virtual
 ```
 
+### Testing
+
+#### Black Box Testing
+- Assume you have the specification to the function
+- Come up with test cases based on that
+- We don’t know how the function is implemented
+- Should test boundary conditions without knowing what types of loops or other types of syntax constructs used
+- This should always be done first
+
+#### Glass Box Testing
+- have access to source code and specifications
+- test different inputs for each function
+- test each path through a function
+
+#### Functional Programming
+- programming paradigm
+- lamdas in c++ and python
+- [] introduces the lambda - “lambda introducer”
+    - pulls variables into the scope of the lamda. 
+    - default by value(can also use "=" to indicate by value)
+    - use "&" for references
+- () is for the parameter list
+- {} contains the body/expression
+- () calls the lambda 
 
 
 
-- Test driven Design 
-    - Black box testing
-    - Glass box testing
-- Debugging with gdb
-- 
 
