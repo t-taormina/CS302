@@ -8,10 +8,12 @@ taormina@pdx.edu
 from events import Event, Home, Away, Vacation, date
 from red_black import RBnode, RBtree
 from aLL import Table
+# Type Indicators.
 TABLE_SIZE = 3
 HOME = 0
 AWAY = 1
 VACATION = 2
+NIL = Event("Null", "Null", date(2022, 1, 1))
 
 
 def main():
@@ -21,25 +23,25 @@ def main():
     test_vacation_class()
     test_RBnode_class()
     test_node_class()
-    test_RBtree_class()
-    """
     test_table_class()
+    """
+    test_RBtree_class()
     return None
 
 
 def test_RBtree_class():
-    tree = RBtree()
+    tree = RBtree(NIL)
     homes = build_home_list()
     away_list = build_away_list()
     vacations = build_vacation_list()
     for home in homes:
-        tree.insert(home)
+        tree.insert(home, "Review place holder.")
     for away in away_list:
-        tree.insert(away)
+        tree.insert(away, "Review place holder.")
     for vac in vacations:
-        tree.insert(vac)
-
-    tree.display()
+        tree.insert(vac, "Review place holder.")
+    # tree.display()
+    print(tree)
     return None
 
 
@@ -54,11 +56,13 @@ def test_table_class():
     list.display()
     """
     table = Table(TABLE_SIZE)
-    table.insert(home_values, HOME)
-    table.insert(away_values, AWAY)
-    table.insert(vacation_values, VACATION)
+    table.insert_multiple(home_values, HOME)
+    table.insert_multiple(away_values, AWAY)
+    table.insert_multiple(vacation_values, VACATION)
     # table.display_specific_event("ski trip")
-    table.display_category(AWAY)
+    # table.display_all()
+    table.display_next()
+    table.display_next_specific(AWAY)
     # table.remove_event("bbq")
     # table.display_category(HOME)
     # print(table)

@@ -90,7 +90,7 @@ class LinkedList:
         if head.before(data):
             head.set_next(self.__insert(head.get_next(), data))
         else:
-            if not head.get_data().match_node(data):  # no duplicates
+            if not head.get_data().match_object(data):  # no duplicates
                 temp = head
                 head = Node(data)
                 head.set_next(temp)
@@ -114,14 +114,14 @@ class LinkedList:
         """Displays an object if it matches the argument passed. Non-case
         sensitive."""
         if self._head is None:
-            return
+            return None
         self.__display_specific(self._head, arg)
 
     def __display_specific(self, node, arg: str):
         """Recursively searches the list and displays object if the title
         matches the string passed as an argument."""
         if node is None:
-            return
+            return None
         if node.match(arg):
             print(node)
         self.__display_specific(node.get_next(), arg)
@@ -174,24 +174,24 @@ class Table:
             yield list
 
     def display_all(self):
-        """
-        """
+        """Iteratively progresses through the array and calls recursive display
+        function from the LinkedList class."""
         for i in range(self._size):
             if self._table[i].get_head() is not None:
                 self._table[i].display()
         return None
 
-    def display_category(self, indicator):
-        """
-        """
-        if self._table[indicator] is not None:
+    def display_category(self, type_indicator):
+        """Dispaly specific category that is specified by the type indicator
+        argument."""
+        if self._table[type_indicator] is not None:
             # self._table[indicator].display()
-            print(self._table[indicator])
+            print(self._table[type_indicator])
         return None
 
     def display_specific_event(self, arg: str):
-        """
-        """
+        """Displays an event that mathes the string passed as an argument.
+        Nothing will be output if there is no match."""
         if len(arg) == 0:
             return None
         for i in range(self._size):
@@ -200,17 +200,54 @@ class Table:
         return None
 
     def insert(self, data, indicator):
-        """
-        """
+        """Inserts an array into the """
         if self._table[indicator].get_head() is None:
             self._table[indicator] = LinkedList()
-        self._table[indicator].insert_multiple(data)
+        self._table[indicator].insert(data)
+        return None
+
+    def insert_multiple(self, data, type_indicator):
+        """Inserts an array of objects into the linked list stored at the
+        index specified by the type indicator."""
+        if self._table[type_indicator].get_head() is None:
+            self._table[type_indicator] = LinkedList()
+        self._table[type_indicator].insert_multiple(data)
         return None
 
     def remove_event(self, arg: str):
-        """
-        """
+        """Removes an item from the table if there is a a title member that
+        matches the string argument."""
         for i in range(self._size):
             if self._table[i].get_head() is not None:
                 self._table[i].remove_specific(arg)
+        return None
+
+    def display_next(self):
+        """Displays that object stored in the list that will occur next based
+        on the date data member."""
+        next_event = None
+        for i in range(self._size):
+            if self._table[i].get_head() is not None:
+                if next_event is None:
+                    next_event = self._table[i].get_head()
+                elif next_event.get_data() is not None:
+                    temp = self._table[i].get_head()
+                    if temp is not None:
+                        if temp.get_data().before(next_event.get_data()):
+                            next_event = temp
+        if next_event is not None:
+            print(next_event.get_data())
+        return None
+
+    def display_next_specific(self, type_indicator):
+        """Displays that object stored in the list that will occur next for a
+        specific category based on the date data member. Type indicators are
+        provided as constants. HOME = 0, AWAY = 1, VACATION = 2."""
+        if self._table[type_indicator].get_head() is None:
+            return None
+        data = self._table[type_indicator].get_head()
+        if data is not None:
+            data = data.get_data()
+            if data is not None:
+                print(data)
         return None
