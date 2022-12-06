@@ -89,6 +89,14 @@ friend int operator<(const derived& arg1, const derived& arg2);
 Derived & operator++(); // Lvalue return by reference.
 Derived operator++(int); // Rvalue return by value.
 ```
+
+```c++
+(desired return type)& operator+(const base& op1, const derived& op2); // friend
+(desired return type)& operator+(const derived& op1, const base& op2); // friend
+
+list& list::operator+(const to_add&)const //member
+```
+
 - Why is it important to have the const keyword?
     - for member functions
     - for arguments
