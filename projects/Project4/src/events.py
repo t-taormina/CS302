@@ -75,6 +75,11 @@ class Event:
             return True
         return False
 
+    def before(self, other):
+        if self._date < other._date:
+            return True
+        return False
+
 
 class Home(Event):
     """Home class is publicly derived from the Event class.
@@ -160,6 +165,11 @@ class Home(Event):
                 f'{self._start_time[2:4]}' +
                 f'{self._start_time[4:6]}')
 
+    def before(self, other):
+        """
+        """
+        return super().before(other)
+
 
 class Away(Event):
     """
@@ -244,6 +254,11 @@ class Away(Event):
                 f'{self._start_time[2:4]}' +
                 f'{self._start_time[4:6]}')
 
+    def before(self, other):
+        """
+        """
+        return super().before(other)
+
 
 class Vacation(Event):
     """
@@ -321,3 +336,8 @@ class Vacation(Event):
         """
         """
         return super().match_node(other)
+
+    def before(self, other):
+        """
+        """
+        return super().before(other)

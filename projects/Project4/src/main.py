@@ -21,9 +21,9 @@ def main():
     test_vacation_class()
     test_RBnode_class()
     test_node_class()
-    test_table_class()
-    """
     test_RBtree_class()
+    """
+    test_table_class()
     return None
 
 
@@ -57,10 +57,10 @@ def test_table_class():
     table.insert(home_values, HOME)
     table.insert(away_values, AWAY)
     table.insert(vacation_values, VACATION)
-    table.display_specific_event("ski trip")
-    table.display_category(HOME)
-    table.remove_event("bbq")
-    table.display_category(HOME)
+    # table.display_specific_event("ski trip")
+    table.display_category(AWAY)
+    # table.remove_event("bbq")
+    # table.display_category(HOME)
     # print(table)
 
 
