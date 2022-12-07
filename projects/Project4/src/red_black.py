@@ -7,12 +7,12 @@ taormina@pdx.edu
 
 
 class RBnode:
-    def __init__(self, data):
+    def __init__(self, data, review):
         """Initializes the node with all children and parent set to None and
         data set to the argument. Red is set to False by default."""
         self._data = data
-        self._review: str
-        self._red = False
+        self._review = review
+        self._red = True
         self._parent = None
         self._left = None
         self._right = None
@@ -85,14 +85,9 @@ class RBnode:
 
 
 class RBtree:
-    def __init__(self, nil):
+    def __init__(self):
         """Initializes reb-black tree with root node as None."""
-        self._nil = RBnode(nil)
-        self._nil.set_parent(self._nil)
-        self._nil.set_left(self._nil)
-        self._nil.set_right(self._nil)
-        self._nil.black()
-        self._root = self._nil
+        self._root = None
 
     def __repr__(self):
         lines = []
@@ -104,81 +99,78 @@ class RBtree:
         alphabetically. Takes string argument for the review field of the
         RBnode. Client is responsible for prompting for review and passing
         argument."""
-        self._root = self.__insert(self._root, self._root.get_parent(),
-                                   data, review)
-
-    def __insert(self, root, parent, data, review: str):
-        """Private recursive insert that enters data alphabetically."""
-        if root == self._nil:
-            root = RBnode(data)
-            root.add_review(review)
-            root.set_left(self._nil)
-            root.set_right(self._nil)
-            root.set_parent(parent)
-            root.red()
-            if parent == self._nil:
-                root.black()
-                return root
-            elif parent.get_parent() == self._nil:
-                return root
-            else:
-                self.__fix_insert(root)
-                return root
+        if self._root is None:  # empty tree
+            self._root = RBnode(data, review)
+            self._root.black()  # root node gets set to black
         else:
-            if root._data < data:
-                root.set_right(self.__insert(root.get_right(),
-                                             root, data, review))
+            self.__insert(self._root, data, review)
+
+    def __insert(self, root, data, review: str):
+        """Private recursive insert that enters data alphabetically."""
+        if data < root._data:
+            if root.get_left():
+                self.__insert(root.get_left(), data, review)
             else:
-                root.set_left(self.__insert(root.get_left(),
-                                            root, data, review))
-        return root
+                root.set_left(RBnode(data, review))
+                root.get_left().set_parent(root)
+                self.__fix_insert(root.get_left())
+        else:
+            if root.get_right():
+                self.__insert(root.get_right(), data, review)
+            else:
+                root.set_right(RBnode(data, review))
+                root.get_right().set_parent(root)
+                self.__fix_insert(root.get_right())
 
     def __fix_insert(self, node):
         """Balances the tree using rotate functions."""
-        while node.get_parent().is_red():
-            # right line case
-            if node.get_parent() == node.get_parent().get_parent().get_right():
-                uncle = node.get_parent().get_parent().get_left()
-                if uncle.is_red():
-                    uncle.black()
-                    node.get_parent().black()
-                    node.get_parent().get_parent().red()
-                    node = node.get_parent().get_parent()
+        if node and node.get_parent():
+            while node.get_parent().is_red():
+                if (node.get_parent() is node.get_parent().get_parent().get_right()):
+                    uncle = node.get_parent().get_parent().get_left()
+                    if uncle:
+                        if uncle.is_red():
+                            uncle.black()
+                            node.get_parent().black()
+                            node.get_parent().get_parent().red()
+                            node = node.get_parent().get_parent()
+                    else:
+                        if node is node.get_parent().get_left():
+                            node = node.get_parent()
+                            self.rotate_right(node)
+                        node.get_parent().black()
+                        node.get_parent().get_parent().red()
+                        self.rotate_left(node.get_parent().get_parent())
                 else:
-                    if node == node.get_parent().get_left():
-                        node = node.get_parent()
-                        self.rotate_right(node)
-                    node.get_parent().black()
-                    node.get_parent().get_parent().red()
-                    self.rotate_left(node.get_parent().get_parent())
-            else:
-                uncle = node.get_parent().get_parent().get_right()
-                if uncle.is_red():
-                    uncle.black()
-                    node.get_parent().black()
-                    node.get_parent().get_parent().red()
-                    node = node.get_parent().get_parent()
-                else:
-                    if node == node.get_parent().get_right():
-                        node = node.get_parent()
-                        self.rotate_left(node)
-                    node.get_parent().black()
-                    node.get_parent().get_parent().red()
-                    self.rotate_right(node.get_parent().get_parent())
-            if node == self._root:
-                break
-        self._root.black()
+                    uncle = node.get_parent().get_parent().get_right()
+                    if uncle:
+                        if uncle.is_red():
+                            uncle.black()
+                            node.get_parent().black()
+                            node.get_parent().get_parent().red()
+                            node = node.get_parent().get_parent()
+                    else:
+                        if node is node.get_parent().get_right():
+                            node = node.get_parent()
+                            self.rotate_left(node)
+                        node.get_parent().black()
+                        node.get_parent().get_parent().red()
+                        self.rotate_right(node.get_parent().get_parent())
+                if node is self._root:
+                    break
+        if self._root:
+            self._root.black()
 
     def rotate_left(self, node):
         """Rotates the tree left at the node passed as an argument."""
         temp = node.get_right()
         node.set_right(temp.get_left())
-        if temp.get_left() != self._nil:
+        if temp.get_left() is not None:
             temp.get_left().set_parent(node)
         temp.set_parent(node.get_parent())
-        if node.get_parent() == self._nil:
+        if node.get_parent() is None:
             self._root = temp
-        elif node == node.get_parent().get_left():
+        elif node is node.get_parent().get_left():
             node.get_parent().set_left(temp)
         else:
             node.get_parent().set_right(temp)
@@ -189,10 +181,10 @@ class RBtree:
         """Rotates the tree right at the node passed as an argument."""
         temp = node.get_left()
         node.set_left(temp.get_right())
-        if temp.get_right() != self._nil:
+        if temp.get_right() is not None:
             temp.get_right().set_parent(node)
         temp.set_parent(node.get_parent())
-        if node.get_parent() == self._nil:
+        if node.get_parent() is None:
             self._root = temp
         elif node == node.get_parent().get_right():
             node.get_parent().set_right(temp)
@@ -202,31 +194,29 @@ class RBtree:
         node.set_parent(temp)
 
     def print_tree(self, lines, level=0):
-        if self._root == self._nil:
-            return None
-        else:
-            self.__print_tree(self._root, lines, level=0)
-        return None
+        if self._root is None:
+            return
+        self.__print_tree(self._root, lines, level=0, child='root')
 
-    def __print_tree(self, node, lines, level=0):
-        if node != self._nil:
-            self.__print_tree(node.get_left(), lines, level + 1)
-            lines.append(f'Level: {level}' + ('r' if node.is_red() else 'b') +
-                         '\n' + str(node))
-            self.__print_tree(node.get_right(), lines, level + 1)
-        return None
+    def __print_tree(self, node, lines, level=0, child='root'):
+        if node is None:
+            return
+        self.__print_tree(node.get_left(), lines, level + 1, child="l")
+        lines.append(f'Level: {level} ' +
+                     ('red' if node.is_red() else 'black') +
+                     '\n' + child + '\n' + str(node))
+        self.__print_tree(node.get_right(), lines, level + 1, child="r")
 
     def display(self):
         """Calls private recursive display. Displays all nodes in tree."""
-        if self._root == self._nil:
-            return None
+        if self._root is None:
+            return
         self.__display(self._root)
-        return None
 
     def __display(self, root):
         """Private recursive function to display all nodes in the tree."""
-        if root != self._nil:
-            self.__display(root.get_left())
-            print(root)
-            self.__display(root.get_right())
-        return None
+        if root is None:
+            return
+        self.__display(root.get_left())
+        print(root)
+        self.__display(root.get_right())
