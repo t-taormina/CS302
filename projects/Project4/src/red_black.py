@@ -20,7 +20,6 @@ class RBnode:
     def __str__(self):
         """Returns string representation of the data and review members."""
         return (self._data.__str__() +
-                '\n' +
                 f'Review: {self._review}\n')
 
     def __lt__(self, other):
@@ -46,7 +45,7 @@ class RBnode:
         self._red = False
         return None
 
-    def match(self, data):
+    def match(self, data: str):
         """Determines if self has a matching data member to the argument
         passed."""
         return self._data.match(data)
@@ -82,6 +81,9 @@ class RBnode:
     def get_parent(self):
         """Returns parent node."""
         return self._parent
+
+    def get_data(self):
+        return self._data
 
 
 class RBtree:
@@ -126,7 +128,8 @@ class RBtree:
         """Balances the tree using rotate functions."""
         if node and node.get_parent():
             while node.get_parent().is_red():
-                if (node.get_parent() is node.get_parent().get_parent().get_right()):
+                if (node.get_parent() is
+                   node.get_parent().get_parent().get_right()):
                     uncle = node.get_parent().get_parent().get_left()
                     if uncle:
                         if uncle.is_red():
@@ -220,3 +223,23 @@ class RBtree:
         self.__display(root.get_left())
         print(root)
         self.__display(root.get_right())
+
+    def retrieve(self, arg: str):
+        """Returns a copy of event object that contains a matching title to
+        the argument passed."""
+        if self._root is None:  # empty tree
+            return
+        return self.__retrieve(self._root, arg)
+
+    def __retrieve(self, root, arg: str):
+        """Private recursive function to retrieve an event object that matches
+        the argument passed."""
+        if root is None:
+            return
+        elif root.match(arg) == 0:
+            return root.get_data()
+        elif root.match(arg) > 0:
+            data = self.__retrieve(root.get_left(), arg)
+        else:
+            data = self.__retrieve(root.get_right(), arg)
+        return data

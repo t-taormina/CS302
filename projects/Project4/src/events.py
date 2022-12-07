@@ -62,12 +62,17 @@ class Event:
         self._date = date
         return None
 
-    def match(self, arg: str) -> bool:
+    def match(self, arg: str) -> int:
         """Determines if an object has a _title matching the argument passed.
+        Positive means calling object is bigger. Negative means passed object
+        is bigger. 0 indicates a match.
         """
-        if arg.lower() == self._title.lower():
-            return True
-        return False
+        if self._title.lower() == arg.lower():
+            return 0
+        elif self._title.lower() > arg.lower():
+            return 1
+        else:
+            return -1
 
     def match_object(self, other) -> bool:
         """Determins if an object has a _title that mathes the _title of
@@ -99,7 +104,8 @@ class Home(Event):
                 Event.__str__(self) +
                 f'Start Time: {self.format_time()}\n' +
                 'Guest List: ' +
-                ', '.join([str(item) for item in self._guest_list]))
+                ', '.join([str(item) for item in self._guest_list]) +
+                '\n')
 
     def __repr__(self) -> str:
         """Formats the data members to mimic the function call made to
@@ -142,7 +148,7 @@ class Home(Event):
         self._guest_list.append(guest)
         return None
 
-    def match(self, arg: str) -> bool:
+    def match(self, arg: str) -> int:
         """Calls parent function to determine if the title of an object matches
         the string argument."""
         return super().match(arg)
@@ -178,7 +184,7 @@ class Away(Event):
         return (
                 Event.__str__(self) +
                 f'Start Time: {self.format_time()}\n' +
-                f'Dress Code: {self._dress_code}')
+                f'Dress Code: {self._dress_code}\n')
 
     def __repr__(self) -> str:
         """Formats the data members to mimic the function call made to
@@ -222,7 +228,7 @@ class Away(Event):
         """Sets date data member to string argument passed."""
         return super().edit_date(arg)
 
-    def match(self, arg: str) -> bool:
+    def match(self, arg: str) -> int:
         """Calls parent function to determine if the title of an object matches
         the string argument."""
         return super().match(arg)
@@ -258,7 +264,8 @@ class Vacation(Event):
                 super().__str__() +
                 f'End date: {self._end_date}\n' +
                 'Packing List: ' +
-                ', '.join([str(item) for item in self._packing_list]))
+                ', '.join([str(item) for item in self._packing_list]) +
+                '\n')
 
     def __repr__(self) -> str:
         """Formats the data members to mimic the function call made to
@@ -301,7 +308,7 @@ class Vacation(Event):
         self._packing_list.append(item)
         return None
 
-    def match(self, arg: str) -> bool:
+    def match(self, arg: str) -> int:
         """Calls parent function to determine if the title of an object matches
         the string argument."""
         return super().match(arg)

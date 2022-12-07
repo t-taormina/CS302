@@ -36,7 +36,7 @@ class Node:
         self._next = new_next
         return None
 
-    def match(self, arg):
+    def match(self, arg: str) -> int:
         """Calls match function of data(see events.py). Returns true if
         argument and the calling nodes data match."""
         return self._data.match(arg)
@@ -122,7 +122,7 @@ class LinkedList:
         matches the string passed as an argument."""
         if node is None:
             return None
-        if node.match(arg):
+        if node.match(arg) == 0:
             print(node)
         self.__display_specific(node.get_next(), arg)
 
@@ -131,7 +131,7 @@ class LinkedList:
         title that mathes the string passed as an argument."""
         if self._head is None:
             return
-        if self._head.match(arg):
+        if self._head.match(arg) == 0:
             temp = self._head.get_next()
             del self._head
             self._head = temp
@@ -139,13 +139,14 @@ class LinkedList:
         self._head = self.__remove_specific(self._head,
                                             self._head.get_next(),
                                             arg)
+        return
 
     def __remove_specific(self, prev, current, arg: str):
         """Recursively searches for a node with a data member that has a title
-        that matches the string passed as an argument."""
+        that matches the string passed as an argument and removes it."""
         if current is None:
             return
-        if current.match(arg):
+        if current.match(arg) == 0:
             temp = current.get_next()
             del current
             prev.set_next(temp)
@@ -154,6 +155,24 @@ class LinkedList:
                                              current.get_next(),
                                              arg))
         return prev
+
+    def retrieve_event(self, arg: str):
+        """Calls recursive function to remove a node if its data member has a
+        title that mathes the string passed as an argument."""
+        if self._head is None:
+            return
+        return self.__retrieve_event(self._head, arg)
+
+    def __retrieve_event(self, current, arg: str):
+        """Recursively searches for a node with a data member that has a title
+        that matches the string passed as an argument."""
+        if current is None:
+            return
+        if current.match(arg) == 0:
+            return current.get_data()
+        else:
+            data = self.__retrieve_event(current.get_next(), arg)
+        return data
 
 
 class Table:
@@ -200,7 +219,7 @@ class Table:
         return None
 
     def insert(self, data, indicator):
-        """Inserts an array into the """
+        """Inserts a single object into the linked list."""
         if self._table[indicator].get_head() is None:
             self._table[indicator] = LinkedList()
         self._table[indicator].insert(data)
@@ -220,7 +239,14 @@ class Table:
         for i in range(self._size):
             if self._table[i].get_head() is not None:
                 self._table[i].remove_specific(arg)
-        return None
+        return
+
+    def retrieve_event(self, arg: str):
+        """Removes an item from the table if there is a a title member that
+        matches the string argument."""
+        for i in range(self._size):
+            if self._table[i].get_head() is not None:
+                return self._table[i].retrieve_event(arg)
 
     def display_next(self):
         """Displays that object stored in the list that will occur next based

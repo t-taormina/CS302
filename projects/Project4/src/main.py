@@ -24,8 +24,9 @@ def main():
     test_RBnode_class()
     test_node_class()
     test_table_class()
-    """
     test_RBtree_class()
+    """
+    test_table_class()
     return None
 
 
@@ -42,6 +43,12 @@ def test_RBtree_class():
         tree.insert(vac, "Review place holder.")
     # tree.display()
     print(tree)
+    data = None
+    data = tree.retrieve("work dinner")
+    if data:
+        print(data)
+    else:
+        print("None")
     return None
 
 
@@ -60,10 +67,17 @@ def test_table_class():
     table.insert_multiple(away_values, AWAY)
     table.insert_multiple(vacation_values, VACATION)
     # table.display_specific_event("ski trip")
+    # table.display_specific_event("bbq")
+    # table.display_category(VACATION)
     # table.display_all()
-    table.display_next()
-    table.display_next_specific(AWAY)
+    # table.display_next()
+    # table.display_next_specific(AWAY)
     # table.remove_event("bbq")
+    data = None
+    data = table.retrieve_event("bbq")
+    if data:
+        print(data)
+    # table.display_specific_event("bbq")
     # table.display_category(HOME)
     # print(table)
 
