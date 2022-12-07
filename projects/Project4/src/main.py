@@ -18,15 +18,14 @@ NIL = Event("Null", "Null", date(2022, 1, 1))
 
 def main():
     """
-    test_meal_class()
-    test_other_class()
+    test_home_class()
+    test_away_class()
     test_vacation_class()
     test_RBnode_class()
     test_node_class()
     test_table_class()
-    test_RBtree_class()
     """
-    test_table_class()
+    test_RBtree_class()
     return None
 
 
@@ -42,13 +41,13 @@ def test_RBtree_class():
     for vac in vacations:
         tree.insert(vac, "Review place holder.")
     # tree.display()
-    print(tree)
-    data = None
-    data = tree.retrieve("work dinner")
-    if data:
-        print(data)
-    else:
-        print("None")
+    print(str(tree) + '\n')
+    # data = None
+    # data = tree.retrieve("work dinner")
+    # if data:
+        # print(data)
+    # else:
+        # print("None")
     return None
 
 
