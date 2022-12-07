@@ -107,6 +107,14 @@ class RBtree:
         else:
             self.__insert(self._root, data, review)
 
+    def insert_multiple(self, values, reviews):
+        """Prompts for review to be entered and loops through array "values"
+        and calls insert for each value. "values" is an array of event objects.
+        This function is mostly for testing purposes.
+        """
+        for i in range(len(values)):
+            self.insert(values[i], reviews[i])
+
     def __insert(self, root, data, review: str):
         """Private recursive insert that enters data alphabetically."""
         if data < root._data:

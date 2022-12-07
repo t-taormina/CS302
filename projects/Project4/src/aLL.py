@@ -3,6 +3,10 @@ Tyler Taormina
 taormina@pdx.edu
 """
 # cSpell:ignore Taormina
+HOME = 0
+AWAY = 1
+VACATION = 2
+TYPE_INDICATORS = [HOME, AWAY, VACATION]
 
 
 class Node:
@@ -73,28 +77,35 @@ class LinkedList:
 
     def insert(self, data):
         """Inserts argument into the linked list sorted by the date member."""
-        self._head = self.__insert(self._head, data)
+        if self._head is None:
+            self._head = Node(data)
+        else:
+            self.__insert(self._head, data)
 
     def insert_multiple(self, values):
         """Takes an array of objects as an argument and inserts each object
         into the linked list."""
         for val in values:
-            self._head = self.__insert(self._head, val)
+            self.insert(val)
 
     def __insert(self, head, data):
         """Recursively inserts the data into the list sorted by the date
         member. No objects with the same title(non-case sensitive) will be
         entered."""
-        if head is None:
-            return Node(data)
-        if head.before(data):
-            head.set_next(self.__insert(head.get_next(), data))
+        if head.get_next() is None:
+            if head.before(data):
+                head.set_next(Node(data))
+            else:
+                head.set_next(Node(head.get_data()))
+                head.set_data(data)
         else:
-            if not head.get_data().match_object(data):  # no duplicates
-                temp = head
-                head = Node(data)
-                head.set_next(temp)
-        return head
+            if head.before(data):
+                self.__insert(head.get_next(), data)
+            else:
+                temp = head.get_next()
+                head.set_next(Node(head.get_data()))
+                head.get_next().set_next(temp)
+                head.set_data(data)
 
     def display(self):
         """Calls recursive display to display all objects stored in the list.
@@ -129,39 +140,30 @@ class LinkedList:
     def remove_specific(self, arg: str):
         """Calls recursive function to remove a node if its data member has a
         title that mathes the string passed as an argument."""
-        if self._head is None:
-            return
-        if self._head.match(arg) == 0:
-            temp = self._head.get_next()
-            del self._head
-            self._head = temp
-            return
-        self._head = self.__remove_specific(self._head,
-                                            self._head.get_next(),
-                                            arg)
-        return
+        if self._head:
+            if self._head.match(arg) == 0:
+                temp = self._head.get_next()
+                del self._head
+                self._head = temp
+            else:
+                self.__remove_specific(self._head, arg)
 
-    def __remove_specific(self, prev, current, arg: str):
+    def __remove_specific(self, current, arg: str):
         """Recursively searches for a node with a data member that has a title
         that matches the string passed as an argument and removes it."""
-        if current is None:
-            return
-        if current.match(arg) == 0:
-            temp = current.get_next()
-            del current
-            prev.set_next(temp)
-            return prev
-        prev.set_next(self.__remove_specific(prev.get_next(),
-                                             current.get_next(),
-                                             arg))
-        return prev
+        if current.get_next():  # handle relinking
+            if current.get_next().match(arg) == 0:
+                temp = current.get_next().get_next()
+                current.set_next(temp)
+            else:  # last node, no relinking needed.
+                self.__remove_specific(current.get_next(),
+                                       arg)
 
     def retrieve_event(self, arg: str):
         """Calls recursive function to remove a node if its data member has a
         title that mathes the string passed as an argument."""
-        if self._head is None:
-            return
-        return self.__retrieve_event(self._head, arg)
+        if self._head:
+            return self.__retrieve_event(self._head, arg)
 
     def __retrieve_event(self, current, arg: str):
         """Recursively searches for a node with a data member that has a title
@@ -196,14 +198,14 @@ class Table:
         """Iteratively progresses through the array and calls recursive display
         function from the LinkedList class."""
         for i in range(self._size):
-            if self._table[i].get_head() is not None:
-                self._table[i].display()
+            if self._table[int(i)].get_head() is not None:
+                self._table[int(i)].display()
         return None
 
     def display_category(self, type_indicator):
         """Dispaly specific category that is specified by the type indicator
         argument."""
-        if self._table[type_indicator] is not None:
+        if self._table[TYPE_INDICATORS[type_indicator-1]] is not None:
             # self._table[indicator].display()
             print(self._table[type_indicator])
         return None
@@ -236,7 +238,7 @@ class Table:
     def remove_event(self, arg: str):
         """Removes an item from the table if there is a a title member that
         matches the string argument."""
-        for i in range(self._size):
+        for i in range(len(self._table)):
             if self._table[i].get_head() is not None:
                 self._table[i].remove_specific(arg)
         return
@@ -244,9 +246,12 @@ class Table:
     def retrieve_event(self, arg: str):
         """Removes an item from the table if there is a a title member that
         matches the string argument."""
-        for i in range(self._size):
-            if self._table[i].get_head() is not None:
-                return self._table[i].retrieve_event(arg)
+        data = None
+        for i in range(len(self._table)):
+            data = self._table[i].retrieve_event(arg)
+            if data:
+                return data
+        return data
 
     def display_next(self):
         """Displays that object stored in the list that will occur next based
