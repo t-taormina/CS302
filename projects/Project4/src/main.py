@@ -38,8 +38,10 @@ def test_RBtree_class():
         tree.insert(home, "Review place holder.")
     for away in away_list:
         tree.insert(away, "Review place holder.")
+    """
     for vac in vacations:
         tree.insert(vac, "Review place holder.")
+    """
     # tree.display()
     print(tree)
     return None

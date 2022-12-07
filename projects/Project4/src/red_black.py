@@ -104,7 +104,8 @@ class RBtree:
         alphabetically. Takes string argument for the review field of the
         RBnode. Client is responsible for prompting for review and passing
         argument."""
-        self._root = self.__insert(self._root, self._root, data, review)
+        self._root = self.__insert(self._root, self._root.get_parent(),
+                                   data, review)
 
     def __insert(self, root, parent, data, review: str):
         """Private recursive insert that enters data alphabetically."""
@@ -114,18 +115,16 @@ class RBtree:
             root.set_left(self._nil)
             root.set_right(self._nil)
             root.set_parent(parent)
+            root.red()
             if parent == self._nil:
+                root.black()
                 return root
             elif parent.get_parent() == self._nil:
-                root.red()
                 return root
             else:
-                root.red()
                 self.__fix_insert(root)
                 return root
         else:
-            if root._data.match_object(data):
-                return root
             if root._data < data:
                 root.set_right(self.__insert(root.get_right(),
                                              root, data, review))
