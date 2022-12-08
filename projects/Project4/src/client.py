@@ -11,6 +11,7 @@ import random
 from events import Event, Home, Away, Vacation, date
 from red_black import RBtree
 from aLL import Table
+
 # Type Indicators.
 HOME = 0
 AWAY = 1
@@ -20,10 +21,11 @@ TABLE_SIZE = 3
 NIL = Event("Null", "Null", date(2022, 1, 1))
 ENTER = 'PRESS ENTER TO CONTINUE:'
 CENTER = 80
-MAIN_MENU_SIZE = 9
+MAIN_MENU_SIZE = 10
 
 
 class Client:
+    """Initializes table, empty tree, and a filled test tree"""
     def __init__(self):
         self._table = Table(TABLE_SIZE)
         self._tree = RBtree()
@@ -31,6 +33,7 @@ class Client:
         self.build()
 
     def run(self):
+        """Client driver"""
         self.welcome()
         self.intro()
         flag = True
@@ -40,21 +43,15 @@ class Client:
             flag = self.process_menu_choice(option)
         return
 
-    def print_tree(self):
-        self._tree.display()
-        return
-
-    def print_table(self):
-        print(self._table)
-        return
-
     def build(self):
+        """Fills test tree and tables."""
         self.build_home_list()
         self.build_away_list()
         self.build_vacation_list()
         return None
 
     def build_home_list(self):
+        """Fills test tree and table with Home Events."""
         guests = ["Tony", "Alex", "Zach", "Will", "KJ", "Mom", "Frank"]
         h1 = Home("1200PM",
                   guests,
@@ -74,9 +71,10 @@ class Client:
         reviews = self.build_reviews(home_values)
         self._table.insert_multiple(home_values, HOME)
         self._test_tree.insert_multiple(home_values, reviews)
-        return
+        return None
 
     def build_reviews(self, values):
+        """Builds a list of reviews for testing."""
         testing = ["It was fun.", "It was amazing.", "I'd never do it again",
                    "Plan a little differently next year", "YESSSSS",
                    "Invite Mom to this.", "Call Frank about this one.",
@@ -88,6 +86,7 @@ class Client:
         return reviews
 
     def build_away_list(self):
+        """Fills test tree and table with Away Events."""
         a1 = Away("Casual",
                   "1200PM",
                   "Work Dinner",
@@ -115,6 +114,7 @@ class Client:
         return
 
     def build_vacation_list(self):
+        """Fills test tree and table with Vacation Events."""
         items = ["toiletries", "socks", "pants", "hat", "shoes",
                  "slippers", "laptop", "books"]
         v1 = Vacation(date(2023, 1, 5),
@@ -134,7 +134,7 @@ class Client:
         return
 
     def welcome(self):
-        """"""
+        """Welcome message"""
         s = 'Program 4/5 by Tyler Taormina'
         print('\n' * 4)
         s = s.center(CENTER)
@@ -144,7 +144,7 @@ class Client:
         return
 
     def intro(self):
-        """"""
+        """Brief introductory information."""
         s = """
         Please read program specifications found in README.md\n
         For testing purposes I have prebuilt the table data
@@ -158,19 +158,20 @@ class Client:
         print(s)
 
     def menu(self):
-        """"""
+        """Displays main menu."""
         title = "MENU"
         menu = """
         ================================================
-        1)  View all Events in the Calendar.
-        2)  View the next Event in the Calendar.
-        3)  View all Events of a specific category in the Calendar.
-        4)  Add an Event to the Calendar.
-        5)  Attend an Event and leave a review.
-        6)  Cancel an event.
-        7)  View attended events.
-        8)  Find Event.
-        9)  Exit
+        1)   View all Events in the Calendar.
+        2)   View the next Event in the Calendar.
+        3)   View all Events of a specific category in the Calendar.
+        4)   Add an Event to the Calendar.
+        5)   Attend an Event and leave a review.
+        6)   Cancel an event.
+        7)   View attended events.
+        8)   Find Event.
+        9)   Print Tree with Red/Black and Level Indicators for Verification
+        10)  Exit
         """
         title = title.center(CENTER - 20)
         menu = menu.center(CENTER)
@@ -178,7 +179,7 @@ class Client:
         print(menu)
 
     def get_menu_choice(self, size):
-        """"""
+        """Returns integer selection within bounds set by size argument."""
         flag = True
         option = 0
         while flag:
@@ -193,7 +194,7 @@ class Client:
         return int(option)
 
     def process_menu_choice(self, num):
-        """"""
+        """Calls corresponding functions to menu choice from user."""
         flag = True
         match num:
             case 1:  # display all
@@ -289,13 +290,18 @@ class Client:
                         print('\n\n')
             case 9:
                 print('\n\n')
+                print(self._tree)
+                print('\n\n')
+
+            case 10:
+                print('\n\n')
                 s = "Exiting..."
                 print(s.center(CENTER))
                 flag = False
         return flag
 
     def get_category(self):
-        """"""
+        """Determines category from user input."""
         menu = """
         1)  Home Event/s.
         2)  Away Event/s.
@@ -306,7 +312,7 @@ class Client:
         return self.get_menu_choice(TABLE_SIZE+1)
 
     def make_event(self, category):
-        """"""
+        """Build event based on category argument."""
         data = None
         match category:
             case 1:
@@ -318,7 +324,7 @@ class Client:
         return data
 
     def build_home(self):
-        """"""
+        """Build Home Event."""
         time = self.get_time()
         s = 'Please enter a guest'
         self.center_print(s)
@@ -330,7 +336,7 @@ class Client:
         return Home(time, guests, name, date)
 
     def build_away(self):
-        """"""
+        """Build Away Event."""
         s = 'Enter the dress code for the Event'
         self.center_print(s)
         dc = input('->')
@@ -345,7 +351,7 @@ class Client:
         return Away(dc, time, name, location, date)
 
     def build_vacation(self):
-        """"""
+        """Build Vacation Event."""
         s = 'Please enter the starting date'
         self.center_print(s)
         start_date = self.get_date()
@@ -364,13 +370,14 @@ class Client:
         return Vacation(end_date, pack, name, loc, start_date)
 
     def get_time(self):
-        """"""
+        """Return string representing time."""
         self.center_print('Enter time in format: hhmmAM / hhmmPM\n' +
                           'For example: 0430PM')
         user_input: str = input('->')
         return user_input
 
     def build_list(self):
+        """Returns a list filled with user input."""
         list = []
         flag = True
         while flag:
@@ -384,6 +391,7 @@ class Client:
         return list
 
     def get_date(self):
+        """Returns date object."""
         self.center_print('Enter the year')
         y = input('->')
         self.center_print('Enter the month with no leading zeroes')
@@ -398,7 +406,7 @@ class Client:
             return self.get_date()
 
     def center_print(self, arg):
-        """"""
+        """Prints centered."""
         arg = arg.center(CENTER)
         print(arg)
         return

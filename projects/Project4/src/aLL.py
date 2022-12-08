@@ -206,7 +206,6 @@ class Table:
         """Dispaly specific category that is specified by the type indicator
         argument."""
         if self._table[TYPE_INDICATORS[type_indicator-1]] is not None:
-            # self._table[indicator].display()
             print(self._table[type_indicator])
         return None
 

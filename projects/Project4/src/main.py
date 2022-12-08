@@ -9,15 +9,7 @@ from client import Client
 
 
 def main():
-    """
-    test_home_class()
-    test_away_class()
-    test_vacation_class()
-    test_RBnode_class()
-    test_node_class()
-    test_table_class()
-    test_RBtree_class()
-    """
+    """Program Driver."""
     client = Client()
     return client.run()
 
