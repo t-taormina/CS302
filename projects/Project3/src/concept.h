@@ -23,10 +23,8 @@
 #include <list>
 #include <iterator>
 using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
 using std::list;
+using namespace std;
 
 
 class Concept
